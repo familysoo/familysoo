@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Header from "../components/Header";
 
 // 애니메이션이 적용된 포트폴리오 섹션 컴포넌트
 function PortfolioSection() {
@@ -176,12 +177,12 @@ function PortfolioSection() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <div className="bg-white rounded-full p-2 flex space-x-2 shadow-sm">
+            <div className="bg-white rounded-full p-2 flex space-x-2 shadow-sm overflow-x-auto scrollbar-hide">
               {categories.map((category) => (
                 <motion.button 
                   key={category}
                   onClick={() => setActiveCategory(category)}
-                  className={`px-6 py-2 rounded-full font-medium transition-colors ${
+                  className={`px-4 py-2 sm:px-6 sm:py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
                     activeCategory === category
                       ? 'bg-primary text-white'
                       : 'text-foreground hover:bg-primary/10'
@@ -195,7 +196,7 @@ function PortfolioSection() {
             </div>
           </motion.div>
 
-                              {/* Masonry 컬럼 기반 포트폴리오 갤러리 */}
+          {/* Masonry 컬럼 기반 포트폴리오 갤러리 */}
           <motion.div 
             className="columns-2 md:columns-4"
             initial={{ opacity: 0 }}
@@ -424,7 +425,8 @@ function StudioSection() {
             >
               <motion.h3 
                 className="font-serif text-2xl font-medium mb-4 text-primary"
-                whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+                whileHover={{ scale: 1.02, transition: { duration: 0.2, ease: "easeOut" } }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 대표 인사말
               </motion.h3>
@@ -434,7 +436,7 @@ function StudioSection() {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
               >
-                안녕하세요, Family Soo Studio 대표 수진입니다.<br />
+                안녕하세요, 패밀리수 스튜디오에 오신 것을 환엽합니다.<br />
                 당진 최초의 가족·리마인드 전문 스튜디오로, 25년 이상의 촬영 경험을 바탕으로 
                 여러분의 특별한 이야기를 아름답게 기록해드리고 있습니다.
               </motion.p>
@@ -452,17 +454,36 @@ function StudioSection() {
             <motion.div 
               className="bg-muted rounded-2xl p-6"
               initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.95 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
+              animate={isInView ? 
+                { 
+                  opacity: 1, 
+                  y: 0, 
+                  scale: 1,
+                  boxShadow: "0px 0px 0px rgba(139, 115, 85, 0)",
+                  transition: { 
+                    duration: 0.6, 
+                    delay: 1.2,
+                    scale: { duration: 0.2, ease: "easeOut" },
+                    boxShadow: { duration: 0.2, ease: "easeOut" }
+                  }
+                } : 
+                { 
+                  opacity: 0, 
+                  y: 30, 
+                  scale: 0.95,
+                  transition: { duration: 0.2, ease: "easeOut" }
+                }
+              }
               whileHover={{ 
                 scale: 1.02,
                 boxShadow: "0 8px 30px rgba(139, 115, 85, 0.1)",
-                transition: { duration: 0.3 }
+                transition: { duration: 0.2, ease: "easeOut" }
               }}
             >
               <motion.h4 
                 className="font-medium text-lg mb-4 text-foreground"
-                whileHover={{ color: "var(--primary)", transition: { duration: 0.2 } }}
+                whileHover={{ color: "var(--primary)", transition: { duration: 0.2, ease: "easeOut" } }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 스튜디오 특징
               </motion.h4>
@@ -472,16 +493,29 @@ function StudioSection() {
                     key={index}
                     className="flex items-center"
                     initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                    transition={{ 
-                      duration: 0.5, 
-                      delay: 1.4 + index * 0.1,
-                      ease: "easeOut"
-                    }}
+                    animate={isInView ? 
+                      { 
+                        opacity: 1, 
+                        x: 0,
+                        color: "rgb(115 115 115)",
+                        transition: { 
+                          duration: 0.5, 
+                          delay: 1.4 + index * 0.1,
+                          ease: "easeOut",
+                          x: { duration: 0.2, ease: "easeOut" },
+                          color: { duration: 0.2, ease: "easeOut" }
+                        }
+                      } : 
+                      { 
+                        opacity: 0, 
+                        x: -20,
+                        transition: { duration: 0.2, ease: "easeOut" }
+                      }
+                    }
                     whileHover={{ 
                       x: 8,
                       color: "var(--foreground)",
-                      transition: { duration: 0.2 }
+                      transition: { duration: 0.2, ease: "easeOut" }
                     }}
                   >
                     <motion.span 
@@ -489,8 +523,9 @@ function StudioSection() {
                       whileHover={{ 
                         scale: 1.3, 
                         rotate: 360,
-                        transition: { duration: 0.3 }
+                        transition: { duration: 0.2, ease: "easeOut" }
                       }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
                     >
                       ✓
                     </motion.span>
@@ -511,13 +546,32 @@ function StudioSection() {
             <motion.div 
               className="bg-muted rounded-2xl h-64 flex items-center justify-center cursor-pointer"
               initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
-              animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.9, rotate: 2 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              animate={isInView ? 
+                { 
+                  opacity: 1, 
+                  scale: 1, 
+                  rotate: 0,
+                  boxShadow: "0px 0px 0px rgba(139, 115, 85, 0)",
+                  transition: { 
+                    duration: 0.8, 
+                    delay: 0.6,
+                    scale: { duration: 0.2, ease: "easeOut" },
+                    rotate: { duration: 0.2, ease: "easeOut" },
+                    boxShadow: { duration: 0.2, ease: "easeOut" }
+                  }
+                } : 
+                { 
+                  opacity: 0, 
+                  scale: 0.9, 
+                  rotate: 2,
+                  transition: { duration: 0.2, ease: "easeOut" }
+                }
+              }
               whileHover={{ 
                 scale: 1.03,
                 rotate: -1,
                 boxShadow: "0 10px 40px rgba(139, 115, 85, 0.15)",
-                transition: { duration: 0.3 }
+                transition: { duration: 0.2, ease: "easeOut" }
               }}
               whileTap={{ scale: 0.98 }}
             >
@@ -527,8 +581,9 @@ function StudioSection() {
                   whileHover={{ 
                     scale: 1.2,
                     rotate: 10,
-                    transition: { duration: 0.3 }
+                    transition: { duration: 0.2, ease: "easeOut" }
                   }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
                 >
                   📸
                 </motion.span>
@@ -540,13 +595,32 @@ function StudioSection() {
               <motion.div 
                 className="bg-muted rounded-xl h-32 flex items-center justify-center cursor-pointer"
                 initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
+                animate={isInView ? 
+                  { 
+                    opacity: 1, 
+                    y: 0,
+                    scale: 1,
+                    rotate: 0,
+                    boxShadow: "0px 0px 0px rgba(139, 115, 85, 0)",
+                    transition: { 
+                      duration: 0.6, 
+                      delay: 0.8,
+                      scale: { duration: 0.2, ease: "easeOut" },
+                      rotate: { duration: 0.2, ease: "easeOut" },
+                      boxShadow: { duration: 0.2, ease: "easeOut" }
+                    }
+                  } : 
+                  { 
+                    opacity: 0, 
+                    y: 30,
+                    transition: { duration: 0.2, ease: "easeOut" }
+                  }
+                }
                 whileHover={{ 
                   scale: 1.05,
                   rotate: 1,
                   boxShadow: "0 6px 25px rgba(139, 115, 85, 0.12)",
-                  transition: { duration: 0.3 }
+                  transition: { duration: 0.2, ease: "easeOut" }
                 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -556,8 +630,9 @@ function StudioSection() {
                     whileHover={{ 
                       scale: 1.3,
                       rotate: -15,
-                      transition: { duration: 0.3 }
+                      transition: { duration: 0.2, ease: "easeOut" }
                     }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
                   >
                     🎨
                   </motion.span>
@@ -568,13 +643,32 @@ function StudioSection() {
               <motion.div 
                 className="bg-muted rounded-xl h-32 flex items-center justify-center cursor-pointer"
                 initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.6, delay: 1.0 }}
+                animate={isInView ? 
+                  { 
+                    opacity: 1, 
+                    y: 0,
+                    scale: 1,
+                    rotate: 0,
+                    boxShadow: "0px 0px 0px rgba(139, 115, 85, 0)",
+                    transition: { 
+                      duration: 0.6, 
+                      delay: 1.0,
+                      scale: { duration: 0.2, ease: "easeOut" },
+                      rotate: { duration: 0.2, ease: "easeOut" },
+                      boxShadow: { duration: 0.2, ease: "easeOut" }
+                    }
+                  } : 
+                  { 
+                    opacity: 0, 
+                    y: 30,
+                    transition: { duration: 0.2, ease: "easeOut" }
+                  }
+                }
                 whileHover={{ 
                   scale: 1.05,
                   rotate: -1,
                   boxShadow: "0 6px 25px rgba(139, 115, 85, 0.12)",
-                  transition: { duration: 0.3 }
+                  transition: { duration: 0.2, ease: "easeOut" }
                 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -584,8 +678,9 @@ function StudioSection() {
                     whileHover={{ 
                       scale: 1.3,
                       rotate: 15,
-                      transition: { duration: 0.3 }
+                      transition: { duration: 0.2, ease: "easeOut" }
                     }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
                   >
                     📷
                   </motion.span>
@@ -635,30 +730,32 @@ function ServiceSection({
           animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.8, rotate: -5 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
         >
-          <motion.div 
-            className="rounded-2xl h-80 bg-cover bg-center relative overflow-hidden cursor-pointer"
-            style={{ backgroundImage: `url('${imageUrl}')` }}
-            whileHover={{ 
-              scale: 1.02,
-              transition: { duration: 0.4 }
-            }}
-            whileTap={{ scale: 0.98 }}
-          >
+          <Link href={href}>
             <motion.div 
-              className="absolute inset-0 bg-black/30 rounded-2xl"
+              className="rounded-2xl h-80 bg-cover bg-center relative overflow-hidden cursor-pointer"
+              style={{ backgroundImage: `url('${imageUrl}')` }}
               whileHover={{ 
-                backgroundColor: "rgba(0, 0, 0, 0.2)",
+                scale: 1.02,
                 transition: { duration: 0.4 }
               }}
-            />
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl opacity-0"
-              whileHover={{ 
-                opacity: 1,
-                transition: { duration: 0.4 }
-              }}
-            />
-          </motion.div>
+              whileTap={{ scale: 0.98 }}
+            >
+              <motion.div 
+                className="absolute inset-0 bg-black/30 rounded-2xl"
+                whileHover={{ 
+                  backgroundColor: "rgba(0, 0, 0, 0.2)",
+                  transition: { duration: 0.4 }
+                }}
+              />
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl opacity-0"
+                whileHover={{ 
+                  opacity: 1,
+                  transition: { duration: 0.4 }
+                }}
+              />
+            </motion.div>
+          </Link>
         </motion.div>
         
         <motion.div 
@@ -688,12 +785,30 @@ function ServiceSection({
           <motion.div 
             className="border border-primary rounded-xl p-6 mb-6"
             initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
+            animate={isInView ? 
+              { 
+                opacity: 1, 
+                y: 0,
+                borderColor: "var(--primary)",
+                boxShadow: "0px 0px 0px rgba(139, 115, 85, 0)",
+                transition: { 
+                  duration: 0.6, 
+                  delay: 0.8,
+                  ease: "easeOut",
+                  borderColor: { duration: 0.2, ease: "easeOut" },
+                  boxShadow: { duration: 0.2, ease: "easeOut" }
+                }
+              } : 
+              { 
+                opacity: 0, 
+                y: 30,
+                transition: { duration: 0.2, ease: "easeOut" }
+              }
+            }
             whileHover={{ 
               borderColor: "var(--primary)",
               boxShadow: "0 4px 20px rgba(139, 115, 85, 0.1)",
-              transition: { duration: 0.3 }
+              transition: { duration: 0.2, ease: "easeOut" }
             }}
           >
             <h4 className="font-medium text-lg mb-4 text-foreground">포함 서비스</h4>
@@ -703,21 +818,32 @@ function ServiceSection({
                   key={index}
                   className="flex items-center"
                   initial={{ opacity: 0, x: -20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                  transition={{ 
-                    duration: 0.5, 
-                    delay: 0.9 + index * 0.1,
-                    ease: "easeOut"
-                  }}
+                  animate={isInView ? 
+                    { 
+                      opacity: 1, 
+                      x: 0,
+                      transition: { 
+                        duration: 0.5, 
+                        delay: 0.9 + index * 0.1,
+                        ease: "easeOut",
+                        x: { duration: 0.2, ease: "easeOut" }
+                      }
+                    } : 
+                    { 
+                      opacity: 0, 
+                      x: -20,
+                      transition: { duration: 0.2, ease: "easeOut" }
+                    }
+                  }
                   whileHover={{ 
                     x: 4,
-                    transition: { duration: 0.2 }
+                    transition: { duration: 0.2, ease: "easeOut" }
                   }}
                 >
                   <motion.span 
                     className="text-primary mr-3"
                     whileHover={{ scale: 1.2, rotate: 360 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
                   >
                     ✓
                   </motion.span>
@@ -765,7 +891,6 @@ function ServiceSection({
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isScrolled, setIsScrolled] = useState(false);
   
   // 패럴랙스 효과를 위한 ref
   const parallaxRef = useRef(null);
@@ -813,79 +938,12 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
-  // 스크롤 감지
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToServices = () => {
-    window.location.href = '/services';
-  };
-
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-white/90 backdrop-blur-sm border-b border-accent' 
-          : 'bg-transparent border-b border-transparent'
-      }`}>
-        <div className="container">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className={`font-serif text-2xl font-bold transition-colors duration-300 ${
-              isScrolled ? 'text-primary' : 'text-white'
-            }`}>
-              Family Soo
-            </Link>
-            
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-8">
-              <Link href="/" className={`transition-colors duration-300 ${
-                isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'
-              }`}>홈</Link>
-              <Link href="/services" className={`transition-colors duration-300 ${
-                isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'
-              }`}>서비스</Link>
-              <Link href="/about" className={`transition-colors duration-300 ${
-                isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'
-              }`}>소개</Link>
-              <Link href="/portfolio" className={`transition-colors duration-300 ${
-                isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'
-              }`}>포트폴리오</Link>
-              <Link href="/contact" className={`transition-colors duration-300 ${
-                isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'
-              }`}>예약문의</Link>
-            </nav>
+      <Header transparent={true} />
 
-            {/* Mobile menu */}
-            <div className="md:hidden">
-              <select 
-                className={`mobile-select transition-colors duration-300 ${
-                  isScrolled ? 'text-foreground' : 'text-white'
-                }`}
-                onChange={(e) => {
-                  if (e.target.value) {
-                    window.location.href = e.target.value;
-                  }
-                }}
-              >
-                <option value="">메뉴</option>
-                <option value="/">홈</option>
-                <option value="/services">서비스</option>
-                <option value="/about">소개</option>
-                <option value="/portfolio">포트폴리오</option>
-                <option value="/contact">예약문의</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </header>
+
 
       {/* Hero Section with Carousel */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -1102,7 +1160,10 @@ export default function Home() {
                   scale: 1.02,
                   boxShadow: "0 8px 30px rgba(139, 115, 85, 0.1)"
                 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
+                style={{ 
+                  transition: "transform 0.2s ease, box-shadow 0.2s ease" 
+                }}
               >
                 <h3 className="font-serif text-2xl font-medium mb-6 text-primary">
                   예약 방법 및 가격
@@ -1151,7 +1212,7 @@ export default function Home() {
                         transition={{ duration: 0.2 }}
                       >
                         <span>가족사진 (기본)</span>
-                        <span className="font-medium">150,000원~</span>
+                        <span className="font-medium">100,000원~</span>
                       </motion.div>
                       <motion.div 
                         className="flex justify-between items-center py-2 border-b border-gray-100"
@@ -1162,7 +1223,7 @@ export default function Home() {
                         transition={{ duration: 0.2 }}
                       >
                         <span>리마인드웨딩</span>
-                        <span className="font-medium">300,000원~</span>
+                        <span className="font-medium">100,000원~</span>
                       </motion.div>
                       <motion.div 
                         className="flex justify-between items-center py-2 border-b border-gray-100"
@@ -1215,7 +1276,10 @@ export default function Home() {
                   scale: 1.02,
                   boxShadow: "0 8px 30px rgba(139, 115, 85, 0.1)"
                 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
+                style={{ 
+                  transition: "transform 0.2s ease, box-shadow 0.2s ease" 
+                }}
               >
                 <h3 className="font-serif text-2xl font-medium mb-6 text-primary">
                   자주 묻는 질문
@@ -1429,7 +1493,10 @@ export default function Home() {
                   scale: 1.02,
                   boxShadow: "0 8px 30px rgba(139, 115, 85, 0.15)"
                 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
+                style={{ 
+                  transition: "transform 0.2s ease, box-shadow 0.2s ease" 
+                }}
               >
                 <div className="h-96 relative">
                   {/* 네이버 지도 iframe */}
@@ -1478,7 +1545,10 @@ export default function Home() {
                   scale: 1.02,
                   boxShadow: "0 8px 30px rgba(139, 115, 85, 0.1)"
                 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
+                style={{ 
+                  transition: "transform 0.2s ease, box-shadow 0.2s ease" 
+                }}
               >
                 <motion.h3 
                   className="font-serif text-2xl font-medium mb-6 text-primary"
@@ -1494,12 +1564,21 @@ export default function Home() {
                   <motion.div 
                     className="flex items-start space-x-3 p-3 rounded-lg"
                     initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.8 }}
+                    animate={{ 
+                      opacity: 1, 
+                      x: 0,
+                      backgroundColor: "rgba(139, 115, 85, 0)",
+                      transition: { 
+                        duration: 0.5, 
+                        delay: 0.8,
+                        x: { duration: 0.2, ease: "easeOut" },
+                        backgroundColor: { duration: 0.2, ease: "easeOut" }
+                      }
+                    }}
                     whileHover={{ 
                       backgroundColor: "rgba(139, 115, 85, 0.05)",
-                      x: 4
+                      x: 4,
+                      transition: { duration: 0.2, ease: "easeOut" }
                     }}
                   >
                     <span className="text-lg">📍</span>
@@ -1512,12 +1591,21 @@ export default function Home() {
                   <motion.div 
                     className="flex items-start space-x-3 p-3 rounded-lg cursor-pointer"
                     initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 1.0 }}
+                    animate={{ 
+                      opacity: 1, 
+                      x: 0,
+                      backgroundColor: "rgba(139, 115, 85, 0)",
+                      transition: { 
+                        duration: 0.5, 
+                        delay: 1.0,
+                        x: { duration: 0.2, ease: "easeOut" },
+                        backgroundColor: { duration: 0.2, ease: "easeOut" }
+                      }
+                    }}
                     whileHover={{ 
                       backgroundColor: "rgba(139, 115, 85, 0.05)",
-                      x: 4
+                      x: 4,
+                      transition: { duration: 0.2, ease: "easeOut" }
                     }}
                     onClick={() => window.open('tel:041-1592-0000')}
                   >
@@ -1531,12 +1619,21 @@ export default function Home() {
                   <motion.div 
                     className="flex items-start space-x-3 p-3 rounded-lg cursor-pointer"
                     initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 1.2 }}
+                    animate={{ 
+                      opacity: 1, 
+                      x: 0,
+                      backgroundColor: "rgba(139, 115, 85, 0)",
+                      transition: { 
+                        duration: 0.5, 
+                        delay: 1.2,
+                        x: { duration: 0.2, ease: "easeOut" },
+                        backgroundColor: { duration: 0.2, ease: "easeOut" }
+                      }
+                    }}
                     whileHover={{ 
                       backgroundColor: "rgba(139, 115, 85, 0.05)",
-                      x: 4
+                      x: 4,
+                      transition: { duration: 0.2, ease: "easeOut" }
                     }}
                     onClick={() => window.open('mailto:familysoo1592@naver.com')}
                   >
@@ -1550,12 +1647,21 @@ export default function Home() {
                   <motion.div 
                     className="flex items-start space-x-3 p-3 rounded-lg cursor-pointer"
                     initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 1.4 }}
+                    animate={{ 
+                      opacity: 1, 
+                      x: 0,
+                      backgroundColor: "rgba(139, 115, 85, 0)",
+                      transition: { 
+                        duration: 0.5, 
+                        delay: 1.4,
+                        x: { duration: 0.2, ease: "easeOut" },
+                        backgroundColor: { duration: 0.2, ease: "easeOut" }
+                      }
+                    }}
                     whileHover={{ 
                       backgroundColor: "rgba(139, 115, 85, 0.05)",
-                      x: 4
+                      x: 4,
+                      transition: { duration: 0.2, ease: "easeOut" }
                     }}
                     onClick={() => window.open('https://blog.naver.com/familysoo1592', '_blank')}
                   >
@@ -1569,12 +1675,21 @@ export default function Home() {
                   <motion.div 
                     className="flex items-start space-x-3 p-3 rounded-lg"
                     initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 1.6 }}
+                    animate={{ 
+                      opacity: 1, 
+                      x: 0,
+                      backgroundColor: "rgba(139, 115, 85, 0)",
+                      transition: { 
+                        duration: 0.5, 
+                        delay: 1.6,
+                        x: { duration: 0.2, ease: "easeOut" },
+                        backgroundColor: { duration: 0.2, ease: "easeOut" }
+                      }
+                    }}
                     whileHover={{ 
                       backgroundColor: "rgba(139, 115, 85, 0.05)",
-                      x: 4
+                      x: 4,
+                      transition: { duration: 0.2, ease: "easeOut" }
                     }}
                   >
                     <span className="text-lg">🕒</span>
@@ -1600,6 +1715,9 @@ export default function Home() {
               scale: 1.01,
               boxShadow: "0 8px 30px rgba(139, 115, 85, 0.1)"
             }}
+            style={{ 
+              transition: "transform 0.2s ease, box-shadow 0.2s ease" 
+            }}
           >
             <motion.h3 
               className="font-serif text-2xl font-medium mb-8 text-primary text-center"
@@ -1622,16 +1740,19 @@ export default function Home() {
                   boxShadow: "0 4px 20px rgba(139, 115, 85, 0.08)"
                 }}
                 className="bg-muted rounded-xl p-6"
+                style={{ 
+                  transition: "transform 0.2s ease, box-shadow 0.2s ease" 
+                }}
               >
                 <motion.h4 
                   className="font-medium text-lg mb-4 flex items-center text-foreground"
                   whileHover={{ color: "var(--primary)" }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
                 >
                   <motion.span 
                     className="mr-3 text-2xl"
                     whileHover={{ scale: 1.2, rotate: 10 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
                   >
                     🚗
                   </motion.span>
@@ -1648,19 +1769,27 @@ export default function Home() {
                       key={index}
                       className="flex items-center"
                       initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
+                      animate={{ 
+                        opacity: 1, 
+                        x: 0,
+                        color: "rgb(115 115 115)",
+                        transition: { 
+                          duration: 0.5, 
+                          delay: 1.2 + index * 0.1,
+                          x: { duration: 0.2, ease: "easeOut" },
+                          color: { duration: 0.2, ease: "easeOut" }
+                        }
+                      }}
                       whileHover={{ 
                         x: 8,
                         color: "var(--foreground)",
-                        transition: { duration: 0.2 }
+                        transition: { duration: 0.2, ease: "easeOut" }
                       }}
                     >
                       <motion.span 
                         className="text-primary mr-3"
                         whileHover={{ scale: 1.3 }}
-                        transition={{ duration: 0.2 }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
                       >
                         •
                       </motion.span>
@@ -1680,16 +1809,19 @@ export default function Home() {
                   boxShadow: "0 4px 20px rgba(139, 115, 85, 0.08)"
                 }}
                 className="bg-muted rounded-xl p-6"
+                style={{ 
+                  transition: "transform 0.2s ease, box-shadow 0.2s ease" 
+                }}
               >
                 <motion.h4 
                   className="font-medium text-lg mb-4 flex items-center text-foreground"
                   whileHover={{ color: "var(--primary)" }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
                 >
                   <motion.span 
                     className="mr-3 text-2xl"
                     whileHover={{ scale: 1.2, rotate: -10 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
                   >
                     🚌
                   </motion.span>
@@ -1706,19 +1838,27 @@ export default function Home() {
                       key={index}
                       className="flex items-center"
                       initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 1.4 + index * 0.1 }}
+                      animate={{ 
+                        opacity: 1, 
+                        x: 0,
+                        color: "rgb(115 115 115)",
+                        transition: { 
+                          duration: 0.5, 
+                          delay: 1.4 + index * 0.1,
+                          x: { duration: 0.2, ease: "easeOut" },
+                          color: { duration: 0.2, ease: "easeOut" }
+                        }
+                      }}
                       whileHover={{ 
                         x: 8,
                         color: "var(--foreground)",
-                        transition: { duration: 0.2 }
+                        transition: { duration: 0.2, ease: "easeOut" }
                       }}
                     >
                       <motion.span 
                         className="text-primary mr-3"
                         whileHover={{ scale: 1.3 }}
-                        transition={{ duration: 0.2 }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
                       >
                         •
                       </motion.span>
@@ -1738,16 +1878,19 @@ export default function Home() {
                   boxShadow: "0 4px 20px rgba(139, 115, 85, 0.08)"
                 }}
                 className="bg-muted rounded-xl p-6"
+                style={{ 
+                  transition: "transform 0.2s ease, box-shadow 0.2s ease" 
+                }}
               >
                 <motion.h4 
                   className="font-medium text-lg mb-4 flex items-center text-foreground"
                   whileHover={{ color: "var(--primary)" }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
                 >
                   <motion.span 
                     className="mr-3 text-2xl"
                     whileHover={{ scale: 1.2, rotate: 360 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
                   >
                     🅿️
                   </motion.span>
@@ -1764,19 +1907,27 @@ export default function Home() {
                       key={index}
                       className="flex items-center"
                       initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 1.6 + index * 0.1 }}
+                      animate={{ 
+                        opacity: 1, 
+                        x: 0,
+                        color: "rgb(115 115 115)",
+                        transition: { 
+                          duration: 0.5, 
+                          delay: 1.6 + index * 0.1,
+                          x: { duration: 0.2, ease: "easeOut" },
+                          color: { duration: 0.2, ease: "easeOut" }
+                        }
+                      }}
                       whileHover={{ 
                         x: 8,
                         color: "var(--foreground)",
-                        transition: { duration: 0.2 }
+                        transition: { duration: 0.2, ease: "easeOut" }
                       }}
                     >
                       <motion.span 
                         className="text-primary mr-3"
                         whileHover={{ scale: 1.3 }}
-                        transition={{ duration: 0.2 }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
                       >
                         •
                       </motion.span>

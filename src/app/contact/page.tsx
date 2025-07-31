@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import Header from "../../components/Header";
 
 export default function ContactPage() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
@@ -36,44 +37,10 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 border-b border-accent">
-        <div className="container">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="font-serif text-2xl font-bold text-primary">
-              Family Soo
-            </Link>
-            
-            <nav className="hidden md:flex space-x-8">
-              <Link href="/" className="text-foreground hover:text-primary transition-colors">홈</Link>
-              <Link href="/services" className="text-foreground hover:text-primary transition-colors">서비스</Link>
-              <Link href="/about" className="text-foreground hover:text-primary transition-colors">소개</Link>
-              <Link href="/portfolio" className="text-foreground hover:text-primary transition-colors">포트폴리오</Link>
-              <Link href="/contact" className="text-primary font-medium">예약문의</Link>
-            </nav>
-
-            <div className="md:hidden">
-              <select 
-                className="mobile-select"
-                value="/contact"
-                onChange={(e) => {
-                  if (e.target.value !== "/contact") {
-                    window.location.href = e.target.value;
-                  }
-                }}
-              >
-                <option value="/">홈</option>
-                <option value="/services">서비스</option>
-                <option value="/about">소개</option>
-                <option value="/portfolio">포트폴리오</option>
-                <option value="/contact">예약문의</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-primary/5 to-accent/10">
         <div className="container">
           <div className="text-center">
             <h1 className="font-serif text-4xl md:text-6xl font-light mb-6 text-foreground">
