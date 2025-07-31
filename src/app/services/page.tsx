@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ChevronRight, Camera, Heart, Baby, Users, Star, Clock, Phone } from "lucide-react";
 import Header from "../../components/Header";
+import PageHero from "../../components/PageHero";
 
 // 개별 서비스 섹션 컴포넌트
 function ServiceSection({ 
@@ -380,34 +381,10 @@ export default function ServicesPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-primary/5 to-accent/10">
-        <div className="container">
-          <motion.div 
-            className="text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.h1 
-              className="font-serif text-4xl md:text-6xl font-light mb-6 text-foreground"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              촬영 서비스
-            </motion.h1>
-            <motion.p 
-              className="text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              각각의 특별한 순간을 위한 맞춤 촬영 서비스로<br />
-              소중한 기억을 아름다운 작품으로 완성해드립니다.
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero 
+        title="촬영 서비스"
+        description="각각의 특별한 순간을 위한 맞춤 촬영 서비스로<br />소중한 기억을 아름다운 작품으로 완성해드립니다."
+      />
 
       {/* Services Grid */}
       <section className="py-32">

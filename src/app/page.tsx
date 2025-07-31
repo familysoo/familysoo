@@ -7,374 +7,14 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Header from "../components/Header";
-
-// 애니메이션이 적용된 포트폴리오 섹션 컴포넌트
-function PortfolioSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-100px" });
-  const [activeCategory, setActiveCategory] = useState("전체");
-  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  // 다양한 높이의 masonry 포트폴리오 아이템들 (카테고리 정보 포함)
-  const portfolioItems = [
-    {
-      id: 1,
-      imageUrl: "https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=800&auto=format&fit=crop",
-      aspectRatio: "aspect-[4/3]",
-      category: "가족사진",
-      title: "따뜻한 가족의 시간"
-    },
-    {
-      id: 2,
-      imageUrl: "https://images.unsplash.com/photo-1581952975975-08cd95a728d4?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      aspectRatio: "aspect-square",
-      category: "가족사진",
-      title: "행복한 가족 포트레이트"
-    },
-    {
-      id: 3,
-      imageUrl: "https://images.unsplash.com/photo-1524144031591-3d146c70a0d9?q=80&w=600&auto=format&fit=crop",
-      aspectRatio: "aspect-[3/4]",
-      category: "리마인드웨딩",
-      title: "로맨틱 웨딩 순간"
-    },
-    {
-      id: 4,
-      imageUrl: "https://images.unsplash.com/photo-1557446772-d4de8a495127?q=80&w=800&auto=format&fit=crop",
-      aspectRatio: "aspect-[5/4]",
-      category: "가족사진",
-      title: "자연스러운 가족 촬영"
-    },
-    {
-      id: 5,
-      imageUrl: "https://images.unsplash.com/photo-1510154221590-ff63e90a136f?q=80&w=600&auto=format&fit=crop",
-      aspectRatio: "aspect-[4/5]",
-      category: "성장앨범",
-      title: "소중한 성장 기록"
-    },
-    {
-      id: 6,
-      imageUrl: "https://images.unsplash.com/photo-1542037179399-bbf09c7f9888?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      aspectRatio: "aspect-[3/2]",
-      category: "리마인드웨딩",
-      title: "영원한 사랑의 약속"
-    },
-    {
-      id: 7,
-      imageUrl: "https://images.unsplash.com/photo-1603367563698-67012943fd67?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      aspectRatio: "aspect-square",
-      category: "성장앨범",
-      title: "아이의 소중한 순간"
-    },
-    {
-      id: 8,
-      imageUrl: "https://images.unsplash.com/photo-1524144031591-3d146c70a0d9?q=80&w=600&auto=format&fit=crop",
-      aspectRatio: "aspect-[2/3]",
-      category: "리마인드웨딩",
-      title: "감동적인 웨딩 순간"
-    },
-    {
-      id: 9,
-      imageUrl: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop",
-      aspectRatio: "aspect-[4/3]",
-      category: "가족사진",
-      title: "가족의 즐거운 시간"
-    },
-    {
-      id: 10,
-      imageUrl: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?q=80&w=600&auto=format&fit=crop",
-      aspectRatio: "aspect-[3/4]",
-      category: "성장앨범",
-      title: "아름다운 성장 순간"
-    }
-  ];
-
-  // 카테고리별 필터링
-  const filteredItems = activeCategory === "전체" 
-    ? portfolioItems 
-    : portfolioItems.filter(item => item.category === activeCategory);
-
-  // 카테고리 버튼들
-  const categories = ["전체", "가족사진", "리마인드웨딩", "성장앨범"];
-
-  // 라이트박스 열기
-  const openLightbox = (imageUrl: string) => {
-    const index = filteredItems.findIndex(item => item.imageUrl === imageUrl);
-    setCurrentImageIndex(index);
-    setLightboxImage(imageUrl);
-    document.body.style.overflow = 'hidden';
-  };
-
-  // 라이트박스 닫기
-  const closeLightbox = () => {
-    setLightboxImage(null);
-    document.body.style.overflow = 'unset';
-  };
-
-  // 이전 이미지로 이동
-  const goToPrevious = () => {
-    const newIndex = currentImageIndex > 0 ? currentImageIndex - 1 : filteredItems.length - 1;
-    setCurrentImageIndex(newIndex);
-    setLightboxImage(filteredItems[newIndex].imageUrl);
-  };
-
-  // 다음 이미지로 이동
-  const goToNext = () => {
-    const newIndex = currentImageIndex < filteredItems.length - 1 ? currentImageIndex + 1 : 0;
-    setCurrentImageIndex(newIndex);
-    setLightboxImage(filteredItems[newIndex].imageUrl);
-  };
-
-  // 키보드 네비게이션
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!lightboxImage) return;
-      
-      switch (e.key) {
-        case 'Escape':
-          closeLightbox();
-          break;
-        case 'ArrowLeft':
-          goToPrevious();
-          break;
-        case 'ArrowRight':
-          goToNext();
-          break;
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [lightboxImage, currentImageIndex, filteredItems]);
-
-  return (
-    <section className="py-32 bg-muted">
-      <div className="container">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <h2 className="font-serif text-4xl font-light mb-6 text-foreground">포트폴리오</h2>
-            <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-              소중한 순간들의 아름다운 기록을 확인해보세요.<br />
-              다양한 컨셉과 스타일의 작품들을 만나보실 수 있습니다.
-            </p>
-          </motion.div>
-
-          {/* 카테고리 탭 */}
-          <motion.div 
-            className="flex justify-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <div className="bg-white rounded-full p-2 flex space-x-2 shadow-sm overflow-x-auto scrollbar-hide">
-              {categories.map((category) => (
-                <motion.button 
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={`px-4 py-2 sm:px-6 sm:py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
-                    activeCategory === category
-                      ? 'bg-primary text-white'
-                      : 'text-foreground hover:bg-primary/10'
-                  }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {category}
-                </motion.button>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Masonry 컬럼 기반 포트폴리오 갤러리 */}
-          <motion.div 
-            className="columns-2 md:columns-4"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            key={activeCategory} // 카테고리 변경 시 애니메이션 재실행
-          >
-            {filteredItems.map((item, index) => (
-              <motion.div
-                key={`${activeCategory}-${item.id}`}
-                className="break-inside-avoid mb-4 group cursor-pointer"
-                onClick={() => openLightbox(item.imageUrl)}
-                initial={{ opacity: 0, scale: 0.8, rotate: Math.random() * 10 - 5 }}
-                animate={isInView ? { 
-                  opacity: 1, 
-                  scale: 1, 
-                  rotate: 0 
-                } : { 
-                  opacity: 0, 
-                  scale: 0.8, 
-                  rotate: Math.random() * 10 - 5 
-                }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: 0.8 + index * 0.1,
-                  ease: "easeOut"
-                }}
-                whileHover={{ 
-                  scale: 1.02,
-                  rotate: Math.random() * 4 - 2,
-                  zIndex: 10,
-                  transition: { duration: 0.3 }
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="relative overflow-hidden rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 group">
-                  <motion.div
-                    className={`${item.aspectRatio} bg-cover bg-center w-full`}
-                    style={{
-                      backgroundImage: `url('${item.imageUrl}')`
-                    }}
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                  >
-                    {/* 호버 시 나타나는 오버레이 */}
-                    <motion.div
-                      className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"
-                      initial={{ opacity: 0 }}
-                      whileHover={{ opacity: 1 }}
-                    >
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <motion.div
-                          className="bg-white/20 backdrop-blur-sm rounded-full p-3"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                        >
-                          <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
-                            <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-                          </svg>
-                        </motion.div>
-                      </div>
-                    </motion.div>
-                  </motion.div>
-                  
-                  {/* 이미지 하단 카테고리 표시 */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <p className="text-white text-sm font-medium">{item.category}</p>
-                    <p className="text-white/80 text-xs">{item.title}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div 
-            className="text-center mt-24"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.6, delay: 1.4 }}
-          >
-            <Link href="/portfolio">
-              <motion.span
-                className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-medium transition-colors inline-block cursor-pointer"
-                whileHover={{ 
-                  scale: 1.05,
-                  boxShadow: "0 8px 25px rgba(139, 115, 85, 0.3)"
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                더 많은 작품 보기
-              </motion.span>
-            </Link>
-          </motion.div>
-        </motion.div>
-
-        {/* 라이트박스 모달 */}
-        {lightboxImage && (
-          <motion.div
-            className="fixed inset-0 bg-black/80 backdrop-blur-md z-[100]"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={closeLightbox}
-          >
-            {/* 이미지 카운터 - 좌상단 */}
-            <div className="absolute top-6 left-6 text-white font-medium z-30 text-lg">
-              {currentImageIndex + 1} / {filteredItems.length}
-            </div>
-
-            {/* 카테고리 표시 - 좌상단 */}
-            <div className="absolute top-6 left-6 mt-10 text-white/80 text-sm z-30">
-              {activeCategory}
-            </div>
-
-            {/* 이미지 컨테이너 */}
-            <div className="w-full h-full flex items-center justify-center">
-              <motion.img
-                src={lightboxImage}
-                alt="Portfolio Image"
-                className="max-w-full h-screen object-contain"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                onClick={(e) => e.stopPropagation()}
-              />
-            </div>
-
-            {/* 이전 버튼 */}
-            {filteredItems.length > 1 && (
-              <motion.button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goToPrevious();
-                }}
-                className="absolute left-8 text-white/70 hover:text-white transition-all z-30 bg-white/20 rounded-full p-3 backdrop-blur-sm hover:-translate-x-1"
-                style={{ 
-                  top: '50%', 
-                  transform: 'translateY(-50%)',
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </motion.button>
-            )}
-
-            {/* 다음 버튼 */}
-            {filteredItems.length > 1 && (
-              <motion.button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goToNext();
-                }}
-                className="absolute right-8 text-white/70 hover:text-white transition-all z-30 bg-white/20 rounded-full p-3 backdrop-blur-sm hover:translate-x-1"
-                style={{ 
-                  top: '50%', 
-                  transform: 'translateY(-50%)',
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </motion.button>
-            )}
-            
-            {/* 키보드 안내 */}
-            {/* <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white/60 text-sm text-center">
-              ← → 키로 이동 | ESC 키로 닫기 | 배경 클릭으로 닫기
-            </div> */}
-          </motion.div>
-        )}
-      </div>
-    </section>
-  );
-}
+import PortfolioSection from "../components/PortfolioSection";
+import type { 
+  ServicesApiResponse, 
+  PortfolioItem, 
+  ContentType 
+} from "@/types/database";
+import LoadingSpinner from "../components/LoadingSpinner";
+import { transformContentfulData } from "../components/PortfolioSection";
 
 // 애니메이션이 적용된 스튜디오 소개 섹션 컴포넌트
 function StudioSection() {
@@ -889,8 +529,12 @@ function ServiceSection({
   );
 }
 
+
+
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   
   // 패럴랙스 효과를 위한 ref
   const parallaxRef = useRef(null);
@@ -929,6 +573,37 @@ export default function Home() {
     }
   ];
 
+  // 포트폴리오 데이터 가져오기
+  const fetchPortfolioData = async () => {
+    try {
+      setIsLoading(true);
+      
+      // 병렬로 모든 content type 데이터 가져오기
+      const contentTypes: ContentType[] = ['family', 'baby', 'remindWedding'];
+      const promises = contentTypes.map(async (type) => {
+        const response = await fetch(`/api/services?type=${type}`);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch ${type} data`);
+        }
+        const data: ServicesApiResponse = await response.json();
+        return transformContentfulData(data, type);
+      });
+      
+      const results = await Promise.all(promises);
+      const allItems = results.flat();
+      
+      // 데이터를 섞어서 다양하게 표시
+      const shuffledItems = allItems.sort(() => Math.random() - 0.5);
+      setPortfolioItems(shuffledItems);
+    } catch (error) {
+      console.error('포트폴리오 데이터 가져오기 실패:', error);
+      // 에러 발생 시 빈 배열로 설정
+      setPortfolioItems([]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // 자동 슬라이드 전환
   useEffect(() => {
     const timer = setInterval(() => {
@@ -938,12 +613,15 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
+  // 포트폴리오 데이터 로드
+  useEffect(() => {
+    fetchPortfolioData();
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
       <Header transparent={true} />
-
-
 
       {/* Hero Section with Carousel */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -1127,7 +805,28 @@ export default function Home() {
       <StudioSection />
 
       {/* 4. 포트폴리오 (촬영 사례) */}
-      <PortfolioSection />
+      {!isLoading && (
+        <PortfolioSection 
+          title="포트폴리오"
+          description="소중한 순간들의 아름다운 기록을 확인해보세요.<br />다양한 컨셉과 스타일의 작품들을 만나보실 수 있습니다."
+          categories={["전체", "가족사진", "리마인드웨딩", "성장앨범"]}
+          portfolioItems={portfolioItems}
+          showMoreButton={true}
+          moreButtonText="더 많은 작품 보기"
+          moreButtonHref="/portfolio"
+        />
+      )}
+      
+      {/* 로딩 상태 */}
+      {isLoading && (
+        <section className="py-32 bg-muted">
+          <div className="container">
+            <div className="text-center">
+              <LoadingSpinner size="lg" className="text-primary" />
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* 5. 이용안내 */}
       <section className="py-32">

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import Header from "../../components/Header";
+import PageHero from "../../components/PageHero";
 
 export default function ContactPage() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
@@ -40,18 +41,10 @@ export default function ContactPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-primary/5 to-accent/10">
-        <div className="container">
-          <div className="text-center">
-            <h1 className="font-serif text-4xl md:text-6xl font-light mb-6 text-foreground">
-              예약 문의
-            </h1>
-            <p className="text-lg md:text-xl text-foreground/80">
-              소중한 순간을 함께 만들어가요
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero 
+        title="예약 문의"
+        description="소중한 순간을 함께 만들어가요"
+      />
 
       {/* Contact Methods */}
       <section className="py-20">

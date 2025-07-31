@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import Header from "../../components/Header";
+import PageHero from "../../components/PageHero";
 
 export default function PortfolioPage() {
   const [activeCategory, setActiveCategory] = useState("전체");
@@ -31,18 +32,10 @@ export default function PortfolioPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-primary/5 to-accent/10">
-        <div className="container">
-          <div className="text-center">
-            <h1 className="font-serif text-4xl md:text-6xl font-light mb-6 text-foreground">
-              포트폴리오
-            </h1>
-            <p className="text-lg md:text-xl text-foreground/80">
-              소중한 순간들의 아름다운 기록을 확인해보세요
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero 
+        title="포트폴리오"
+        description="소중한 순간들의 아름다운 기록을 확인해보세요"
+      />
 
       {/* Category Filter */}
       <section className="py-8 bg-white border-b border-accent">

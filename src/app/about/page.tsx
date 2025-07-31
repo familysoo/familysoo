@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Camera, Heart, Award, Users, Clock, MapPin, Phone, Mail, Star } from "lucide-react";
 import Header from "../../components/Header";
+import PageHero from "../../components/PageHero";
 
 // 개별 특징 카드 컴포넌트
 function FeatureCard({ feature, index }: { feature: any; index: number }) {
@@ -134,34 +135,10 @@ export default function AboutPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-primary/5 to-accent/10">
-        <div className="container">
-          <motion.div 
-            className="text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.h1 
-              className="font-serif text-4xl md:text-6xl font-light mb-6 text-foreground"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              스튜디오 소개
-            </motion.h1>
-            <motion.p 
-              className="text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              20년간 쌓아온 경험과 따뜻한 감성으로<br />
-              여러분의 소중한 순간을 기록합니다
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero 
+        title="스튜디오 소개"
+        description="20년간 쌓아온 경험과 따뜻한 감성으로<br />여러분의 소중한 순간을 기록합니다"
+      />
 
       {/* CEO Message */}
       <section className="py-32">
