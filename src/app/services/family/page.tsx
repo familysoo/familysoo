@@ -1,13 +1,52 @@
 'use client';
 
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import PageHero from "@/components/PageHero";
 import Breadcrumb from "@/components/Breadcrumb";
+import PortfolioSection, { transformContentfulData } from "@/components/PortfolioSection";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Users, Heart, Camera, Clock, Phone, Star, Gift, Image, Shield } from "lucide-react";
+import type { PortfolioItem, ServicesApiResponse } from "@/types/database";
 
 export default function FamilyPage() {
+  const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
+  const [categories, setCategories] = useState<string[]>(['전체']);
+  const [loading, setLoading] = useState(true);
+
+  // 가족 포트폴리오 데이터 로드
+  useEffect(() => {
+    async function loadPortfolioData() {
+      try {
+        const response = await fetch('/api/services?type=family');
+        if (!response.ok) {
+          throw new Error('Failed to fetch portfolio data');
+        }
+        
+        const data: ServicesApiResponse = await response.json();
+        console.log('family data', data);
+        
+        // 데이터 변환
+        const transformedItems = transformContentfulData(data, 'family');
+        
+        // 엔트리명을 카테고리로 추출 (중복 제거)
+        const entryCategories = [...new Set(data.data.map(entry => entry.fields.category))];
+        console.log('family entryCategories', entryCategories);
+        const allCategories = ['전체', ...entryCategories];
+        
+        setPortfolioItems(transformedItems);
+        setCategories(allCategories);
+      } catch (error) {
+        console.error('포트폴리오 데이터 로딩 실패:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadPortfolioData();
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -91,59 +130,16 @@ export default function FamilyPage() {
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-20 bg-muted">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="font-serif text-3xl font-light mb-6 text-foreground">서비스 특징</h2>
-            <p className="text-lg text-foreground/70">가족만의 특별함을 담는 전문 촬영 서비스</p>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-6">
-            {[
-              {
-                icon: <Gift size={32} className="text-primary" />,
-                title: "의상 무료 대여",
-                description: "전 컨셉 의상을 무료로 대여해드려 부담 없이 촬영하세요"
-              },
-              {
-                icon: <Image size={32} className="text-primary" />,
-                title: "고급 아크릴 액자",
-                description: "27x20cm 크기의 고급 아크릴 액자로 작품을 완성합니다"
-              },
-              {
-                icon: <Heart size={32} className="text-primary" />,
-                title: "예쁜 수정본",
-                description: "전문 보정으로 더욱 아름다운 사진을 제공합니다"
-              },
-              {
-                icon: <Users size={32} className="text-primary" />,
-                title: "인원 수 제한 없음",
-                description: "대가족도 환영! 모든 가족 구성원이 함께 촬영 가능합니다"
-              }
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                className="bg-white p-6 rounded-2xl shadow-sm text-center"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ 
-                  scale: 1.05,
-                  boxShadow: "0 8px 30px rgba(139, 115, 85, 0.15)"
-                }}
-              >
-                <div className="bg-primary/10 rounded-full p-4 w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                  {feature.icon}
-                </div>
-                <h3 className="font-serif text-lg font-medium mb-3 text-foreground">{feature.title}</h3>
-                <p className="text-foreground/70 leading-relaxed text-sm">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Portfolio Section */}
+      {!loading && (
+        <PortfolioSection
+          title="가족 촬영 포트폴리오"
+          description="가족의 사랑과 행복이 담긴 특별한 순간들을 확인해보세요.<br />다양한 컨셉과 스타일의 가족 사진들을 보실 수 있습니다."
+          categories={categories}
+          portfolioItems={portfolioItems}
+          showMoreButton={false}
+        />
+      )}
 
       {/* Concept Introduction */}
       <section className="py-20">

@@ -1,13 +1,52 @@
 'use client';
 
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import PageHero from "@/components/PageHero";
 import Breadcrumb from "@/components/Breadcrumb";
+import PortfolioSection, { transformContentfulData } from "@/components/PortfolioSection";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Baby, Heart, Camera, Clock, Phone, Star } from "lucide-react";
+import type { PortfolioItem, ServicesApiResponse } from "@/types/database";
 
 export default function BabyPage() {
+  const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
+  const [categories, setCategories] = useState<string[]>(['전체']);
+  const [loading, setLoading] = useState(true);
+
+  // 베이비 포트폴리오 데이터 로드
+  useEffect(() => {
+    async function loadPortfolioData() {
+      try {
+        const response = await fetch('/api/services?type=baby');
+        if (!response.ok) {
+          throw new Error('Failed to fetch portfolio data');
+        }
+        
+        const data: ServicesApiResponse = await response.json();
+        console.log('data', data);
+        
+        // 데이터 변환
+        const transformedItems = transformContentfulData(data, 'baby');
+        
+        // 엔트리명을 카테고리로 추출 (중복 제거)
+        const entryCategories = [...new Set(data.data.map(entry => entry.fields.category))];
+        console.log('entryCategories', entryCategories);
+        const allCategories = ['전체', ...entryCategories];
+        
+        setPortfolioItems(transformedItems);
+        setCategories(allCategories);
+      } catch (error) {
+        console.error('포트폴리오 데이터 로딩 실패:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadPortfolioData();
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -87,54 +126,16 @@ export default function BabyPage() {
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-20 bg-muted">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="font-serif text-3xl font-light mb-6 text-foreground">서비스 특징</h2>
-            <p className="text-lg text-foreground/70">안전하고 전문적인 아기 촬영 서비스</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <Baby size={32} className="text-primary" />,
-                title: "안전한 촬영",
-                description: "아기의 안전을 최우선으로 하는 전문 촬영 환경과 숙련된 작가의 세심한 케어"
-              },
-              {
-                icon: <Heart size={32} className="text-primary" />,
-                title: "자연스러운 표현",
-                description: "아기의 자연스러운 표정과 포즈를 통해 진정성 있는 순간들을 포착"
-              },
-              {
-                icon: <Camera size={32} className="text-primary" />,
-                title: "전문 장비",
-                description: "아기 촬영에 최적화된 조명과 장비로 완벽한 품질의 사진 제공"
-              }
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                className="bg-white p-8 rounded-2xl shadow-sm text-center"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ 
-                  scale: 1.05,
-                  boxShadow: "0 8px 30px rgba(139, 115, 85, 0.15)"
-                }}
-              >
-                <div className="bg-primary/10 rounded-full p-4 w-20 h-20 flex items-center justify-center mx-auto mb-6">
-                  {feature.icon}
-                </div>
-                <h3 className="font-serif text-xl font-medium mb-3 text-foreground">{feature.title}</h3>
-                <p className="text-foreground/70 leading-relaxed">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Portfolio Section */}
+      {!loading && (
+        <PortfolioSection
+          title="베이비 촬영 포트폴리오"
+          description="아이의 소중한 순간들을 담은 작품들을 확인해보세요.<br />각 테마별로 다양한 컨셉의 베이비 촬영 사진들을 보실 수 있습니다."
+          categories={categories}
+          portfolioItems={portfolioItems}
+          showMoreButton={false}
+        />
+      )}
 
       {/* Pricing */}
       <section className="py-20">

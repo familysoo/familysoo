@@ -1,13 +1,52 @@
 'use client';
 
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import PageHero from "@/components/PageHero";
 import Breadcrumb from "@/components/Breadcrumb";
+import PortfolioSection, { transformContentfulData } from "@/components/PortfolioSection";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Heart, Camera, Clock, Phone, Star, Gift } from "lucide-react";
+import type { PortfolioItem, ServicesApiResponse } from "@/types/database";
 
 export default function RemindWeddingPage() {
+  const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
+  const [categories, setCategories] = useState<string[]>(['전체']);
+  const [loading, setLoading] = useState(true);
+
+  // 리마인드 웨딩 포트폴리오 데이터 로드
+  useEffect(() => {
+    async function loadPortfolioData() {
+      try {
+        const response = await fetch('/api/services?type=remindWedding');
+        if (!response.ok) {
+          throw new Error('Failed to fetch portfolio data');
+        }
+        
+        const data: ServicesApiResponse = await response.json();
+        console.log('remindWedding data', data);
+        
+        // 데이터 변환
+        const transformedItems = transformContentfulData(data, 'remindWedding');
+        
+        // 엔트리명을 카테고리로 추출 (중복 제거)
+        const entryCategories = [...new Set(data.data.map(entry => entry.fields.category))];
+        console.log('remindWedding entryCategories', entryCategories);
+        const allCategories = ['전체', ...entryCategories];
+        
+        setPortfolioItems(transformedItems);
+        setCategories(allCategories);
+      } catch (error) {
+        console.error('포트폴리오 데이터 로딩 실패:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadPortfolioData();
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -87,54 +126,16 @@ export default function RemindWeddingPage() {
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-20 bg-muted">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="font-serif text-3xl font-light mb-6 text-foreground">서비스 특징</h2>
-            <p className="text-lg text-foreground/70">로맨틱하고 감동적인 리마인드웨딩 촬영</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <Heart size={32} className="text-primary" />,
-                title: "감성적 연출",
-                description: "결혼식 당시의 감동과 설렘을 재현하는 로맨틱한 컨셉과 포즈 연출"
-              },
-              {
-                icon: <Gift size={32} className="text-primary" />,
-                title: "드레스 제공",
-                description: "다양한 스타일의 웨딩드레스와 턱시도를 무료로 제공하여 완벽한 촬영"
-              },
-              {
-                icon: <Camera size={32} className="text-primary" />,
-                title: "전문 촬영",
-                description: "웨딩 촬영 전문 작가의 노하우로 아름답고 감동적인 순간을 포착"
-              }
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                className="bg-white p-8 rounded-2xl shadow-sm text-center"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ 
-                  scale: 1.05,
-                  boxShadow: "0 8px 30px rgba(139, 115, 85, 0.15)"
-                }}
-              >
-                <div className="bg-primary/10 rounded-full p-4 w-20 h-20 flex items-center justify-center mx-auto mb-6">
-                  {feature.icon}
-                </div>
-                <h3 className="font-serif text-xl font-medium mb-3 text-foreground">{feature.title}</h3>
-                <p className="text-foreground/70 leading-relaxed">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Portfolio Section */}
+      {!loading && (
+        <PortfolioSection
+          title="리마인드웨딩 포트폴리오"
+          description="시간이 흘러도 변하지 않는 사랑의 이야기를 담은 특별한 작품들을 확인해보세요.<br />로맨틱하고 감동적인 리마인드웨딩 촬영 사진들을 보실 수 있습니다."
+          categories={categories}
+          portfolioItems={portfolioItems}
+          showMoreButton={false}
+        />
+      )}
 
       {/* Process */}
       <section className="py-20">

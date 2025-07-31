@@ -19,30 +19,48 @@ import { transformContentfulData } from "../components/PortfolioSection";
 // 애니메이션이 적용된 스튜디오 소개 섹션 컴포넌트
 function StudioSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const studioFeatures = [
-    "당진 최초 가족·리마인드 전문점",
-    "25년 이상 경력의 전문 작가",
-    "당진 최대 규모의 촬영 시설",
-    "다양한 디자인의 드레스·턱시도 다량보유",
-    "전문 메이크업 서비스 제공",
-    "최신 디자인 사진액자 작업",
-    "액자 작업 전 수정 확인서비스",
-    "쾌적한 대기공간·메이크업실·상담실 구비"
+    {
+      title: "넓고 다양한 컨셉의 스튜디오",
+      description: "1층과 2층에 걸쳐 넓은 공간을 활용한 스튜디오로 다양한 촬영을 시도할 수 있는 최적의 환경을 제공합니다.",
+      icon: "🏢"
+    },
+    {
+      title: "다양한 소품과 세트",
+      description: "촬영의 완성도를 높여주는 다양한 소품과 세트를 보유하고 있습니다. 아이들의 촬영을 위한 귀여운 소품부터 리마인드 웨딩 촬영을 위한 로맨틱한 소품까지, 각 컨셉에 어울리는 소품을 사용해 더욱 특별한 사진을 만들어드립니다.",
+      icon: "🎨"
+    },
+    {
+      title: "전문 사진 작가",
+      description: "각 분야에서 경험을 쌓은 전문 사진 작가가 가족, 반려동물, 베이비 및 웨딩 촬영을 전문적으로 진행합니다.",
+      icon: "📷"
+    },
+    {
+      title: "개인 맞춤 서비스",
+      description: "고객의 요구에 맞춰 촬영 컨셉과 스타일을 조정하며, 원하는 순간을 완벽하게 기록하기 위해 사전에 충분한 상담을 진행합니다.",
+      icon: "✨"
+    },
+    {
+      title: "최첨단 장비 및 시설",
+      description: "최신 촬영 장비와 조명을 사용해 최고의 사진 품질을 보장합니다. 또한, 편안한 스튜디오 환경을 조성하여 모든 가족 구성원이 편안하게 촬영을 즐길 수 있습니다.",
+      icon: "🏡"
+    }
   ];
 
   return (
     <section className="py-32">
       <div className="container">
+        {/* 대표 인사말 섹션 */}
         <motion.div
           ref={ref}
-          className="grid lg:grid-cols-2 gap-16 items-center"
+          className="grid lg:grid-cols-2 gap-16 items-center mb-16"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* 대표 인사말 + 스튜디오 철학 */}
+          {/* 대표 인사말 */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
@@ -76,7 +94,7 @@ function StudioSection() {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
               >
-                안녕하세요, 패밀리수 스튜디오에 오신 것을 환엽합니다.<br />
+                안녕하세요, 패밀리수 스튜디오에 오신 것을 환영합니다.<br />
                 당진 최초의 가족·리마인드 전문 스튜디오로, 25년 이상의 촬영 경험을 바탕으로 
                 여러분의 특별한 이야기를 아름답게 기록해드리고 있습니다.
               </motion.p>
@@ -90,245 +108,134 @@ function StudioSection() {
                 모든 것을 원스톱으로 제공하여 고객님의 소중한 순간을 완벽하게 담아내겠습니다.
               </motion.p>
             </motion.div>
-            
-            <motion.div 
-              className="bg-muted rounded-2xl p-6"
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              animate={isInView ? 
-                { 
-                  opacity: 1, 
-                  y: 0, 
-                  scale: 1,
-                  boxShadow: "0px 0px 0px rgba(139, 115, 85, 0)",
-                  transition: { 
-                    duration: 0.6, 
-                    delay: 1.2,
-                    scale: { duration: 0.2, ease: "easeOut" },
-                    boxShadow: { duration: 0.2, ease: "easeOut" }
-                  }
-                } : 
-                { 
-                  opacity: 0, 
-                  y: 30, 
-                  scale: 0.95,
-                  transition: { duration: 0.2, ease: "easeOut" }
-                }
-              }
-              whileHover={{ 
-                scale: 1.02,
-                boxShadow: "0 8px 30px rgba(139, 115, 85, 0.1)",
-                transition: { duration: 0.2, ease: "easeOut" }
-              }}
-            >
-              <motion.h4 
-                className="font-medium text-lg mb-4 text-foreground"
-                whileHover={{ color: "var(--primary)", transition: { duration: 0.2, ease: "easeOut" } }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-              >
-                스튜디오 특징
-              </motion.h4>
-              <ul className="space-y-3 text-foreground/70">
-                {studioFeatures.map((feature, index) => (
-                  <motion.li 
-                    key={index}
-                    className="flex items-center"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? 
-                      { 
-                        opacity: 1, 
-                        x: 0,
-                        color: "rgb(115 115 115)",
-                        transition: { 
-                          duration: 0.5, 
-                          delay: 1.4 + index * 0.1,
-                          ease: "easeOut",
-                          x: { duration: 0.2, ease: "easeOut" },
-                          color: { duration: 0.2, ease: "easeOut" }
-                        }
-                      } : 
-                      { 
-                        opacity: 0, 
-                        x: -20,
-                        transition: { duration: 0.2, ease: "easeOut" }
-                      }
-                    }
-                    whileHover={{ 
-                      x: 8,
-                      color: "var(--foreground)",
-                      transition: { duration: 0.2, ease: "easeOut" }
-                    }}
-                  >
-                    <motion.span 
-                      className="text-primary mr-3"
-                      whileHover={{ 
-                        scale: 1.3, 
-                        rotate: 360,
-                        transition: { duration: 0.2, ease: "easeOut" }
-                      }}
-                      transition={{ duration: 0.2, ease: "easeOut" }}
-                    >
-                      ✓
-                    </motion.span>
-                    {feature}
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
           </motion.div>
 
-          {/* 촬영 공간 이미지 */}
+          {/* 스튜디오 대표 이미지 */}
           <motion.div 
-            className="space-y-4"
+            className="relative"
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <motion.div 
-              className="bg-muted rounded-2xl h-64 flex items-center justify-center cursor-pointer"
-              initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
+              className="relative bg-gradient-to-br from-primary/20 via-secondary/30 to-accent/20 rounded-2xl h-80 overflow-hidden"
+              initial={{ opacity: 0, scale: 0.9, rotate: 1 }}
               animate={isInView ? 
                 { 
                   opacity: 1, 
                   scale: 1, 
                   rotate: 0,
-                  boxShadow: "0px 0px 0px rgba(139, 115, 85, 0)",
                   transition: { 
                     duration: 0.8, 
                     delay: 0.6,
-                    scale: { duration: 0.2, ease: "easeOut" },
-                    rotate: { duration: 0.2, ease: "easeOut" },
-                    boxShadow: { duration: 0.2, ease: "easeOut" }
+                    scale: { duration: 0.3, ease: "easeOut" },
+                    rotate: { duration: 0.3, ease: "easeOut" }
                   }
                 } : 
                 { 
                   opacity: 0, 
                   scale: 0.9, 
-                  rotate: 2,
+                  rotate: 1,
                   transition: { duration: 0.2, ease: "easeOut" }
                 }
               }
               whileHover={{ 
-                scale: 1.03,
-                rotate: -1,
-                boxShadow: "0 10px 40px rgba(139, 115, 85, 0.15)",
-                transition: { duration: 0.2, ease: "easeOut" }
+                scale: 1.02,
+                rotate: -0.5,
+                boxShadow: "0 15px 50px rgba(139, 115, 85, 0.2)",
+                transition: { duration: 0.3, ease: "easeOut" }
               }}
-              whileTap={{ scale: 0.98 }}
             >
-              <div className="text-center">
-                <motion.span 
-                  className="text-6xl mb-4 block"
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/60" />
+              <div className="relative h-full flex flex-col items-center justify-center text-center p-8">
+                <motion.div 
+                  className="text-8xl mb-6"
                   whileHover={{ 
-                    scale: 1.2,
-                    rotate: 10,
+                    scale: 1.1,
+                    rotate: 5,
                     transition: { duration: 0.2, ease: "easeOut" }
                   }}
                   transition={{ duration: 0.2, ease: "easeOut" }}
                 >
                   📸
-                </motion.span>
-                <p className="text-foreground/60">촬영 공간 이미지</p>
+                </motion.div>
+                <h4 className="font-serif text-2xl font-medium text-white mb-3 drop-shadow-md">
+                  Family Soo Studio
+                </h4>
+                <p className="text-white/90 text-sm drop-shadow-sm">
+                  소중한 순간을 아름답게 기록하는<br />
+                  따뜻한 감성의 사진 스튜디오
+                </p>
               </div>
             </motion.div>
-            
-            <div className="grid grid-cols-2 gap-4">
-              <motion.div 
-                className="bg-muted rounded-xl h-32 flex items-center justify-center cursor-pointer"
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? 
-                  { 
-                    opacity: 1, 
-                    y: 0,
-                    scale: 1,
-                    rotate: 0,
-                    boxShadow: "0px 0px 0px rgba(139, 115, 85, 0)",
-                    transition: { 
-                      duration: 0.6, 
-                      delay: 0.8,
-                      scale: { duration: 0.2, ease: "easeOut" },
-                      rotate: { duration: 0.2, ease: "easeOut" },
-                      boxShadow: { duration: 0.2, ease: "easeOut" }
-                    }
-                  } : 
-                  { 
-                    opacity: 0, 
-                    y: 30,
-                    transition: { duration: 0.2, ease: "easeOut" }
-                  }
-                }
-                whileHover={{ 
-                  scale: 1.05,
-                  rotate: 1,
-                  boxShadow: "0 6px 25px rgba(139, 115, 85, 0.12)",
-                  transition: { duration: 0.2, ease: "easeOut" }
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <div className="text-center">
-                  <motion.span 
-                    className="text-3xl mb-2 block"
-                    whileHover={{ 
-                      scale: 1.3,
-                      rotate: -15,
-                      transition: { duration: 0.2, ease: "easeOut" }
-                    }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                  >
-                    🎨
-                  </motion.span>
-                  <p className="text-sm text-foreground/60">스튜디오 분위기</p>
-                </div>
-              </motion.div>
-              
-              <motion.div 
-                className="bg-muted rounded-xl h-32 flex items-center justify-center cursor-pointer"
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? 
-                  { 
-                    opacity: 1, 
-                    y: 0,
-                    scale: 1,
-                    rotate: 0,
-                    boxShadow: "0px 0px 0px rgba(139, 115, 85, 0)",
-                    transition: { 
-                      duration: 0.6, 
-                      delay: 1.0,
-                      scale: { duration: 0.2, ease: "easeOut" },
-                      rotate: { duration: 0.2, ease: "easeOut" },
-                      boxShadow: { duration: 0.2, ease: "easeOut" }
-                    }
-                  } : 
-                  { 
-                    opacity: 0, 
-                    y: 30,
-                    transition: { duration: 0.2, ease: "easeOut" }
-                  }
-                }
-                whileHover={{ 
-                  scale: 1.05,
-                  rotate: -1,
-                  boxShadow: "0 6px 25px rgba(139, 115, 85, 0.12)",
-                  transition: { duration: 0.2, ease: "easeOut" }
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <div className="text-center">
-                  <motion.span 
-                    className="text-3xl mb-2 block"
-                    whileHover={{ 
-                      scale: 1.3,
-                      rotate: 15,
-                      transition: { duration: 0.2, ease: "easeOut" }
-                    }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                  >
-                    📷
-                  </motion.span>
-                  <p className="text-sm text-foreground/60">전문 장비</p>
-                </div>
-              </motion.div>
-            </div>
           </motion.div>
+        </motion.div>
+
+        {/* 스튜디오의 5가지 특징 */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+        >
+          <motion.h3 
+            className="font-serif text-2xl font-medium mb-12 text-primary"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.6, delay: 1.0 }}
+          >
+            스튜디오의 5가지 특징
+          </motion.h3>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {studioFeatures.map((feature, index) => (
+              <motion.div 
+                key={index}
+                className="bg-white rounded-2xl p-8 shadow-sm"
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                animate={isInView ? 
+                  { 
+                    opacity: 1, 
+                    y: 0, 
+                    scale: 1,
+                    transition: { 
+                      duration: 0.6, 
+                      delay: 1.2 + index * 0.1,
+                      ease: "easeOut"
+                    }
+                  } : 
+                  { 
+                    opacity: 0, 
+                    y: 30, 
+                    scale: 0.95,
+                    transition: { duration: 0.2, ease: "easeOut" }
+                  }
+                }
+                whileHover={{ 
+                  scale: 1.02,
+                  boxShadow: "0 8px 30px rgba(139, 115, 85, 0.1)",
+                  transition: { duration: 0.2, ease: "easeOut" }
+                }}
+              >
+                <motion.div 
+                  className="text-center mb-6"
+                  whileHover={{ 
+                    scale: 1.1, 
+                    rotate: 5,
+                    transition: { duration: 0.2, ease: "easeOut" }
+                  }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                >
+                  <span className="text-4xl">{feature.icon}</span>
+                </motion.div>
+                <h4 className="font-serif text-xl font-medium text-primary mb-4 text-center">
+                  {feature.title}
+                </h4>
+                <p className="text-foreground/80 leading-relaxed text-center">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

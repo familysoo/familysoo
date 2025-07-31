@@ -1,11 +1,6 @@
 // Contentful Content Types
 export type ContentType = 'family' | 'baby' | 'remindWedding';
 
-// 각 Content Type별 카테고리
-export type BabyCategory = '돌상' | '돌잡이' | '한옥' | '복고' | '전통누드' | '스튜디오' | '가족' | '형제/자매' | '레몬' | '기타';
-export type FamilyCategory = '가족사진' | '스튜디오' | '야외' | '한복' | '기타';
-export type RemindWeddingCategory = '리마인드웨딩' | '스튜디오' | '야외' | '한복' | '기타';
-
 // Contentful Sys 타입
 export interface ContentfulSys {
   space: {
@@ -76,9 +71,9 @@ export interface BabyEntry {
   };
   sys: ContentfulSys;
   fields: {
-    title: string;
-    images: AssetLink[];
-    category?: BabyCategory;
+    images?: AssetLink[];
+    category: string;
+    order: number;
   };
 }
 
@@ -89,9 +84,9 @@ export interface FamilyEntry {
   };
   sys: ContentfulSys;
   fields: {
-    title: string;
-    images: AssetLink[];
-    category?: FamilyCategory;
+    images?: AssetLink[];
+    category: string;
+    order: number;
   };
 }
 
@@ -102,9 +97,9 @@ export interface RemindWeddingEntry {
   };
   sys: ContentfulSys;
   fields: {
-    title: string;
-    images: AssetLink[];
-    category?: RemindWeddingCategory;
+    images?: AssetLink[];
+    category: string;
+    order: number;
   };
 }
 
@@ -155,6 +150,5 @@ export interface PortfolioItem {
   originalUrl?: string; // 원본 URL (필요시 사용)
   aspectRatio: string;
   category: string;
-  title: string;
   contentType: ContentType;
 }

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import type { PortfolioItem, ContentfulAsset, ServicesApiResponse, ContentType } from "@/types/database";
 import LoadingSpinner from "./LoadingSpinner";
 
@@ -85,9 +86,18 @@ export const transformContentfulData = (
     "aspect-[2/3]"
   ];
   
+  // order 속성에 따라 데이터 정렬 (오름차순)
+  response.data.sort((a, b) => {
+    const orderA = a.fields.order ?? 999999;
+    const orderB = b.fields.order ?? 999999;
+    return orderA - orderB;
+  });
+
+  console.log('sortedEntries', response.data);
+  
   response.data.forEach((entry) => {
     // 각 entry의 모든 이미지를 개별 아이템으로 변환
-    entry.fields.images.forEach((imageLink, imageIndex) => {
+    entry.fields.images?.forEach((imageLink, imageIndex) => {
       // Asset 찾기
       const asset = assets.find((asset: ContentfulAsset) => 
         asset.sys.id === imageLink.sys.id
@@ -103,7 +113,7 @@ export const transformContentfulData = (
           originalUrl: `https:${originalUrl}`, // 원본 URL (필요시 사용)
           aspectRatio: aspectRatios[allItems.length % aspectRatios.length],
           category: entry.fields.category || defaultCategoryMap[contentType],
-          title: `${entry.fields.title} ${imageIndex + 1}`,
+          // title: `${entry.fields.title} ${imageIndex + 1}`,
           contentType
         });
       }
@@ -139,6 +149,8 @@ export default function PortfolioSection({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [preloadedImages, setPreloadedImages] = useState<Set<string>>(new Set());
   const [mainImageLoaded, setMainImageLoaded] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const tabContainerRef = useRef<HTMLDivElement>(null);
 
   // 카테고리별 필터링
   const filteredItems = activeCategory === "전체" || activeCategory === categories[0]
@@ -204,8 +216,7 @@ export default function PortfolioSection({
     
     // 로딩 시작 시간 기록
     (window as any).lightboxLoadStartTime = performance.now();
-    console.log('⏱️ 라이트박스 이미지 로딩 시작:', item.title);
-    
+
     // 라이트박스용 고해상도 이미지가 있으면 사용, 없으면 썸네일 사용
     setLightboxImage(item.lightboxUrl || item.imageUrl);
     document.body.style.overflow = 'hidden';
@@ -226,7 +237,6 @@ export default function PortfolioSection({
     
     // 슬라이드 로딩 시작 시간 기록
     (window as any).lightboxLoadStartTime = performance.now();
-    console.log('⏪ 이전 이미지 로딩 시작:', item.title);
     
     setLightboxImage(item.lightboxUrl || item.imageUrl);
   };
@@ -240,10 +250,22 @@ export default function PortfolioSection({
     
     // 슬라이드 로딩 시작 시간 기록
     (window as any).lightboxLoadStartTime = performance.now();
-    console.log('⏩ 다음 이미지 로딩 시작:', item.title);
     
     setLightboxImage(item.lightboxUrl || item.imageUrl);
   };
+
+  // 드롭다운 외부 클릭 시 닫기
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (isDropdownOpen && !target.closest('.dropdown-container')) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isDropdownOpen]);
 
   // 키보드 네비게이션
   useEffect(() => {
@@ -295,13 +317,17 @@ export default function PortfolioSection({
 
           {/* 카테고리 탭 */}
           <motion.div 
-            className="flex justify-center mb-12"
+            className="flex justify-center mb-12 relative"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <div className="bg-white rounded-full p-2 flex space-x-2 shadow-sm overflow-x-auto scrollbar-hide">
-              {categories.map((category) => (
+            <div 
+              ref={tabContainerRef}
+              className="bg-white rounded-full p-2 flex space-x-2 shadow-sm overflow-x-auto scrollbar-hide"
+            >
+              {/* 처음 4개 카테고리 표시 (또는 전체가 4개 이하면 모두 표시) */}
+              {categories.slice(0, categories.length <= 5 ? categories.length : 4).map((category) => (
                 <motion.button 
                   key={category}
                   onClick={() => setActiveCategory(category)}
@@ -316,7 +342,58 @@ export default function PortfolioSection({
                   {category}
                 </motion.button>
               ))}
+              
+              {/* 드롭다운 버튼 (카테고리가 4개 초과일 때만 표시) */}
+              {categories.length > 5 && (
+                <motion.button
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className="px-4 py-2 sm:px-6 sm:py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 text-foreground hover:bg-primary/10 flex items-center space-x-1 dropdown-container relative"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span>더보기</span>
+                  <motion.div
+                    animate={{ rotate: isDropdownOpen ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ChevronDown size={16} />
+                  </motion.div>
+                </motion.button>
+              )}
             </div>
+            
+            {/* 드롭다운 메뉴 - 탭 컨테이너 밖에 배치 */}
+            {categories.length > 5 && isDropdownOpen && (
+              <motion.div
+                className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-2 z-50 max-h-60 overflow-y-auto"
+                style={{
+                  width: tabContainerRef.current?.offsetWidth || 'auto'
+                }}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="grid grid-cols-2 gap-1">
+                  {categories.slice(4).map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => {
+                        setActiveCategory(category);
+                        setIsDropdownOpen(false);
+                      }}
+                      className={`w-full text-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                        activeCategory === category
+                          ? 'bg-primary text-white'
+                          : 'text-foreground hover:bg-primary/10'
+                      }`}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
+              </motion.div>
+            )}
           </motion.div>
 
           {/* Masonry 컬럼 기반 포트폴리오 갤러리 */}
@@ -387,7 +464,7 @@ export default function PortfolioSection({
                   {/* 이미지 하단 카테고리 표시 */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <p className="text-white text-sm font-medium">{item.category}</p>
-                    <p className="text-white/80 text-xs">{item.title}</p>
+                    {/* <p className="text-white/80 text-xs">{item.title}</p> */}
                   </div>
                 </div>
               </motion.div>

@@ -168,7 +168,7 @@ export default function AboutPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.3 }}
                 >
-                  안녕하세요, Family Soo Studio 대표 <strong className="text-primary">이수진</strong>입니다.
+                  안녕하세요, <strong className="text-primary">Family Soo</strong> 스튜디오입니다.
                 </motion.p>
                 <motion.p 
                   className="text-foreground/80 leading-relaxed"
@@ -201,7 +201,7 @@ export default function AboutPage() {
                   transition={{ duration: 0.6, delay: 0.6 }}
                 >
                   <p className="text-primary font-medium mb-1">Family Soo Studio 대표</p>
-                  <p className="font-serif text-2xl text-primary font-medium">이수진</p>
+                  {/* <p className="font-serif text-2xl text-primary font-medium">이수진</p> */}
                 </motion.div>
               </div>
             </motion.div>
