@@ -9,6 +9,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Users, Phone, Star, Gift } from "lucide-react";
 import type { PortfolioItem, ServicesApiResponse } from "@/types/database";
+import ConceptSection from "@/components/ConceptSection";
 
 export default function FamilyPage() {
   const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
@@ -164,92 +165,8 @@ export default function FamilyPage() {
               <p className="text-lg text-foreground/70">가족의 개성에 맞는 다양한 컨셉을 선택하세요</p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-              <motion.div 
-                className="bg-white p-8 rounded-xl shadow-sm border-2 border-primary/20"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-              >
-                <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/30 rounded-lg mb-6 flex items-center justify-center">
-                  <span className="text-6xl">👔</span>
-                </div>
-                <h3 className="font-serif text-xl font-medium text-primary mb-3">세미 정장 가족사진 컨셉</h3>
-                <p className="text-foreground/70 leading-relaxed">
-                  우아하고 품격 있는 가족의 모습을 담습니다. 공식적인 행사나 특별한 기념일에 
-                  어울리는 클래식하고 세련된 스타일의 가족 초상사진을 제공합니다.
-                </p>
-              </motion.div>
-              
-              <motion.div 
-                className="bg-white p-8 rounded-xl shadow-sm"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
-                <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/30 rounded-lg mb-6 flex items-center justify-center">
-                  <span className="text-6xl">👕</span>
-                </div>
-                <h3 className="font-serif text-xl font-medium text-primary mb-3">캐주얼 컨셉</h3>
-                <p className="text-foreground/70 leading-relaxed">
-                  편안하고 자연스러운 일상의 모습을 기록합니다. 가족의 진솔한 표정과 
-                  자연스러운 상호작용을 통해 따뜻하고 친근한 분위기의 사진을 완성합니다.
-                </p>
-              </motion.div>
-              
-              <motion.div 
-                className="bg-white p-8 rounded-xl shadow-sm"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/30 rounded-lg mb-6 flex items-center justify-center">
-                  <span className="text-6xl">👗</span>
-                </div>
-                <h3 className="font-serif text-xl font-medium text-primary mb-3">드레스 (웨딩) 컨셉</h3>
-                <p className="text-foreground/70 leading-relaxed">
-                  결혼기념일이나 특별한 날을 기념하는 화려하고 로맨틱한 촬영입니다. 
-                  드레스와 정장으로 멋을 낸 가족의 모습을 우아하게 담아냅니다.
-                </p>
-              </motion.div>
-              
-              <motion.div 
-                className="bg-white p-8 rounded-xl shadow-sm border-2 border-accent/20"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
-                <div className="aspect-video bg-gradient-to-br from-gray-300 to-gray-500 rounded-lg mb-6 flex items-center justify-center">
-                  <span className="text-6xl text-white">⚫</span>
-                </div>
-                <h3 className="font-serif text-xl font-medium text-primary mb-3">흑백 컨셉 <span className="text-xs bg-accent text-white px-2 py-1 rounded">특별</span></h3>
-                <p className="text-foreground/70 leading-relaxed">
-                  클래식하고 감성적인 흑백 사진으로 시간을 초월한 예술 작품을 만듭니다. 
-                  빛과 그림자의 조화로 가족의 깊은 유대감을 표현합니다.
-                </p>
-              </motion.div>
-
-              <motion.div 
-                className="bg-white p-8 rounded-xl shadow-sm border-2 border-primary/20 lg:col-span-1 md:col-span-2 lg:mx-auto lg:max-w-md"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-              >
-                <div className="aspect-video bg-gradient-to-br from-red-200 to-red-400 rounded-lg mb-6 flex items-center justify-center">
-                  <span className="text-6xl">👘</span>
-                </div>
-                <h3 className="font-serif text-xl font-medium text-primary mb-3">한복 컨셉 <span className="text-xs bg-primary text-white px-2 py-1 rounded">전통</span></h3>
-                <p className="text-foreground/70 leading-relaxed">
-                  우리 전통 의상인 한복을 입고 촬영하는 특별한 컨셉입니다. 
-                  전통의 아름다움과 가족의 화목함이 어우러진 품격 있는 사진을 완성합니다.
-                </p>
-              </motion.div>
-            </div>
+            {/* 테마 소개 - Contentful에서 동적으로 로드 */}
+            <ConceptSection service="가족" />
           </div>
         </div>
       </section>

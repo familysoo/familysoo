@@ -123,6 +123,46 @@ export interface RemindWeddingEntry {
 // Union type for all entries
 export type PortfolioEntry = BabyEntry | FamilyEntry | RemindWeddingEntry;
 
+// Concept Entry 타입 (새로 추가)
+export interface ConceptEntry {
+  metadata: {
+    tags: ContentfulTag[];
+    concepts: ContentfulConcept[];
+  };
+  sys: ContentfulSys;
+  fields: {
+    name: string; // Entry title
+    service: '베이비' | '가족' | '리마인드 웨딩';
+    description: string;
+    image?: AssetLink;
+    category?: string; // 소분류 (선택사항)
+    recommend: boolean;
+    recommendLabel?: string; // recommend-label
+  };
+}
+
+// Concept API 응답 타입
+export interface ConceptApiResponse {
+  success: boolean;
+  data: ConceptEntry[];
+  total: number;
+  includes: {
+    Asset?: ContentfulAsset[];
+  };
+}
+
+// 프론트엔드에서 사용할 변환된 컨셉 타입
+export interface ConceptItem {
+  id: string;
+  name: string;
+  service: '베이비' | '가족' | '리마인드 웨딩';
+  description: string;
+  imageUrl?: string;
+  category?: string;
+  recommend: boolean;
+  recommendLabel?: string;
+}
+
 // Contentful API 응답 타입
 export interface ContentfulResponse {
   sys: {
