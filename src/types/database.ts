@@ -151,4 +151,7 @@ export interface PortfolioItem {
   aspectRatio: string;
   category: string;
   contentType: ContentType;
+  // 2-depth 카테고리 관련 필드 (옵셔널)
+  mainCategory?: string; // 대분류
+  subCategory?: string;  // 소분류
 }

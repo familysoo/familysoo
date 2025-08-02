@@ -133,7 +133,11 @@ export default function RemindWeddingPage() {
           description="시간이 흘러도 변하지 않는 사랑의 이야기를 담은 특별한 작품들을 확인해보세요.<br />로맨틱하고 감동적인 리마인드웨딩 촬영 사진들을 보실 수 있습니다."
           categories={categories}
           portfolioItems={portfolioItems}
-          showMoreButton={false}
+          serviceType="remindWedding"
+          showMoreButton={true}
+          moreButtonText="더 많은 리마인드웨딩 작품 보기"
+          moreButtonHref="/portfolio?category=remindWedding"
+          maxItems={12}
         />
       )}
 

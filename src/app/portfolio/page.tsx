@@ -1,30 +1,85 @@
 'use client';
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Header from "../../components/Header";
 import PageHero from "../../components/PageHero";
+import PortfolioSection, { transformContentfulData } from "../../components/PortfolioSection";
+import type { PortfolioItem, ServicesApiResponse, ContentType } from "../../types/database";
 
 export default function PortfolioPage() {
-  const [activeCategory, setActiveCategory] = useState("전체");
+  const searchParams = useSearchParams();
+  const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const categories = ["전체", "가족", "리마인드", "아기"];
+  // URL 파라미터에서 카테고리 정보 추출
+  const categoryParam = searchParams.get('category'); // family, baby, remindWedding 등
+  const subcategoryParam = searchParams.get('subcategory'); // 스튜디오, 야외 등
 
-  const portfolioItems = [
-    { category: "가족", title: "따뜻한 가족의 시간", description: "3세대가 함께한 특별한 순간", tags: ["가족사진", "3세대", "실내촬영"] },
-    { category: "리마인드", title: "영원한 사랑의 약속", description: "결혼 10주년 기념 촬영", tags: ["리마인드웨딩", "10주년", "웨딩드레스"] },
-    { category: "아기", title: "소중한 첫 만남", description: "생후 100일 기념 촬영", tags: ["신생아", "100일", "성장앨범"] },
-    { category: "가족", title: "행복한 순간들", description: "첫째 돌잔치와 함께한 가족 사진", tags: ["가족사진", "돌잔치", "한복"] },
-    { category: "리마인드", title: "다시 찾은 설렘", description: "결혼 20주년 리마인드 웨딩", tags: ["리마인드웨딩", "20주년", "야외촬영"] },
-    { category: "아기", title: "천사의 미소", description: "6개월 아기의 밝은 미소", tags: ["아기사진", "6개월", "미소"] },
-    { category: "가족", title: "자연 속 가족", description: "공원에서의 자연스러운 가족 사진", tags: ["가족사진", "야외촬영", "자연배경"] },
-    { category: "리마인드", title: "시간을 거슬러", description: "대학시절 만남의 장소에서", tags: ["리마인드웨딩", "추억의장소", "캐주얼"] },
-    { category: "아기", title: "꿈나라 천사", description: "평화롭게 잠든 신생아", tags: ["신생아", "수면사진", "흑백"] },
+  // 카테고리 매핑 (URL 파라미터 -> 한국어 카테고리명)
+  const categoryMapping: Record<string, string> = {
+    'family': '가족',
+    'baby': '베이비',
+    'remindWedding': '리마인드웨딩'
+  };
+
+  // 초기 카테고리 값 설정
+  const initialMainCategory = categoryParam ? categoryMapping[categoryParam] : undefined;
+  const initialSubCategory = subcategoryParam || undefined;
+
+  // 2-depth 카테고리 구조 정의
+  const twoDepthCategories = [
+    {
+      mainCategory: "가족",
+      subCategories: ["전체", "스튜디오", "야외", "홈", "한복", "돌잔치"]
+    },
+    {
+      mainCategory: "베이비", 
+      subCategories: ["전체", "신생아", "백일", "돌", "6개월", "1년"]
+    },
+    {
+      mainCategory: "리마인드웨딩",
+      subCategories: ["전체", "스튜디오", "드레스", "한복", "야외", "캐주얼"]
+    }
   ];
 
-  const filteredItems = activeCategory === "전체" 
-    ? portfolioItems 
-    : portfolioItems.filter(item => item.category === activeCategory);
+  // API에서 모든 카테고리 데이터 가져오기
+  useEffect(() => {
+    const fetchAllPortfolioData = async () => {
+      try {
+        setLoading(true);
+        const contentTypes: ContentType[] = ['family', 'baby', 'remindWedding'];
+        const allItems: PortfolioItem[] = [];
+
+        // 각 카테고리별로 API 호출
+        for (const contentType of contentTypes) {
+          try {
+            const response = await fetch(`/api/services?type=${contentType}`);
+            if (response.ok) {
+              const data: ServicesApiResponse = await response.json();
+              
+              // 데이터 변환 (2-depth 활성화)
+              const transformedItems = transformContentfulData(data, contentType, true);
+              allItems.push(...transformedItems);
+            }
+          } catch (err) {
+            console.warn(`${contentType} 데이터 로드 실패:`, err);
+          }
+        }
+
+        setPortfolioItems(allItems);
+      } catch (err) {
+        console.error('포트폴리오 데이터 로드 실패:', err);
+        setError('데이터를 불러오는데 실패했습니다.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAllPortfolioData();
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -37,105 +92,35 @@ export default function PortfolioPage() {
         description="소중한 순간들의 아름다운 기록을 확인해보세요"
       />
 
-      {/* Category Filter */}
-      <section className="py-8 bg-white border-b border-accent">
-        <div className="container">
-          <div className="flex justify-center gap-4" style={{flexWrap: 'wrap'}}>
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-6 py-2 rounded-full font-medium transition-colors ${
-                  activeCategory === category
-                    ? 'bg-primary text-white'
-                    : 'bg-accent text-foreground hover:bg-secondary'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-          <div className="text-center mt-4">
-            <p className="text-sm text-foreground opacity-60">
-              {filteredItems.length}개의 작품
-            </p>
-          </div>
+      {/* 포트폴리오 섹션 (2-depth 카테고리) */}
+      {loading ? (
+        <div className="py-32 text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-foreground/70">포트폴리오를 불러오는 중...</p>
         </div>
-      </section>
-
-      {/* Portfolio Grid */}
-      <section className="py-20">
-        <div className="container">
-          <div className="grid md:grid-cols-2 gap-8" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))'}}>
-            {filteredItems.map((item, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-shadow" style={{overflow: 'hidden'}}>
-                {/* Image Placeholder */}
-                <div className="relative bg-gradient-to-br" style={{height: '16rem', background: 'linear-gradient(to bottom right, var(--accent), var(--secondary))'}}>
-                  <div className="absolute inset-0 flex items-center justify-center opacity-30">
-                    <span style={{fontSize: '6rem'}}>
-                      {item.category === "가족" && "👨‍👩‍👧‍👦"}
-                      {item.category === "리마인드" && "💕"}
-                      {item.category === "아기" && "👶"}
-                    </span>
-                  </div>
-                  <div className="absolute inset-0 hover:bg-black/40 transition-colors" style={{backgroundColor: 'rgba(0, 0, 0, 0.2)'}}>
-                    {/* View Button - appears on hover */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                      <button className="bg-white text-foreground px-4 py-2 rounded-full font-medium" style={{backgroundColor: 'rgba(255, 255, 255, 0.9)'}}>
-                        자세히 보기
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="px-6 py-6">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
-                      {item.category}
-                    </span>
-                  </div>
-                  <h3 className="font-serif text-lg font-medium mb-2">{item.title}</h3>
-                  <p className="text-sm text-foreground/70 mb-4">{item.description}</p>
-                  
-                  {/* Tags */}
-                  <div className="flex gap-1" style={{flexWrap: 'wrap'}}>
-                    {item.tags.map((tag, tagIndex) => (
-                      <span key={tagIndex} className="text-xs bg-accent text-foreground/70 px-2 py-1 rounded">
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+      ) : error ? (
+        <div className="py-32 text-center">
+          <p className="text-red-500 mb-4">{error}</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary/90 transition-colors"
+          >
+            다시 시도
+          </button>
         </div>
-      </section>
-
-      {/* Statistics */}
-      <section className="py-16 bg-muted">
-        <div className="container">
-          <div className="grid md:grid-cols-2 gap-8 text-center" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))'}}>
-            <div>
-              <div className="font-serif text-3xl font-light text-primary mb-2">2000+</div>
-              <p className="text-foreground/70">촬영한 가족</p>
-            </div>
-            <div>
-              <div className="font-serif text-3xl font-light text-primary mb-2">20년</div>
-              <p className="text-foreground/70">경력</p>
-            </div>
-            <div>
-              <div className="font-serif text-3xl font-light text-primary mb-2">500+</div>
-              <p className="text-foreground/70">리마인드 웨딩</p>
-            </div>
-            <div>
-              <div className="font-serif text-3xl font-light text-primary mb-2">1000+</div>
-              <p className="text-foreground/70">성장 앨범</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      ) : (
+        <PortfolioSection
+          title="전체 포트폴리오"
+          description="Family Soo Studio의 다양한 순간들을<br />아름다운 사진으로 확인해보세요"
+          categories={[]} // 2-depth에서는 사용하지 않음
+          portfolioItems={portfolioItems}
+          enableTwoDepth={true}
+          twoDepthCategories={twoDepthCategories}
+          maxVisibleTabs={1}
+          initialMainCategory={initialMainCategory}
+          initialSubCategory={initialSubCategory}
+        />
+      )}
 
       {/* Testimonials */}
       <section className="py-20">

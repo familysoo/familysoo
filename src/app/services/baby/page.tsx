@@ -133,7 +133,11 @@ export default function BabyPage() {
           description="아이의 소중한 순간들을 담은 작품들을 확인해보세요.<br />각 테마별로 다양한 컨셉의 베이비 촬영 사진들을 보실 수 있습니다."
           categories={categories}
           portfolioItems={portfolioItems}
-          showMoreButton={false}
+          serviceType="baby"
+          showMoreButton={true}
+          moreButtonText="더 많은 베이비 작품 보기"
+          moreButtonHref="/portfolio?category=baby"
+          maxItems={12}
         />
       )}
 

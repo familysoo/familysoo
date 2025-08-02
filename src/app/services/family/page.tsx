@@ -88,26 +88,36 @@ export default function FamilyPage() {
                 </p>
                 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  <div className="bg-white p-4 rounded-lg shadow-sm">
-                    <h4 className="font-medium mb-2 text-primary">세미 정장</h4>
-                    <p className="text-sm text-foreground/70">우아하고 품격 있는 가족 초상</p>
-                  </div>
-                  <div className="bg-white p-4 rounded-lg shadow-sm">
-                    <h4 className="font-medium mb-2 text-primary">캐주얼</h4>
-                    <p className="text-sm text-foreground/70">편안하고 자연스러운 일상의 모습</p>
-                  </div>
-                  <div className="bg-white p-4 rounded-lg shadow-sm">
-                    <h4 className="font-medium mb-2 text-primary">드레스 (웨딩)</h4>
-                    <p className="text-sm text-foreground/70">특별한 날의 화려하고 로맨틱한 순간</p>
-                  </div>
-                  <div className="bg-white p-4 rounded-lg shadow-sm">
-                    <h4 className="font-medium mb-2 text-primary">흑백</h4>
-                    <p className="text-sm text-foreground/70">클래식하고 감성적인 흑백 예술</p>
-                  </div>
-                  <div className="bg-white p-4 rounded-lg shadow-sm">
-                    <h4 className="font-medium mb-2 text-primary">한복</h4>
-                    <p className="text-sm text-foreground/70">전통의 아름다움이 담긴 우리 문화</p>
-                  </div>
+                  <Link href="/portfolio?category=family&subcategory=스튜디오">
+                    <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                      <h4 className="font-medium mb-2 text-primary">세미 정장</h4>
+                      <p className="text-sm text-foreground/70">우아하고 품격 있는 가족 초상</p>
+                    </div>
+                  </Link>
+                  <Link href="/portfolio?category=family&subcategory=야외">
+                    <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                      <h4 className="font-medium mb-2 text-primary">캐주얼</h4>
+                      <p className="text-sm text-foreground/70">편안하고 자연스러운 일상의 모습</p>
+                    </div>
+                  </Link>
+                  <Link href="/portfolio?category=family&subcategory=드레스">
+                    <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                      <h4 className="font-medium mb-2 text-primary">드레스 (웨딩)</h4>
+                      <p className="text-sm text-foreground/70">특별한 날의 화려하고 로맨틱한 순간</p>
+                    </div>
+                  </Link>
+                  <Link href="/portfolio?category=family&subcategory=스튜디오">
+                    <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                      <h4 className="font-medium mb-2 text-primary">흑백</h4>
+                      <p className="text-sm text-foreground/70">클래식하고 감성적인 흑백 예술</p>
+                    </div>
+                  </Link>
+                  <Link href="/portfolio?category=family&subcategory=한복">
+                    <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                      <h4 className="font-medium mb-2 text-primary">한복</h4>
+                      <p className="text-sm text-foreground/70">전통의 아름다움이 담긴 우리 문화</p>
+                    </div>
+                  </Link>
                 </div>
               </div>
             </motion.div>
@@ -137,7 +147,11 @@ export default function FamilyPage() {
           description="가족의 사랑과 행복이 담긴 특별한 순간들을 확인해보세요.<br />다양한 컨셉과 스타일의 가족 사진들을 보실 수 있습니다."
           categories={categories}
           portfolioItems={portfolioItems}
-          showMoreButton={false}
+          serviceType="family"
+          showMoreButton={true}
+          moreButtonText="더 많은 가족 작품 보기"
+          moreButtonHref="/portfolio?category=family"
+          maxItems={12}
         />
       )}
 
