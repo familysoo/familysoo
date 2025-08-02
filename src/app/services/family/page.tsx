@@ -7,7 +7,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import PortfolioSection, { transformContentfulData } from "@/components/PortfolioSection";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Users, Heart, Camera, Clock, Phone, Star, Gift, Image, Shield } from "lucide-react";
+import { Users, Phone, Star, Gift } from "lucide-react";
 import type { PortfolioItem, ServicesApiResponse } from "@/types/database";
 
 export default function FamilyPage() {

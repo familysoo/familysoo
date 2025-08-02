@@ -3,12 +3,24 @@
 import Link from "next/link";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Camera, Heart, Award, Users, Clock, MapPin, Phone, Mail, Star } from "lucide-react";
+import { Camera, Heart, Award, Users, MapPin, Phone, Mail, Star } from "lucide-react";
 import Header from "../../components/Header";
 import PageHero from "../../components/PageHero";
 
+// 타입 인터페이스들
+interface Feature {
+  title: string;
+  description: string;
+}
+
+interface TimelineItemType {
+  year: string;
+  title: string;
+  description: string;
+}
+
 // 개별 특징 카드 컴포넌트
-function FeatureCard({ feature, index }: { feature: any; index: number }) {
+function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-100px" });
 
@@ -45,7 +57,7 @@ function FeatureCard({ feature, index }: { feature: any; index: number }) {
 }
 
 // 타임라인 아이템 컴포넌트
-function TimelineItem({ item, index }: { item: any; index: number }) {
+function TimelineItem({ item, index }: { item: TimelineItemType; index: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-50px" });
 

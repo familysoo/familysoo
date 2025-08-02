@@ -243,7 +243,7 @@ export default function PortfolioSection({
   portfolioItems,
   showMoreButton = false,
   moreButtonText = "더 많은 작품 보기",
-  moreButtonHref = "/portfolio",
+  moreButtonHref: _moreButtonHref = "/portfolio",
   maxVisibleTabs = 4, // 기본값 설정
   maxItems, // 표시할 최대 사진 개수
   serviceType, // 서비스 타입
@@ -403,7 +403,7 @@ export default function PortfolioSection({
   // 메인 이미지 로드 완료 시 프리로딩 시작
   const handleMainImageLoad = () => {
     const loadEndTime = performance.now();
-    const loadTime = loadEndTime - (window as any).lightboxLoadStartTime;
+    const loadTime = loadEndTime - ((window as unknown as { lightboxLoadStartTime: number }).lightboxLoadStartTime || 0);
     console.log(`🚀 라이트박스 이미지 로드 완료: ${loadTime.toFixed(0)}ms`);
     
     setMainImageLoaded(true);
@@ -422,7 +422,7 @@ export default function PortfolioSection({
     setMainImageLoaded(false); // 새 이미지 로딩 시작
     
     // 로딩 시작 시간 기록
-    (window as any).lightboxLoadStartTime = performance.now();
+    (window as unknown as { lightboxLoadStartTime: number }).lightboxLoadStartTime = performance.now();
 
     // 라이트박스용 고해상도 이미지가 있으면 사용, 없으면 썸네일 사용
     setLightboxImage(item.lightboxUrl || item.imageUrl);
@@ -443,7 +443,7 @@ export default function PortfolioSection({
     setMainImageLoaded(false); // 새 이미지 로딩 시작
     
     // 슬라이드 로딩 시작 시간 기록
-    (window as any).lightboxLoadStartTime = performance.now();
+    (window as unknown as { lightboxLoadStartTime: number }).lightboxLoadStartTime = performance.now();
     
     setLightboxImage(item.lightboxUrl || item.imageUrl);
   };
@@ -456,7 +456,7 @@ export default function PortfolioSection({
     setMainImageLoaded(false); // 새 이미지 로딩 시작
     
     // 슬라이드 로딩 시작 시간 기록
-    (window as any).lightboxLoadStartTime = performance.now();
+    (window as unknown as { lightboxLoadStartTime: number }).lightboxLoadStartTime = performance.now();
     
     setLightboxImage(item.lightboxUrl || item.imageUrl);
   };

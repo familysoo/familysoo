@@ -7,7 +7,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import PortfolioSection, { transformContentfulData } from "@/components/PortfolioSection";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Heart, Camera, Clock, Phone, Star, Gift } from "lucide-react";
+import { Clock, Phone, Star } from "lucide-react";
 import type { PortfolioItem, ServicesApiResponse } from "@/types/database";
 
 export default function RemindWeddingPage() {

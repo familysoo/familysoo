@@ -1,6 +1,23 @@
 // Contentful Content Types
 export type ContentType = 'family' | 'baby' | 'remindWedding';
 
+// Contentful Metadata 타입들
+export interface ContentfulTag {
+  sys: {
+    type: 'Link';
+    linkType: 'Tag';
+    id: string;
+  };
+}
+
+export interface ContentfulConcept {
+  sys: {
+    type: 'Link';
+    linkType: 'Concept';
+    id: string;
+  };
+}
+
 // Contentful Sys 타입
 export interface ContentfulSys {
   space: {
@@ -66,8 +83,8 @@ export interface AssetLink {
 // Portfolio Entry 타입들 (실제 응답 구조에 맞게 수정)
 export interface BabyEntry {
   metadata: {
-    tags: any[];
-    concepts: any[];
+    tags: ContentfulTag[];
+    concepts: ContentfulConcept[];
   };
   sys: ContentfulSys;
   fields: {
@@ -79,8 +96,8 @@ export interface BabyEntry {
 
 export interface FamilyEntry {
   metadata: {
-    tags: any[];
-    concepts: any[];
+    tags: ContentfulTag[];
+    concepts: ContentfulConcept[];
   };
   sys: ContentfulSys;
   fields: {
@@ -92,8 +109,8 @@ export interface FamilyEntry {
 
 export interface RemindWeddingEntry {
   metadata: {
-    tags: any[];
-    concepts: any[];
+    tags: ContentfulTag[];
+    concepts: ContentfulConcept[];
   };
   sys: ContentfulSys;
   fields: {

@@ -1,14 +1,14 @@
 'use client';
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Header from "../../components/Header";
 import PageHero from "../../components/PageHero";
 import PortfolioSection, { transformContentfulData } from "../../components/PortfolioSection";
 import type { PortfolioItem, ServicesApiResponse, ContentType } from "../../types/database";
 
-export default function PortfolioPage() {
+function PortfolioContent() {
   const searchParams = useSearchParams();
   const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -219,5 +219,13 @@ export default function PortfolioPage() {
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function PortfolioPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PortfolioContent />
+    </Suspense>
   );
 } 

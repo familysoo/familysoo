@@ -7,14 +7,25 @@ import { ChevronRight, Camera, Heart, Baby, Users, Star, Clock, Phone } from "lu
 import Header from "../../components/Header";
 import PageHero from "../../components/PageHero";
 
+// 서비스 타입 인터페이스
+interface Service {
+  title: string;
+  description: string;
+  features: string[];
+  price: string;
+  duration: string;
+  included: string[];
+  process: string[];
+}
+
 // 개별 서비스 섹션 컴포넌트
 function ServiceSection({ 
   service, 
   index, 
-  isActive, 
+  isActive: _isActive, 
   onClick 
 }: {
-  service: any;
+  service: Service;
   index: number;
   isActive: boolean;
   onClick: () => void;
@@ -124,7 +135,7 @@ function ServiceSection({
 }
 
 // 선택된 서비스 상세 정보 컴포넌트
-function ServiceDetail({ service, isVisible }: { service: any; isVisible: boolean }) {
+function ServiceDetail({ service, isVisible }: { service: Service; isVisible: boolean }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-50px" });
 
