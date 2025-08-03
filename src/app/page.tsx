@@ -997,7 +997,7 @@ export default function Home() {
               whileTap={{ scale: 0.95 }}
               onClick={() => window.location.href = '/contact'}
             >
-              📝 온라인 예약 신청
+              📝 예약 문의
             </motion.span>
           </motion.div>
           

@@ -51,7 +51,6 @@ function PortfolioContent() {
               
               // 실제 카테고리 추출
               const categories = [...new Set(data.data.map(entry => entry.fields.category))];
-              console.log(`${contentType} categories:`, categories);
               
               // 대분류명 매핑
               const mainCategoryName = categoryMapping[contentType] || contentType;

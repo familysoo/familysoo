@@ -26,14 +26,12 @@ export default function RemindWeddingPage() {
         }
         
         const data: ServicesApiResponse = await response.json();
-        console.log('remindWedding data', data);
         
         // 데이터 변환
         const transformedItems = transformContentfulData(data, 'remindWedding');
         
         // 엔트리명을 카테고리로 추출 (중복 제거)
         const entryCategories = [...new Set(data.data.map(entry => entry.fields.category))];
-        console.log('remindWedding entryCategories', entryCategories);
         const allCategories = ['전체', ...entryCategories];
         
         setPortfolioItems(transformedItems);

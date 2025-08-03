@@ -421,12 +421,10 @@ export default function PortfolioSection({
   const handleMainImageLoad = () => {
     const loadEndTime = performance.now();
     const loadTime = loadEndTime - ((window as unknown as { lightboxLoadStartTime: number }).lightboxLoadStartTime || 0);
-    console.log(`🚀 라이트박스 이미지 로드 완료: ${loadTime.toFixed(0)}ms`);
     
     setMainImageLoaded(true);
     // 메인 이미지 로드 완료 후 프리로딩 시작
     setTimeout(() => {
-      console.log('📸 인접 이미지 프리로딩 시작');
       preloadAdjacentImages(currentImageIndex);
     }, 500); // 0.5초 여유 시간
   };
