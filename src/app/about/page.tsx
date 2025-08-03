@@ -111,7 +111,7 @@ export default function AboutPage() {
     },
     {
       title: "경험 많은 작가",
-      description: "20년 경력의 전문 사진작가가 최고의 순간을 포착합니다."
+      description: "25년 경력의 전문 사진작가가 최고의 순간을 포착합니다."
     },
     {
       title: "맞춤 컨셉",
