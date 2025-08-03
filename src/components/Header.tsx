@@ -76,9 +76,9 @@ export default function Header({ transparent = false }: HeaderProps) {
           ? 'bg-transparent border-b border-transparent' 
           : 'bg-white/90 backdrop-blur-sm border-b border-accent'
       }`}>
-        <div className="container">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            <Link href="/" className={`font-serif text-2xl font-bold transition-colors duration-300 ${
+            <Link href="/" className={`font-serif text-xl sm:text-2xl font-bold transition-colors duration-300 ${
               isTransparent ? 'text-white' : 'text-primary'
             }`}>
               Family Soo
@@ -172,7 +172,7 @@ export default function Header({ transparent = false }: HeaderProps) {
             </nav>
 
             {/* Mobile menu button */}
-            <div className="md:hidden">
+            <div className="md:hidden flex-shrink-0">
               <button
                 onClick={openMobileMenu}
                 className={`p-2 rounded-lg transition-all duration-300 ${

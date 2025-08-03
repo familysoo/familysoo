@@ -51,12 +51,12 @@ function StudioSection() {
   ];
 
   return (
-    <section className="py-32">
-      <div className="container">
+    <section className="py-16 sm:py-32 overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* 대표 인사말 섹션 */}
         <motion.div
           ref={ref}
-          className="grid lg:grid-cols-2 gap-16 items-center mb-16"
+          className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-16"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.8 }}
@@ -68,7 +68,7 @@ function StudioSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <motion.h2 
-              className="font-serif text-4xl font-light mb-8 text-foreground"
+              className="font-serif text-2xl sm:text-4xl font-light mb-8 text-foreground"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -83,7 +83,7 @@ function StudioSection() {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <motion.h3 
-                className="font-serif text-2xl font-medium mb-4 text-primary"
+                className="font-serif text-lg sm:text-2xl font-medium mb-4 text-primary"
                 whileHover={{ scale: 1.02, transition: { duration: 0.2, ease: "easeOut" } }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
               >
@@ -140,7 +140,7 @@ function StudioSection() {
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <motion.h3 
-            className="font-serif text-2xl font-medium mb-12 text-primary"
+            className="font-serif text-lg sm:text-2xl font-medium mb-12 text-primary"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, delay: 1.0 }}
@@ -148,11 +148,11 @@ function StudioSection() {
             스튜디오의 5가지 특징
           </motion.h3>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {studioFeatures.map((feature, index) => (
               <motion.div 
                 key={index}
-                className="bg-white rounded-2xl p-8 shadow-sm"
+                className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm"
                 initial={{ opacity: 0, y: 30, scale: 0.95 }}
                 animate={isInView ? 
                   { 
@@ -179,7 +179,7 @@ function StudioSection() {
                 }}
               >
                 <motion.div 
-                  className="text-center mb-6"
+                  className="text-center mb-4 sm:mb-6"
                   whileHover={{ 
                     scale: 1.1, 
                     rotate: 5,
@@ -187,12 +187,12 @@ function StudioSection() {
                   }}
                   transition={{ duration: 0.2, ease: "easeOut" }}
                 >
-                  <span className="text-4xl">{feature.icon}</span>
+                  <span className="text-3xl sm:text-4xl">{feature.icon}</span>
                 </motion.div>
-                <h4 className="font-serif text-xl font-medium text-primary mb-4 text-center">
+                <h4 className="font-serif text-lg sm:text-xl font-medium text-primary mb-4 text-center">
                   {feature.title}
                 </h4>
-                <p className="text-foreground/80 leading-relaxed text-center">
+                <p className="text-foreground/80 leading-relaxed text-center text-sm sm:text-base">
                   {feature.description}
                 </p>
               </motion.div>
@@ -232,7 +232,7 @@ function ServiceSection({
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
+      <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-16">
         <motion.div 
           className={`${isReversed ? 'lg:order-2' : ''}`}
           initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
@@ -241,7 +241,7 @@ function ServiceSection({
         >
           <Link href={href}>
             <motion.div 
-              className="rounded-2xl h-80 bg-cover bg-center relative overflow-hidden cursor-pointer"
+              className="rounded-2xl h-64 sm:h-80 bg-cover bg-center relative overflow-hidden cursor-pointer"
               style={{ backgroundImage: `url('${imageUrl}')` }}
               whileHover={{ 
                 scale: 1.02,
@@ -274,7 +274,7 @@ function ServiceSection({
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
         >
           <motion.h3 
-            className="font-serif text-3xl font-medium mb-6 text-primary"
+            className="font-serif text-xl sm:text-3xl font-medium mb-4 sm:mb-6 text-primary"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
@@ -283,7 +283,7 @@ function ServiceSection({
           </motion.h3>
           
           <motion.p 
-            className="text-foreground/80 text-lg leading-relaxed mb-8"
+            className="text-foreground/80 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
@@ -292,7 +292,7 @@ function ServiceSection({
           </motion.p>
           
           <motion.div 
-            className="border border-primary rounded-xl p-6 mb-6"
+            className="border border-primary rounded-xl p-4 sm:p-6 mb-4 sm:mb-6"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? 
               { 
@@ -320,8 +320,8 @@ function ServiceSection({
               transition: { duration: 0.2, ease: "easeOut" }
             }}
           >
-            <h4 className="font-medium text-lg mb-4 text-foreground">포함 서비스</h4>
-            <ul className="space-y-2 text-foreground/70">
+            <h4 className="font-medium text-base sm:text-lg mb-3 sm:mb-4 text-foreground">포함 서비스</h4>
+            <ul className="space-y-2 text-foreground/70 text-sm sm:text-base">
               {services.map((service, index) => (
                 <motion.li 
                   key={index}
@@ -494,14 +494,14 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       {/* Header */}
       <Header transparent={true} />
 
       {/* Hero Section with Carousel */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Carousel Background */}
-        <div style={{ position: 'absolute', inset: 0 }}>
+        <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
           {heroSlides.map((slide, index) => (
             <div
               key={`slide-${index}`}
@@ -528,16 +528,16 @@ export default function Home() {
           ))}
         </div>
         
-        <div className="relative z-20 text-center px-4">
-          <h1 className="font-serif text-5xl md:text-5xl font-light mb-6 fade-in-up text-white drop-shadow-lg">
+        <div className="relative z-20 text-center px-4 max-w-4xl mx-auto">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light mb-6 fade-in-up text-white drop-shadow-lg">
             소중한 순간을<br />사진으로 남기세요
           </h1>
-          <p className="text-lg md:text-xl mb-8 opacity-90 fade-in-up text-white/90 drop-shadow-md">
+          <p className="text-base sm:text-lg md:text-xl mb-8 opacity-90 fade-in-up text-white/90 drop-shadow-md">
             가족의 시간, 사랑으로 기록됩니다
           </p>
           <Link 
             href="/contact"
-            className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-medium transition-colors fade-in-up shadow-lg"
+            className="bg-primary hover:bg-primary/90 text-white px-6 sm:px-8 py-3 rounded-full font-medium transition-colors fade-in-up shadow-lg"
           >
             예약 문의하기
           </Link>
@@ -577,7 +577,7 @@ export default function Home() {
           onClick={() => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)}
           style={{
             position: 'absolute',
-            left: '2rem',
+            left: '1rem',
             top: '50%',
             transform: 'translateY(-50%)',
             zIndex: 50,
@@ -590,13 +590,13 @@ export default function Home() {
           onMouseEnter={(e) => (e.target as HTMLElement).style.color = 'white'}
           onMouseLeave={(e) => (e.target as HTMLElement).style.color = 'rgba(255, 255, 255, 0.7)'}
         >
-          <ChevronLeft size={40} strokeWidth={2} />
+          <ChevronLeft size={32} strokeWidth={2} />
         </button>
         <button
           onClick={() => setCurrentSlide((prev) => (prev + 1) % heroSlides.length)}
           style={{
             position: 'absolute',
-            right: '2rem',
+            right: '1rem',
             top: '50%',
             transform: 'translateY(-50%)',
             zIndex: 50,
@@ -609,22 +609,22 @@ export default function Home() {
           onMouseEnter={(e) => (e.target as HTMLElement).style.color = 'white'}
           onMouseLeave={(e) => (e.target as HTMLElement).style.color = 'rgba(255, 255, 255, 0.7)'}
         >
-          <ChevronRight size={40} strokeWidth={2} />
+          <ChevronRight size={32} strokeWidth={2} />
         </button>
       </section>
 
       {/* 2. 촬영 서비스 안내 */}
-      <section className="py-32 bg-muted">
-        <div className="container">
-          <div className="text-center mb-24">
-            <h2 className="font-serif text-4xl font-light mb-6 text-foreground">촬영 서비스</h2>
-            <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+      <section className="py-16 sm:py-32 bg-muted overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 sm:mb-24">
+            <h2 className="font-serif text-2xl sm:text-4xl font-light mb-6 text-foreground">촬영 서비스</h2>
+            <p className="text-base sm:text-lg text-foreground/70 max-w-2xl mx-auto px-4">
               각각의 특별한 순간을 위한 맞춤 촬영 서비스로<br />
               소중한 기억을 아름다운 작품으로 완성해드립니다.
             </p>
           </div>
 
-          <div className="space-y-32">
+          <div className="space-y-16 sm:space-y-32">
             {/* 가족사진 */}
             <ServiceSection 
               imageUrl="/images/hero/family-1.jpg"
@@ -705,8 +705,8 @@ export default function Home() {
       )}
 
       {/* 5. 이용안내 */}
-      <section className="py-32">
-        <div className="container">
+      <section className="py-16 sm:py-32 overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -714,13 +714,13 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="font-serif text-4xl font-light mb-6 text-foreground">이용안내</h2>
-            <p className="text-lg text-foreground/70">
+            <h2 className="font-serif text-2xl sm:text-4xl font-light mb-6 text-foreground">이용안내</h2>
+            <p className="text-base sm:text-lg text-foreground/70 px-4">
               촬영 예약부터 완성된 사진 받기까지의 전 과정을 안내해드립니다.
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
             {/* 예약 방법 및 가격 */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -740,7 +740,7 @@ export default function Home() {
                   transition: "transform 0.2s ease, box-shadow 0.2s ease" 
                 }}
               >
-                <h3 className="font-serif text-2xl font-medium mb-6 text-primary">
+                <h3 className="font-serif text-lg sm:text-2xl font-medium mb-6 text-primary">
                   예약 방법 및 가격
                 </h3>
                 
@@ -752,7 +752,7 @@ export default function Home() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.4 }}
                   >
-                    <h4 className="font-medium text-lg mb-3">예약 방법</h4>
+                    <h4 className="font-medium text-base sm:text-lg mb-3">예약 방법</h4>
                     <ul className="space-y-2 text-foreground/70">
                       <motion.li whileHover={{ x: 4, color: "var(--foreground)" }} transition={{ duration: 0.2 }}>
                         • 전화 상담: 041-356-1592
@@ -770,7 +770,7 @@ export default function Home() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.6 }}
                   >
-                    <h4 className="font-medium text-lg mb-3">촬영 가격</h4>
+                    <h4 className="font-medium text-base sm:text-lg mb-3">촬영 가격</h4>
                     <div className="space-y-3">
                       <motion.div 
                         className="flex justify-between items-center py-2 border-b border-gray-100"
@@ -814,7 +814,7 @@ export default function Home() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.8 }}
                   >
-                    <h4 className="font-medium text-lg mb-3">소요 시간</h4>
+                    <h4 className="font-medium text-base sm:text-lg mb-3">소요 시간</h4>
                     <ul className="space-y-2 text-foreground/70">
                       <motion.li whileHover={{ x: 4, color: "var(--foreground)" }} transition={{ duration: 0.2 }}>
                         • 촬영 시간: 1-2시간
@@ -850,7 +850,7 @@ export default function Home() {
                   transition: "transform 0.2s ease, box-shadow 0.2s ease" 
                 }}
               >
-                <h3 className="font-serif text-2xl font-medium mb-6 text-primary">
+                <h3 className="font-serif text-lg sm:text-2xl font-medium mb-6 text-primary">
                   자주 묻는 질문
                 </h3>
                 
@@ -866,7 +866,7 @@ export default function Home() {
                     }}
                     style={{ transition: "background-color 0.2s ease" }}
                   >
-                    <h4 className="font-medium text-lg mb-2">Q. 드레스와 턱시도는 제공되나요?</h4>
+                    <h4 className="font-medium text-base sm:text-lg mb-2">Q. 드레스와 턱시도는 제공되나요?</h4>
                     <p className="text-foreground/70 text-sm leading-relaxed">
                       네, 다양한 디자인의 드레스와 턱시도를 다량 보유하고 있어 고객님께 맞는 의상을 선택하실 수 있습니다. 사이즈별로 준비되어 있습니다.
                     </p>
@@ -883,7 +883,7 @@ export default function Home() {
                     }}
                     style={{ transition: "background-color 0.2s ease" }}
                   >
-                    <h4 className="font-medium text-lg mb-2">Q. 메이크업 서비스도 받을 수 있나요?</h4>
+                    <h4 className="font-medium text-base sm:text-lg mb-2">Q. 메이크업 서비스도 받을 수 있나요?</h4>
                     <p className="text-foreground/70 text-sm leading-relaxed">
                       네, 전문 메이크업 서비스를 제공합니다. 가족 촬영 및 리마인드 웨딩 촬영 시 전문 메이크업으로 더욱 아름다운 모습을 연출해드립니다.
                     </p>
@@ -900,7 +900,7 @@ export default function Home() {
                     }}
                     style={{ transition: "background-color 0.2s ease" }}
                   >
-                    <h4 className="font-medium text-lg mb-2">Q. 액자 제작은 어떻게 진행되나요?</h4>
+                    <h4 className="font-medium text-base sm:text-lg mb-2">Q. 액자 제작은 어떻게 진행되나요?</h4>
                     <p className="text-foreground/70 text-sm leading-relaxed">
                       최신 디자인의 사진액자로 제작해드리며, 액자 작업 전 미리 확인해드리는 서비스로 고객 만족도를 높이고 있습니다.
                     </p>
@@ -917,7 +917,7 @@ export default function Home() {
                     }}
                     style={{ transition: "background-color 0.2s ease" }}
                   >
-                    <h4 className="font-medium text-lg mb-2">Q. 주차는 편리한가요?</h4>
+                    <h4 className="font-medium text-base sm:text-lg mb-2">Q. 주차는 편리한가요?</h4>
                     <p className="text-foreground/70 text-sm leading-relaxed">
                       넓은 전용 주차장을 완비하여 무료로 이용하실 수 있습니다. 대형차량도 주차 가능하며, 당진·서산·예산 지역에서 접근이 용이합니다.
                     </p>
@@ -951,7 +951,7 @@ export default function Home() {
         {/* 컨텐츠 */}
         <div className="relative z-10 container text-center">
           <motion.h2 
-            className="font-serif text-4xl font-light mb-6 text-white drop-shadow-lg"
+            className="font-serif text-2xl sm:text-4xl font-light mb-6 text-white drop-shadow-lg"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -960,7 +960,7 @@ export default function Home() {
             지금 바로 예약하세요
           </motion.h2>
           <motion.p 
-            className="text-white/90 mb-8 max-w-2xl mx-auto drop-shadow-md"
+            className="text-white/90 mb-8 max-w-2xl mx-auto drop-shadow-md px-4"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -1016,8 +1016,8 @@ export default function Home() {
       </section>
 
       {/* 7. 위치 및 오시는 길 */}
-      <section className="py-32">
-        <div className="container">
+      <section className="py-16 sm:py-32 overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1026,7 +1026,7 @@ export default function Home() {
             className="text-center mb-16"
           >
             <motion.h2 
-              className="font-serif text-4xl font-light mb-6 text-foreground"
+              className="font-serif text-2xl sm:text-4xl font-light mb-6 text-foreground"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -1035,7 +1035,7 @@ export default function Home() {
               오시는 길
             </motion.h2>
             <motion.p 
-              className="text-lg text-foreground/70"
+              className="text-base sm:text-lg text-foreground/70 px-4"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -1047,7 +1047,7 @@ export default function Home() {
           </motion.div>
 
           {/* 상단: 지도와 주소 정보 */}
-          <div className="grid lg:grid-cols-2 gap-16 mb-16">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-16">
             {/* 네이버 지도 */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -1068,33 +1068,22 @@ export default function Home() {
                 }}
               >
                 <div className="h-96 relative">
-                  {/* 네이버 지도 iframe */}
+                  {/* 네이버 지도 iframe - 모바일 호환성 개선 */}
                   <iframe
                     src="https://map.naver.com/p/search/%EC%B6%A9%EC%B2%AD%EB%82%A8%EB%8F%84%20%EB%8B%B9%EC%A7%84%EC%8B%9C%20%EB%B6%81%EB%AC%B8%EB%A1%9C%202%EA%B8%B8%2010%20%ED%8C%A8%EB%B0%80%EB%A6%AC%EC%88%98%EC%8A%A4%ED%8A%9C%EB%94%94%EC%98%A4"
                     width="100%"
                     height="100%"
-                    style={{ border: 0, borderRadius: '1rem' }}
+                    style={{ 
+                      border: 0, 
+                      borderRadius: '1rem',
+                      minHeight: '384px'
+                    }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     title="Family Soo Studio 위치"
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
                   />
-                  
-                  {/* 지도 위 오버레이 정보 */}
-                  {/* <motion.div 
-                    className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg"
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.8 }}
-                    whileHover={{ 
-                      scale: 1.05,
-                      boxShadow: "0 4px 15px rgba(139, 115, 85, 0.2)"
-                    }}
-                  >
-                    <p className="text-sm font-medium text-primary">📍 Family Soo Studio</p>
-                    <p className="text-xs text-foreground/70">충청남도 당진시 북문로 2길 10</p>
-                  </motion.div> */}
                 </div>
               </motion.div>
             </motion.div>
@@ -1120,7 +1109,7 @@ export default function Home() {
                 }}
               >
                 <motion.h3 
-                  className="font-serif text-2xl font-medium mb-6 text-primary"
+                  className="font-serif text-lg sm:text-2xl font-medium mb-6 text-primary"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}

@@ -590,8 +590,17 @@ export default function PortfolioSection({
               /* 1-depth: 기존 방식 */
               <div 
                 ref={tabContainerRef}
-                className="bg-white rounded-full p-2 flex space-x-2 shadow-sm overflow-x-auto scrollbar-hide"
+                className="bg-white rounded-full p-2 flex space-x-2 shadow-sm overflow-x-auto max-w-full"
+                style={{ 
+                  scrollbarWidth: 'none', /* Firefox */
+                  msOverflowStyle: 'none',  /* Internet Explorer 10+ */
+                }}
               >
+                <style jsx>{`
+                  div::-webkit-scrollbar {
+                    display: none; /* Safari and Chrome */
+                  }
+                `}</style>
                 {/* maxVisibleTabs가 1이고 카테고리가 2개 이상일 때: 첫 번째 탭을 드롭다운으로 만듦 */}
                 {maxVisibleTabs === 1 && categories.length > 1 ? (
                   <motion.button
@@ -623,7 +632,7 @@ export default function PortfolioSection({
                         onClick={() => setActiveCategory(category)}
                         className={`px-4 py-2 sm:px-6 sm:py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
                           activeCategory === category
-                            ? 'text-primary'
+                            ? 'text-primary bg-primary/10'
                             : 'text-foreground hover:bg-primary/10'
                         }`}
                         whileHover={{ scale: 1.05 }}
@@ -639,7 +648,7 @@ export default function PortfolioSection({
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                         className={`px-4 py-2 sm:px-6 sm:py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 flex items-center space-x-1 dropdown-container relative ${
                           categories.slice(maxVisibleTabs).includes(activeCategory)
-                            ? 'text-primary'
+                            ? 'text-primary bg-primary/10'
                             : 'text-foreground hover:bg-primary/10'
                         }`}
                         whileHover={{ scale: 1.05 }}
