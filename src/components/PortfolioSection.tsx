@@ -872,7 +872,7 @@ export default function PortfolioSection({
                       e.stopPropagation();
                       goToPrevious();
                     }}
-                    className="absolute left-8 text-white/70 hover:text-white transition-all z-30 bg-black/30 rounded-full p-3 backdrop-blur-sm hover:-translate-x-1"
+                    className="absolute left-8 text-white/70 hover:text-white transition-all z-30 bg-white/20 rounded-full p-3 backdrop-blur-sm hover:-translate-x-1"
                     style={{ 
                       top: '50%', 
                       transform: 'translateY(-50%)',
@@ -889,7 +889,7 @@ export default function PortfolioSection({
                       e.stopPropagation();
                       goToNext();
                     }}
-                    className="absolute right-8 text-white/70 hover:text-white transition-all z-30 bg-black/30 rounded-full p-3 backdrop-blur-sm hover:translate-x-1"
+                    className="absolute right-8 text-white/70 hover:text-white transition-all z-30 bg-white/20 rounded-full p-3 backdrop-blur-sm hover:translate-x-1"
                     style={{ 
                       top: '50%', 
                       transform: 'translateY(-50%)',
@@ -922,7 +922,7 @@ export default function PortfolioSection({
                           e.stopPropagation();
                           goToPrevious();
                         }}
-                        className="text-white/80 hover:text-white transition-colors bg-black/30 rounded-full p-2 backdrop-blur-sm"
+                        className="text-white/80 hover:text-white transition-colors bg-white/20 rounded-full p-2 backdrop-blur-sm"
                       >
                         <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -933,7 +933,7 @@ export default function PortfolioSection({
                           e.stopPropagation();
                           goToNext();
                         }}
-                        className="text-white/80 hover:text-white transition-colors bg-black/30 rounded-full p-2 backdrop-blur-sm"
+                        className="text-white/80 hover:text-white transition-colors bg-white/20 rounded-full p-2 backdrop-blur-sm"
                       >
                         <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -953,10 +953,7 @@ export default function PortfolioSection({
               </div>
 
               {/* 이미지 컨테이너 */}
-              <div 
-                className="flex-1 flex items-center justify-center relative px-4"
-                onClick={(e) => e.stopPropagation()}
-              >
+              <div className="flex-1 flex items-center justify-center relative px-4">
                 {/* 로딩 스피너 */}
                 {!mainImageLoaded && (
                   <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-10">
@@ -972,6 +969,7 @@ export default function PortfolioSection({
                   animate={{ scale: 1, opacity: mainImageLoaded ? 1 : 0 }}
                   exit={{ scale: 0.8, opacity: 0 }}
                   transition={{ duration: 0.3 }}
+                  onClick={(e) => e.stopPropagation()}
                   onLoad={handleMainImageLoad}
                   onError={() => {
                     console.warn('라이트박스 이미지 로드 실패:', lightboxImage);
