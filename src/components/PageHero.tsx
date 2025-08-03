@@ -18,7 +18,7 @@ export default function PageHero({ title, description }: PageHeroProps) {
           transition={{ duration: 0.8 }}
         >
           <motion.h1 
-            className="font-serif text-4xl md:text-6xl font-light mb-6 text-foreground"
+            className="font-serif text-2xl sm:text-4xl md:text-6xl font-light mb-6 text-foreground"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}

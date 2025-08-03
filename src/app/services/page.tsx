@@ -67,7 +67,7 @@ function ServiceSection({
           {icons[index]}
         </motion.div>
         <div>
-          <h3 className="font-serif text-2xl font-medium text-foreground mb-2">
+          <h3 className="font-serif text-lg sm:text-2xl font-medium text-foreground mb-2">
             {service.title}
           </h3>
           <p className="text-primary font-medium">{service.price}</p>
@@ -161,7 +161,7 @@ function ServiceDetail({ service, isVisible }: { service: Service; isVisible: bo
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <h3 className="font-serif text-3xl font-medium mb-6 text-primary">
+          <h3 className="font-serif text-xl sm:text-3xl font-medium mb-6 text-primary">
             {service.title} 상세 정보
           </h3>
           
@@ -201,11 +201,11 @@ function ServiceDetail({ service, isVisible }: { service: Service; isVisible: bo
             <div className="grid grid-cols-2 gap-4">
               <div className="text-center p-4 bg-primary/5 rounded-lg">
                 <p className="text-sm text-foreground/70 mb-1">기본 가격</p>
-                <p className="text-xl font-serif font-medium text-primary">{service.price}</p>
+                <p className="text-lg sm:text-xl font-serif font-medium text-primary">{service.price}</p>
               </div>
               <div className="text-center p-4 bg-accent/20 rounded-lg">
                 <p className="text-sm text-foreground/70 mb-1">촬영 시간</p>
-                <p className="text-xl font-serif font-medium text-foreground">{service.duration}</p>
+                <p className="text-lg sm:text-xl font-serif font-medium text-foreground">{service.duration}</p>
               </div>
             </div>
           </motion.div>
@@ -217,7 +217,7 @@ function ServiceDetail({ service, isVisible }: { service: Service; isVisible: bo
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <h4 className="font-serif text-2xl font-medium mb-6 text-foreground">촬영 진행 과정</h4>
+          <h4 className="font-serif text-lg sm:text-2xl font-medium mb-6 text-foreground">촬영 진행 과정</h4>
           <div className="space-y-4">
             {service.process.map((step: string, idx: number) => (
               <motion.div
@@ -408,7 +408,7 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-serif text-3xl font-light mb-4 text-foreground">서비스 선택</h2>
+            <h2 className="font-serif text-xl sm:text-3xl font-light mb-4 text-foreground">서비스 선택</h2>
             <p className="text-foreground/70">원하시는 서비스를 선택하여 자세한 정보를 확인해보세요</p>
           </motion.div>
 
@@ -442,7 +442,7 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-serif text-3xl font-light mb-4 text-foreground">추가 서비스</h2>
+            <h2 className="font-serif text-xl sm:text-3xl font-light mb-4 text-foreground">추가 서비스</h2>
             <p className="text-foreground/70">더욱 완벽한 촬영을 위한 부가 서비스를 제공합니다</p>
           </motion.div>
 
@@ -486,7 +486,7 @@ export default function ServicesPage() {
                 >
                   {item.icon}
                 </motion.div>
-                <h3 className="font-serif text-xl font-medium mb-3 text-foreground">{item.title}</h3>
+                <h3 className="font-serif text-lg sm:text-xl font-medium mb-3 text-foreground">{item.title}</h3>
                 <p className="text-foreground/70 mb-4 leading-relaxed">{item.description}</p>
                 <p className="font-medium text-primary">{item.price}</p>
               </motion.div>
@@ -504,7 +504,7 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-serif text-4xl font-light mb-6 text-white">
+            <h2 className="font-serif text-2xl sm:text-4xl font-light mb-6 text-white">
               지금 바로 예약하세요
             </h2>
             <p className="text-white/90 mb-8 max-w-2xl mx-auto">

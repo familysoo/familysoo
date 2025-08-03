@@ -89,7 +89,7 @@ export default function ConceptSection({
   if (loading) {
     return (
       <div className="mb-20">
-        <h3 className="font-serif text-2xl font-medium mb-8 text-center text-primary">{title}</h3>
+        <h3 className="font-serif text-lg sm:text-2xl font-medium mb-8 text-center text-primary">{title}</h3>
         <div className="flex justify-center">
           <LoadingSpinner size="lg" />
         </div>
@@ -100,7 +100,7 @@ export default function ConceptSection({
   if (error) {
     return (
       <div className="mb-20">
-        <h3 className="font-serif text-2xl font-medium mb-8 text-center text-primary">{title}</h3>
+        <h3 className="font-serif text-lg sm:text-2xl font-medium mb-8 text-center text-primary">{title}</h3>
         <div className="text-center text-foreground/70 p-8 bg-muted rounded-lg">
           {error}
         </div>
@@ -111,7 +111,7 @@ export default function ConceptSection({
   if (concepts.length === 0) {
     return (
       <div className="mb-20">
-        <h3 className="font-serif text-2xl font-medium mb-8 text-center text-primary">{title}</h3>
+        <h3 className="font-serif text-lg sm:text-2xl font-medium mb-8 text-center text-primary">{title}</h3>
         <div className="text-center text-foreground/70 p-8 bg-muted rounded-lg">
           등록된 컨셉이 없습니다.
         </div>
@@ -129,12 +129,12 @@ export default function ConceptSection({
 
   return (
     <div className="mb-20">
-      <h3 className="font-serif text-2xl font-medium mb-8 text-center text-primary">{title}</h3>
+      <h3 className="font-serif text-lg sm:text-2xl font-medium mb-8 text-center text-primary">{title}</h3>
       <p className="text-center text-foreground/70 mb-12">{description}</p>
       
       {Object.entries(conceptsByCategory).map(([category, categoryItems], categoryIndex) => (
         <div key={category} className="mb-12">
-          <h4 className="font-serif text-xl font-medium mb-6 text-primary">
+          <h4 className="font-serif text-lg sm:text-xl font-medium mb-6 text-primary">
             {category}
           </h4>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

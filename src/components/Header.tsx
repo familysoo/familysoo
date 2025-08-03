@@ -199,7 +199,7 @@ export default function Header({ transparent = false }: HeaderProps) {
           
           {/* 모바일 메뉴 패널 */}
           <motion.div 
-            className="bg-white shadow-2xl flex flex-col"
+            className="bg-white shadow-2xl flex flex-col max-h-screen"
             style={{
               position: 'absolute',
               right: 0,
@@ -227,8 +227,8 @@ export default function Header({ transparent = false }: HeaderProps) {
               </button>
             </div>
 
-            {/* 메뉴 아이템들 - 중간 영역 */}
-            <nav className="py-6 flex-1">
+            {/* 메뉴 아이템들 - 중간 영역 (스크롤 가능) */}
+            <nav className="py-6 flex-1 overflow-y-auto">
               <div className="space-y-2">
                 {navigationItems.map((item) => {
                   const isActive = pathname === item.href || (item.subItems && item.subItems.some(subItem => pathname === subItem.href));
@@ -292,7 +292,18 @@ export default function Header({ transparent = false }: HeaderProps) {
             {/* 연락처 정보 - 하단 고정 */}
             <div className="p-6 border-t border-gray-200 flex-shrink-0 bg-primary/5">
               <div className="text-center">
-                <p className="text-2xl font-bold text-primary mb-3">041-356-1592</p>
+                {/* 전화번호 - 클릭하면 전화 앱 연결 */}
+                <a 
+                  href="tel:041-356-1592"
+                  className="block text-2xl font-bold text-primary mb-2 hover:text-primary/80 transition-colors"
+                >
+                  041-356-1592
+                </a>
+                {/* 모바일 전용 안내 문구 */}
+                <p className="text-xs text-gray-500 mb-3 block sm:hidden">
+                  📞 탭하여 바로 전화하기
+                </p>
+                
                 <div className="flex items-center justify-center mb-3">
                   <div className="inline-flex items-center gap-2 px-3 py-2 bg-primary/10 border border-primary rounded-lg">
                     <MessageCircle className="w-4 h-4 text-primary" />

@@ -75,7 +75,7 @@ export default function BabyPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="font-serif text-3xl font-light mb-8 text-foreground">
+              <h2 className="font-serif text-xl sm:text-3xl font-light mb-8 text-foreground">
                 소중한 성장의 순간들
               </h2>
               
@@ -150,7 +150,7 @@ export default function BabyPage() {
         <div className="container">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="font-serif text-3xl font-light mb-6 text-foreground">가격 안내</h2>
+              <h2 className="font-serif text-xl sm:text-3xl font-light mb-6 text-foreground">가격 안내</h2>
               <p className="text-lg text-foreground/70">투명하고 합리적인 가격으로 제공합니다</p>
             </div>
 
@@ -160,7 +160,7 @@ export default function BabyPage() {
             {/* 상품 구성 설명 */}
             <div className="mb-16">
               <div className="bg-gradient-to-br from-primary/5 to-accent/10 p-8 rounded-2xl">
-                <h3 className="font-serif text-2xl font-medium mb-6 text-center text-primary">💡 상품 구성 이해하기</h3>
+                <h3 className="font-serif text-lg sm:text-2xl font-medium mb-6 text-center text-primary">💡 상품 구성 이해하기</h3>
                 
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="bg-white p-6 rounded-xl">
@@ -198,7 +198,7 @@ export default function BabyPage() {
 
             {/* 단일 촬영 패키지 */}
             <div className="mb-16">
-              <h3 className="font-serif text-2xl font-medium mb-8 text-center text-primary">📋 단일 촬영 패키지</h3>
+              <h3 className="font-serif text-lg sm:text-2xl font-medium mb-8 text-center text-primary">📋 단일 촬영 패키지</h3>
               <div className="grid md:grid-cols-3 gap-6">
                 <motion.div
                   className="bg-white p-6 rounded-2xl shadow-sm border border-primary"
@@ -207,8 +207,8 @@ export default function BabyPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
                 >
-                  <h4 className="font-serif text-xl font-medium mb-4 text-primary">심플 A</h4>
-                  <div className="text-3xl font-light mb-4 text-foreground">290,000원</div>
+                  <h4 className="font-serif text-lg sm:text-xl font-medium mb-4 text-primary">심플 A</h4>
+                  <div className="text-xl sm:text-3xl font-light mb-4 text-foreground">290,000원</div>
                   <div className="bg-primary/5 p-3 rounded-lg mb-4">
                     <p className="text-sm font-medium text-primary">🎨 위 테마 중 2개 선택 촬영</p>
                   </div>
@@ -235,8 +235,8 @@ export default function BabyPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.1 }}
                 >
-                  <h4 className="font-serif text-xl font-medium mb-4 text-primary">심플 B</h4>
-                  <div className="text-3xl font-light mb-4 text-foreground">390,000원</div>
+                  <h4 className="font-serif text-lg sm:text-xl font-medium mb-4 text-primary">심플 B</h4>
+                  <div className="text-xl sm:text-3xl font-light mb-4 text-foreground">390,000원</div>
                   <div className="bg-primary/5 p-3 rounded-lg mb-4">
                     <p className="text-sm font-medium text-primary">🎨 기본 테마 2개 + 돌상 or 가족촬영 추가</p>
                   </div>
@@ -263,8 +263,8 @@ export default function BabyPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <h4 className="font-serif text-xl font-medium mb-4">심플 C <span className="text-xs bg-white/20 px-2 py-1 rounded">인기</span></h4>
-                  <div className="text-3xl font-light mb-4">490,000원</div>
+                  <h4 className="font-serif text-lg sm:text-xl font-medium mb-4">심플 C <span className="text-xs bg-white/20 px-2 py-1 rounded">인기</span></h4>
+                  <div className="text-xl sm:text-3xl font-light mb-4">490,000원</div>
                   <div className="bg-white/10 p-3 rounded-lg mb-4">
                     <p className="text-sm font-medium">🎨 기본 테마 2개 + 돌상 or 가족촬영 추가</p>
                   </div>
@@ -293,8 +293,8 @@ export default function BabyPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.3 }}
                 >
-                  <h4 className="font-serif text-xl font-medium mb-4 text-primary">원본 A <span className="text-sm text-foreground/60">(추가상품)</span></h4>
-                  <div className="text-3xl font-light mb-4 text-foreground">100,000원</div>
+                  <h4 className="font-serif text-lg sm:text-xl font-medium mb-4 text-primary">원본 A <span className="text-sm text-foreground/60">(추가상품)</span></h4>
+                  <div className="text-xl sm:text-3xl font-light mb-4 text-foreground">100,000원</div>
                   <div className="bg-primary/5 p-3 rounded-lg mb-4">
                     <p className="text-sm font-medium text-primary">🎨 위 테마 중 1개 선택 촬영</p>
                   </div>
@@ -317,8 +317,8 @@ export default function BabyPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  <h4 className="font-serif text-xl font-medium mb-4 text-primary">못난이 테마 <span className="text-xs bg-primary text-white px-2 py-1 rounded">특별</span></h4>
-                  <div className="text-3xl font-light mb-4 text-foreground">250,000원</div>
+                  <h4 className="font-serif text-lg sm:text-xl font-medium mb-4 text-primary">못난이 테마 <span className="text-xs bg-primary text-white px-2 py-1 rounded">특별</span></h4>
+                  <div className="text-xl sm:text-3xl font-light mb-4 text-foreground">250,000원</div>
                   <div className="bg-primary/5 p-3 rounded-lg mb-4">
                     <p className="text-sm font-medium text-primary">🎨 못난이 전용 테마 1컷 촬영</p>
                   </div>
@@ -338,7 +338,7 @@ export default function BabyPage() {
 
             {/* 기념일 패키지 */}
             <div className="mb-16">
-              <h3 className="font-serif text-2xl font-medium mb-8 text-center text-primary">🎉 기념일 패키지</h3>
+              <h3 className="font-serif text-lg sm:text-2xl font-medium mb-8 text-center text-primary">🎉 기념일 패키지</h3>
               <p className="text-center text-foreground/70 mb-8">정해진 구성 + 추천 컨셉으로 특별한 기념일을 기록하세요</p>
               <div className="grid md:grid-cols-2 gap-8">
                 <motion.div
@@ -348,8 +348,8 @@ export default function BabyPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
                 >
-                  <h4 className="font-serif text-2xl font-medium mb-4 text-primary">첫돌기념 패키지</h4>
-                  <div className="text-4xl font-light mb-4 text-foreground">290,000원</div>
+                  <h4 className="font-serif text-lg sm:text-2xl font-medium mb-4 text-primary">첫돌기념 패키지</h4>
+                  <div className="text-2xl sm:text-4xl font-light mb-4 text-foreground">290,000원</div>
                   <div className="bg-primary/5 p-4 rounded-lg mb-6">
                     <p className="text-sm font-medium text-primary mb-2">🎂 첫돌 테마 중 2건 선택 촬영</p>
                     <p className="text-xs text-foreground/70">돌상, 돌잡이, 한옥, 복고 컨셉 등에서 선택</p>
@@ -377,8 +377,8 @@ export default function BabyPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <h4 className="font-serif text-2xl font-medium mb-4 text-primary">백일기념 패키지</h4>
-                  <div className="text-4xl font-light mb-4 text-foreground">290,000원</div>
+                  <h4 className="font-serif text-lg sm:text-2xl font-medium mb-4 text-primary">백일기념 패키지</h4>
+                  <div className="text-2xl sm:text-4xl font-light mb-4 text-foreground">290,000원</div>
                   <div className="bg-primary/5 p-4 rounded-lg mb-6">
                     <p className="text-sm font-medium text-primary mb-2">💝 백일 테마 중 2건 선택 촬영</p>
                     <p className="text-xs text-foreground/70">백일상, 전통누드, 스튜디오, 가족 컨셉 등에서 선택</p>
@@ -403,7 +403,7 @@ export default function BabyPage() {
 
             {/* 성장앨범 패키지 */}
             <div className="mb-16">
-              <h3 className="font-serif text-2xl font-medium mb-8 text-center text-primary">📚 성장앨범 패키지</h3>
+              <h3 className="font-serif text-lg sm:text-2xl font-medium mb-8 text-center text-primary">📚 성장앨범 패키지</h3>
               <div className="bg-gradient-to-br from-primary/5 to-accent/10 p-6 rounded-2xl mb-6">
                 <p className="text-center text-foreground/70">기간별 성장 기록을 위한 특별 할인 패키지 - 아이의 성장 과정을 완벽하게 기록하세요</p>
               </div>
@@ -416,10 +416,10 @@ export default function BabyPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
                 >
-                  <h4 className="font-serif text-xl font-medium mb-4 text-primary">심플 성장</h4>
+                  <h4 className="font-serif text-lg sm:text-xl font-medium mb-4 text-primary">심플 성장</h4>
                   <div className="mb-4">
                     <span className="text-lg text-foreground/50 line-through">990,000원</span>
-                    <div className="text-3xl font-light text-foreground">790,000원</div>
+                    <div className="text-xl sm:text-3xl font-light text-foreground">790,000원</div>
                     <span className="text-sm text-primary font-medium">200,000원 할인!</span>
                   </div>
                   <div className="bg-primary/5 p-3 rounded-lg mb-4">
@@ -448,10 +448,10 @@ export default function BabyPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.1 }}
                 >
-                  <h4 className="font-serif text-xl font-medium mb-4">돌상 성장 <span className="text-xs bg-white/20 px-2 py-1 rounded">인기</span></h4>
+                  <h4 className="font-serif text-lg sm:text-xl font-medium mb-4">돌상 성장 <span className="text-xs bg-white/20 px-2 py-1 rounded">인기</span></h4>
                   <div className="mb-4">
                     <span className="text-lg text-white/60 line-through">1,190,000원</span>
-                    <div className="text-3xl font-light">990,000원</div>
+                    <div className="text-xl sm:text-3xl font-light">990,000원</div>
                     <span className="text-sm text-white/90 font-medium">200,000원 할인!</span>
                   </div>
                   <div className="bg-white/10 p-3 rounded-lg mb-4">
@@ -480,10 +480,10 @@ export default function BabyPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <h4 className="font-serif text-xl font-medium mb-4 text-primary">본아트 성장 <span className="text-xs bg-primary text-white px-2 py-1 rounded">프리미엄</span></h4>
+                  <h4 className="font-serif text-lg sm:text-xl font-medium mb-4 text-primary">본아트 성장 <span className="text-xs bg-primary text-white px-2 py-1 rounded">프리미엄</span></h4>
                   <div className="mb-4">
                     <span className="text-lg text-foreground/50 line-through">1,390,000원</span>
-                    <div className="text-3xl font-light text-foreground">1,190,000원</div>
+                    <div className="text-xl sm:text-3xl font-light text-foreground">1,190,000원</div>
                     <span className="text-sm text-primary font-medium">200,000원 할인!</span>
                   </div>
                   <div className="bg-primary/5 p-3 rounded-lg mb-4">
@@ -509,7 +509,7 @@ export default function BabyPage() {
 
             {/* 출사형 상품 */}
             <div>
-              <h3 className="font-serif text-2xl font-medium mb-8 text-center text-primary">🌿 출사형 상품</h3>
+              <h3 className="font-serif text-lg sm:text-2xl font-medium mb-8 text-center text-primary">🌿 출사형 상품</h3>
               <p className="text-center text-foreground/70 mb-8">야외에서 자연스러운 분위기로 촬영하는 출사 전용 상품</p>
               <div className="grid md:grid-cols-3 gap-6">
                 <motion.div
@@ -519,8 +519,8 @@ export default function BabyPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
                 >
-                  <h4 className="font-serif text-xl font-medium mb-4 text-primary">출사 - 원본 JPG</h4>
-                  <div className="text-3xl font-light mb-4 text-foreground">250,000원</div>
+                  <h4 className="font-serif text-lg sm:text-xl font-medium mb-4 text-primary">출사 - 원본 JPG</h4>
+                  <div className="text-xl sm:text-3xl font-light mb-4 text-foreground">250,000원</div>
                   <div className="bg-green-50 p-3 rounded-lg mb-4">
                     <p className="text-sm font-medium text-green-700">🌿 야외 자연 촬영</p>
                   </div>
@@ -543,8 +543,8 @@ export default function BabyPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.1 }}
                 >
-                  <h4 className="font-serif text-xl font-medium mb-4 text-primary">출사 - 8R 액자 + JPG</h4>
-                  <div className="text-3xl font-light mb-4 text-foreground">350,000원</div>
+                  <h4 className="font-serif text-lg sm:text-xl font-medium mb-4 text-primary">출사 - 8R 액자 + JPG</h4>
+                  <div className="text-xl sm:text-3xl font-light mb-4 text-foreground">350,000원</div>
                   <div className="bg-green-50 p-3 rounded-lg mb-4">
                     <p className="text-sm font-medium text-green-700">🌿 야외 자연 촬영 + 액자</p>
                   </div>
@@ -567,8 +567,8 @@ export default function BabyPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <h4 className="font-serif text-xl font-medium mb-4 text-primary">출사 - 앨범 + JPG</h4>
-                  <div className="text-3xl font-light mb-4 text-foreground">450,000원</div>
+                  <h4 className="font-serif text-lg sm:text-xl font-medium mb-4 text-primary">출사 - 앨범 + JPG</h4>
+                  <div className="text-xl sm:text-3xl font-light mb-4 text-foreground">450,000원</div>
                   <div className="bg-green-50 p-3 rounded-lg mb-4">
                     <p className="text-sm font-medium text-green-700">🌿 야외 자연 촬영 + 앨범</p>
                   </div>
@@ -598,7 +598,7 @@ export default function BabyPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-serif text-4xl font-light mb-6 text-foreground">
+            <h2 className="font-serif text-2xl sm:text-4xl font-light mb-6 text-foreground">
               소중한 성장의 순간을 기록하세요
             </h2>
             <p className="text-lg text-foreground/70 mb-8 max-w-2xl mx-auto">

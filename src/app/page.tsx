@@ -755,7 +755,13 @@ export default function Home() {
                     <h4 className="font-medium text-base sm:text-lg mb-3">예약 방법</h4>
                     <ul className="space-y-2 text-foreground/70">
                       <motion.li whileHover={{ x: 4, color: "var(--foreground)" }} transition={{ duration: 0.2 }}>
-                        • 전화 상담: 041-356-1592
+                        • 전화 상담: 
+                        <a href="tel:041-356-1592" className="text-primary hover:text-primary/80 transition-colors ml-1">
+                          041-356-1592
+                        </a>
+                        <span className="text-xs text-foreground/50 ml-2 inline sm:hidden">
+                          (📞 탭하여 전화)
+                        </span>
                       </motion.li>
                       <motion.li whileHover={{ x: 4, color: "var(--foreground)" }} transition={{ duration: 0.2 }}>
                         • 카카오 상담: @soo_1592
@@ -1008,7 +1014,14 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            <p>📞 041-356-1592 | 📧 카카오톡 아이디 @soo_1592</p>
+            <p>📞 
+              <a href="tel:041-356-1592" className="text-white hover:text-white/80 transition-colors">
+                041-356-1592
+              </a>
+              <span className="text-xs text-white/70 ml-2 inline sm:hidden">
+                (📞 탭하여 전화)
+              </span>
+               | 📧 카카오톡 아이디 @soo_1592</p>
             <p>운영시간: 평일 10:00-19:00, 주말 10:00-19:00 (예약제)</p>
             <p>🌐 <a href="https://blog.naver.com/familysoo1592" target="_blank" className="hover:text-white transition-colors">blog.naver.com/familysoo1592</a></p>
           </motion.div>
@@ -1201,7 +1214,15 @@ export default function Home() {
                     <span className="text-lg">📞</span>
                     <div>
                       <p className="font-medium text-foreground">전화번호</p>
-                      <p className="text-primary font-medium">041-356-1592</p>
+                      <a 
+                        href="tel:041-356-1592" 
+                        className="text-primary font-medium hover:text-primary/80 transition-colors block"
+                      >
+                        041-356-1592
+                      </a>
+                      <p className="text-xs text-foreground/50 mt-1 block sm:hidden">
+                        📞 탭하여 바로 전화하기
+                      </p>
                     </div>
                   </motion.div>
                   

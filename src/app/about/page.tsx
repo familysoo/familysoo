@@ -51,7 +51,7 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
       >
         {icons[index]}
       </motion.div>
-      <h3 className="font-serif text-xl font-medium mb-3 text-foreground">{feature.title}</h3>
+      <h3 className="font-serif text-lg sm:text-xl font-medium mb-3 text-foreground">{feature.title}</h3>
       <p className="text-foreground/70 leading-relaxed">{feature.description}</p>
     </motion.div>
   );
@@ -79,7 +79,7 @@ function TimelineItem({ item, index }: { item: TimelineItemType; index: number }
       </motion.div>
       <div className="flex-1 pl-8">
         <motion.h3 
-          className="font-serif text-xl font-medium mb-2 text-foreground"
+          className="font-serif text-lg sm:text-xl font-medium mb-2 text-foreground"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5, delay: index * 0.2 + 0.2 }}
@@ -163,7 +163,7 @@ export default function AboutPage() {
               transition={{ duration: 0.8 }}
             >
               <motion.h2 
-                className="font-serif text-3xl font-light mb-8 text-foreground"
+                className="font-serif text-xl sm:text-3xl font-light mb-8 text-foreground"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -222,7 +222,7 @@ export default function AboutPage() {
                 />
                 <div className="absolute inset-0 bg-black/50" />
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
-                  <h4 className="font-serif text-2xl font-medium text-white mb-3">
+                  <h4 className="font-serif text-lg sm:text-2xl font-medium text-white mb-3">
                     Family Soo Studio
                   </h4>
                   <p className="text-white/90 text-sm">
@@ -246,7 +246,7 @@ export default function AboutPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-serif text-3xl font-light mb-6 text-foreground">스튜디오 철학</h2>
+            <h2 className="font-serif text-xl sm:text-3xl font-light mb-6 text-foreground">스튜디오 철학</h2>
             <p className="text-lg text-foreground/70 max-w-3xl mx-auto leading-relaxed">
               자연스럽고 따뜻한 감성을 담아내는 것이 저희의 철학입니다. 
               억지스러운 포즈보다는 진솔한 모습, 완벽한 기술보다는 진심을 담은 사진을 추구합니다.
@@ -271,7 +271,7 @@ export default function AboutPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-serif text-3xl font-light mb-6 text-foreground">스튜디오 연혁</h2>
+            <h2 className="font-serif text-xl sm:text-3xl font-light mb-6 text-foreground">스튜디오 연혁</h2>
             <p className="text-lg text-foreground/70">25년간의 발자취와 성장 스토리</p>
           </motion.div>
 
@@ -293,7 +293,7 @@ export default function AboutPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-serif text-3xl font-light mb-6 text-foreground">촬영 공간</h2>
+            <h2 className="font-serif text-xl sm:text-3xl font-light mb-6 text-foreground">촬영 공간</h2>
             <p className="text-lg text-foreground/70">편안하고 아늑한 분위기의 전문 촬영 공간</p>
           </motion.div>
 
@@ -309,7 +309,7 @@ export default function AboutPage() {
                 boxShadow: "0 8px 30px rgba(139, 115, 85, 0.15)"
               }}
             >
-              <h3 className="font-serif text-2xl font-medium mb-6 text-primary">메인 스튜디오</h3>
+              <h3 className="font-serif text-lg sm:text-2xl font-medium mb-6 text-primary">메인 스튜디오</h3>
               <ul className="space-y-4">
                 {[
                   "넓은 촬영 공간 (50평)",
@@ -345,7 +345,7 @@ export default function AboutPage() {
                 boxShadow: "0 8px 30px rgba(139, 115, 85, 0.15)"
               }}
             >
-              <h3 className="font-serif text-2xl font-medium mb-6 text-primary">특화 공간</h3>
+              <h3 className="font-serif text-lg sm:text-2xl font-medium mb-6 text-primary">특화 공간</h3>
               <ul className="space-y-4">
                 {[
                   "신생아 전용 안전 촬영실",
@@ -383,7 +383,7 @@ export default function AboutPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-serif text-4xl font-light mb-6 text-white">숫자로 보는 Family Soo</h2>
+            <h2 className="font-serif text-2xl sm:text-4xl font-light mb-6 text-white">숫자로 보는 Family Soo</h2>
             <p className="text-white/90 text-lg">25년간 쌓아온 신뢰와 경험</p>
           </motion.div>
 
@@ -404,7 +404,7 @@ export default function AboutPage() {
                 whileHover={{ scale: 1.05 }}
               >
                 <motion.div 
-                  className="font-serif text-4xl md:text-5xl font-light text-white mb-2"
+                  className="font-serif text-2xl sm:text-4xl md:text-5xl font-light text-white mb-2"
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
@@ -429,7 +429,7 @@ export default function AboutPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-serif text-3xl font-light mb-6 text-foreground">찾아오시는 길</h2>
+            <h2 className="font-serif text-xl sm:text-3xl font-light mb-6 text-foreground">찾아오시는 길</h2>
             <p className="text-lg text-foreground/70">당진에서 만나는 따뜻한 추억 공간</p>
           </motion.div>
 
@@ -500,7 +500,7 @@ export default function AboutPage() {
               >
                 🗺️
               </motion.div>
-              <h3 className="font-serif text-2xl font-medium mb-4 text-foreground">당진의 중심에서</h3>
+              <h3 className="font-serif text-lg sm:text-2xl font-medium mb-4 text-foreground">당진의 중심에서</h3>
               <p className="text-foreground/70 leading-relaxed">
                 접근성이 좋은 위치에서<br />
                 편안한 촬영 환경을 제공합니다
@@ -530,7 +530,7 @@ export default function AboutPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-serif text-4xl font-light mb-6 text-foreground">
+            <h2 className="font-serif text-2xl sm:text-4xl font-light mb-6 text-foreground">
               여러분의 소중한 순간을 기다리고 있습니다
             </h2>
             <p className="text-lg text-foreground/70 mb-8 max-w-2xl mx-auto">

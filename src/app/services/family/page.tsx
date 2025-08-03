@@ -75,7 +75,7 @@ export default function FamilyPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="font-serif text-3xl font-light mb-8 text-foreground">
+              <h2 className="font-serif text-xl sm:text-3xl font-light mb-8 text-foreground">
                 가족의 소중한 순간들
               </h2>
               
@@ -150,7 +150,7 @@ export default function FamilyPage() {
         <div className="container">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="font-serif text-3xl font-light mb-6 text-foreground">촬영 컨셉 소개</h2>
+              <h2 className="font-serif text-xl sm:text-3xl font-light mb-6 text-foreground">촬영 컨셉 소개</h2>
               <p className="text-lg text-foreground/70">가족의 개성에 맞는 다양한 컨셉을 선택하세요</p>
             </div>
 
@@ -165,7 +165,7 @@ export default function FamilyPage() {
         <div className="container">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="font-serif text-3xl font-light mb-6 text-foreground">가격 안내</h2>
+              <h2 className="font-serif text-xl sm:text-3xl font-light mb-6 text-foreground">가격 안내</h2>
               <p className="text-lg text-foreground/70">투명하고 합리적인 가격으로 제공합니다</p>
             </div>
 
@@ -178,7 +178,7 @@ export default function FamilyPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <h4 className="font-serif text-2xl font-medium mb-6">가족 촬영 패키지</h4>
+                <h4 className="font-serif text-lg sm:text-2xl font-medium mb-6">가족 촬영 패키지</h4>
                 <div className="text-5xl font-light mb-6">100,000원</div>
                 <div className="bg-white/10 p-4 rounded-lg mb-8">
                   <p className="text-sm font-medium">🎨 전체 컨셉 촬영 가능</p>
@@ -207,7 +207,7 @@ export default function FamilyPage() {
             {/* 포함 혜택 */}
             <div className="mt-16">
               <div className="bg-gradient-to-br from-primary/5 to-accent/10 p-8 rounded-2xl">
-                <h3 className="font-serif text-2xl font-medium mb-6 text-center text-primary">💝 포함 혜택</h3>
+                <h3 className="font-serif text-lg sm:text-2xl font-medium mb-6 text-center text-primary">💝 포함 혜택</h3>
                 
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="bg-white p-6 rounded-xl">
@@ -247,7 +247,7 @@ export default function FamilyPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-serif text-4xl font-light mb-6 text-foreground">
+            <h2 className="font-serif text-2xl sm:text-4xl font-light mb-6 text-foreground">
               가족의 소중한 순간을 기록하세요
             </h2>
             <p className="text-lg text-foreground/70 mb-8 max-w-2xl mx-auto">

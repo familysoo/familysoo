@@ -74,7 +74,7 @@ export default function RemindWeddingPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="font-serif text-3xl font-light mb-8 text-foreground">
+              <h2 className="font-serif text-xl sm:text-3xl font-light mb-8 text-foreground">
                 다시 찾은 그날의 설렘
               </h2>
               
@@ -148,7 +148,7 @@ export default function RemindWeddingPage() {
       <section className="py-20">
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-3xl font-light mb-6 text-foreground">촬영 진행 과정</h2>
+            <h2 className="font-serif text-xl sm:text-3xl font-light mb-6 text-foreground">촬영 진행 과정</h2>
             <p className="text-lg text-foreground/70">체계적이고 전문적인 촬영 프로세스</p>
           </div>
 
@@ -197,7 +197,7 @@ export default function RemindWeddingPage() {
                     {item.step}
                   </div>
                   <div>
-                    <h3 className="font-serif text-xl font-medium mb-2 text-foreground">{item.title}</h3>
+                    <h3 className="font-serif text-lg sm:text-xl font-medium mb-2 text-foreground">{item.title}</h3>
                     <p className="text-foreground/70 leading-relaxed">{item.description}</p>
                   </div>
                 </motion.div>
@@ -212,7 +212,7 @@ export default function RemindWeddingPage() {
         <div className="container">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="font-serif text-3xl font-light mb-6 text-foreground">가격 안내</h2>
+              <h2 className="font-serif text-xl sm:text-3xl font-light mb-6 text-foreground">가격 안내</h2>
               <p className="text-lg text-foreground/70">감동적인 추억을 합리적인 가격으로</p>
             </div>
 
@@ -225,7 +225,7 @@ export default function RemindWeddingPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <h3 className="font-serif text-2xl font-medium mb-6">리마인드웨딩 패키지</h3>
+                <h3 className="font-serif text-lg sm:text-2xl font-medium mb-6">리마인드웨딩 패키지</h3>
                 <div className="text-5xl font-light mb-6">100,000원</div>
                 <div className="bg-white/10 p-4 rounded-lg mb-8">
                   <p className="text-sm font-medium">💕 다시 찾은 그날의 설렘</p>
@@ -274,7 +274,7 @@ export default function RemindWeddingPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-serif text-4xl font-light mb-6 text-foreground">
+            <h2 className="font-serif text-2xl sm:text-4xl font-light mb-6 text-foreground">
               사랑의 감동을 다시 한번
             </h2>
             <p className="text-lg text-foreground/70 mb-8 max-w-2xl mx-auto">

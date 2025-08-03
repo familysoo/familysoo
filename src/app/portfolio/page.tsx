@@ -133,7 +133,7 @@ function PortfolioContent() {
       <section className="py-20">
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-3xl font-light mb-6">고객 후기</h2>
+            <h2 className="font-serif text-xl sm:text-3xl font-light mb-6">고객 후기</h2>
             <p className="text-lg text-foreground/70">실제 고객들의 생생한 후기</p>
           </div>
 

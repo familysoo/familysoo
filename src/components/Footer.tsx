@@ -55,11 +55,21 @@ export default function Footer() {
           <div className="space-y-4">
             <h4 className="font-medium mb-6 text-lg">연락처</h4>
             <ul className="flex flex-col gap-4 text-sm">
-              <li className="flex items-center gap-3 text-white/70">
+              <li className="flex items-start gap-3">
                 <div className="p-1.5 bg-white/5 rounded-md">
                   <Phone className="w-4 h-4" />
                 </div>
-                041-356-1592
+                <div>
+                  <a 
+                    href="tel:041-356-1592" 
+                    className="text-white/70 hover:text-white transition-colors block"
+                  >
+                    041-356-1592
+                  </a>
+                  <p className="text-xs text-white/50 mt-1 block sm:hidden">
+                    📞 탭하여 바로 전화하기
+                  </p>
+                </div>
               </li>
               <li className="flex items-center gap-3 text-white/70">
                 <div className="p-1.5 bg-white/5 rounded-md">

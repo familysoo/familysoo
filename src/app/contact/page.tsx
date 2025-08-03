@@ -51,7 +51,7 @@ export default function ContactPage() {
       <section className="py-20">
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-3xl font-light mb-6">예약 방법</h2>
+            <h2 className="font-serif text-xl sm:text-3xl font-light mb-6">예약 방법</h2>
             <p className="text-lg text-foreground/70">편리한 방법으로 예약하세요</p>
           </div>
 
@@ -94,7 +94,7 @@ export default function ContactPage() {
             {/* Contact Info */}
             <div className="space-y-8">
               <div>
-                <h3 className="font-medium text-2xl mb-6">이용 안내</h3>
+                <h3 className="font-medium text-lg sm:text-2xl mb-6">이용 안내</h3>
                 
                 <div className="space-y-8">
                   <div>
@@ -130,7 +130,7 @@ export default function ContactPage() {
             {/* Location & Map */}
             <div className="space-y-8">
               <div>
-                <h3 className="font-medium text-2xl mb-6">오시는 길</h3>
+                <h3 className="font-medium text-lg sm:text-2xl mb-6">오시는 길</h3>
                 <div className="space-y-4">
                   <p className="text-foreground/80">
                     <strong>주소: </strong>
@@ -162,7 +162,7 @@ export default function ContactPage() {
       <section className="py-20">
         <div className="container" style={{maxWidth: '64rem'}}>
           <div className="text-center mb-16">
-            <h2 className="font-serif text-3xl font-light mb-6">자주 묻는 질문</h2>
+            <h2 className="font-serif text-xl sm:text-3xl font-light mb-6">자주 묻는 질문</h2>
             <p className="text-lg text-foreground/70">궁금한 점들을 미리 확인해보세요</p>
           </div>
 
