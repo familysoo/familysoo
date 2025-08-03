@@ -59,7 +59,7 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
               </div>
               
               {/* 브레드크럼 아이템 */}
-              {item.href ? (
+              {item.href && index !== 1 ? (
                 <Link 
                   href={item.href}
                   className="px-2 py-1 sm:px-4 sm:py-2 rounded-xl bg-white/50 backdrop-blur-sm
