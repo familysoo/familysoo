@@ -16,12 +16,12 @@ interface BreadcrumbProps {
 export default function Breadcrumb({ items }: BreadcrumbProps) {
   return (
     <section className="border-b border-gray-200 py-3">
-      <div className="container py-6 flex flex-col justify-center">
+      <div className="container py-4 sm:py-6 flex flex-col justify-center">
         <motion.nav
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex items-center flex-wrap gap-2"
+          className="flex items-center flex-wrap gap-1 sm:gap-2"
         >
           {/* 홈 아이콘과 텍스트 */}
           <motion.div
@@ -31,7 +31,7 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
           >
             <Link 
               href="/" 
-              className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/60 backdrop-blur-sm
+              className="flex items-center gap-1 sm:gap-2 px-2 py-1 sm:px-3 sm:py-2 rounded-xl bg-white/60 backdrop-blur-sm
                          text-foreground/70 hover:text-primary hover:bg-white/80 
                          transition-all duration-300 ease-out hover:scale-105 hover:shadow-md
                          border border-white/30 hover:border-primary/20"
@@ -44,7 +44,7 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
           {items.map((item, index) => (
             <motion.div 
               key={index}
-              className="flex items-center gap-2"
+              className="flex items-center gap-1 sm:gap-2"
               initial={{ opacity: 0, x: -15, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ 
@@ -54,7 +54,7 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
               }}
             >
               {/* 구분자 */}
-              <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10">
+              <div className="flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-primary/10">
                 <ChevronRight size={14} className="text-primary/60" />
               </div>
               
@@ -62,7 +62,7 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
               {item.href ? (
                 <Link 
                   href={item.href}
-                  className="px-4 py-2 rounded-xl bg-white/50 backdrop-blur-sm
+                  className="px-2 py-1 sm:px-4 sm:py-2 rounded-xl bg-white/50 backdrop-blur-sm
                            text-foreground/70 hover:text-primary hover:bg-white/80
                            transition-all duration-300 ease-out hover:scale-105 hover:shadow-md
                            border border-white/20 hover:border-primary/30
@@ -71,7 +71,7 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
                   {item.label}
                 </Link>
               ) : (
-                <div className="px-4 py-2 rounded-xl bg-primary/10 backdrop-blur-sm
+                <div className="px-2 py-1 sm:px-4 sm:py-2 rounded-xl bg-primary/10 backdrop-blur-sm
                                text-primary font-semibold border border-primary/20
                                text-sm shadow-sm">
                   {item.label}
