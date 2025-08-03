@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 
@@ -292,7 +292,13 @@ export default function Header({ transparent = false }: HeaderProps) {
             {/* 연락처 정보 - 하단 고정 */}
             <div className="p-6 border-t border-gray-200 flex-shrink-0 bg-primary/5">
               <div className="text-center">
-                <p className="text-2xl font-bold text-primary mb-2">041-356-1592</p>
+                <p className="text-2xl font-bold text-primary mb-3">041-356-1592</p>
+                <div className="flex items-center justify-center mb-3">
+                  <div className="inline-flex items-center gap-2 px-3 py-2 bg-primary/10 border border-primary rounded-lg">
+                    <MessageCircle className="w-4 h-4 text-primary" />
+                    <span className="text-sm font-medium text-primary">카카오톡ID soo_1592</span>
+                  </div>
+                </div>
                 <p className="text-sm text-gray-600 mb-1">평일 10:00 ~ 19:00</p>
                 <p className="text-sm text-gray-600">주말 10:00 ~ 19:00 (예약제)</p>
               </div>

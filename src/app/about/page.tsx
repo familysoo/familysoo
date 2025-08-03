@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Camera, Heart, Award, Users, MapPin, Phone, Mail, Star } from "lucide-react";
+import { Camera, Heart, Award, Users, MapPin, Phone, Mail, Star, MessageCircle } from "lucide-react";
 import Header from "../../components/Header";
 import PageHero from "../../components/PageHero";
 import Footer from "../../components/Footer";
@@ -467,14 +467,15 @@ export default function AboutPage() {
 
               <div className="bg-white p-6 rounded-2xl shadow-sm">
                 <div className="flex items-center mb-4">
-                  <Mail className="text-primary mr-3" size={24} />
-                  <h3 className="font-serif text-xl font-medium text-foreground">이메일</h3>
+                  <MessageCircle className="text-primary mr-3" size={24} />
+                  <h3 className="font-serif text-xl font-medium text-foreground">카카오 아이디</h3>
                 </div>
-                <p className="text-foreground/80">
-                  <a href="mailto:familysoo1592@naver.com" className="hover:text-primary transition-colors">
-                    familysoo1592@naver.com
-                  </a>
-                </p>
+                <div className="space-y-2">
+                  <p className="text-foreground/80">
+                    soo_1592
+                  </p>
+                  <p className="text-sm text-foreground/60">카카오톡 친구 추가 후 1:1 문의 주세요</p>
+                </div>
               </div>
             </motion.div>
 
