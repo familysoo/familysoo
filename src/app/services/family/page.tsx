@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import PageHero from "@/components/PageHero";
 import Breadcrumb from "@/components/Breadcrumb";
 import PortfolioSection, { transformContentfulData } from "@/components/PortfolioSection";
+import Footer from "@/components/Footer";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Users, Phone, Star, Gift } from "lucide-react";
@@ -73,8 +74,7 @@ export default function FamilyPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
               <h2 className="font-serif text-3xl font-light mb-8 text-foreground">
@@ -88,37 +88,23 @@ export default function FamilyPage() {
                   평생 간직할 소중한 추억을 만들어드립니다.
                 </p>
                 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  <Link href="/portfolio?category=family&subcategory=스튜디오">
-                    <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
-                      <h4 className="font-medium mb-2 text-primary">세미 정장</h4>
-                      <p className="text-sm text-foreground/70">우아하고 품격 있는 가족 초상</p>
-                    </div>
-                  </Link>
-                  <Link href="/portfolio?category=family&subcategory=야외">
-                    <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
-                      <h4 className="font-medium mb-2 text-primary">캐주얼</h4>
-                      <p className="text-sm text-foreground/70">편안하고 자연스러운 일상의 모습</p>
-                    </div>
-                  </Link>
-                  <Link href="/portfolio?category=family&subcategory=드레스">
-                    <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
-                      <h4 className="font-medium mb-2 text-primary">드레스 (웨딩)</h4>
-                      <p className="text-sm text-foreground/70">특별한 날의 화려하고 로맨틱한 순간</p>
-                    </div>
-                  </Link>
-                  <Link href="/portfolio?category=family&subcategory=스튜디오">
-                    <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
-                      <h4 className="font-medium mb-2 text-primary">흑백</h4>
-                      <p className="text-sm text-foreground/70">클래식하고 감성적인 흑백 예술</p>
-                    </div>
-                  </Link>
-                  <Link href="/portfolio?category=family&subcategory=한복">
-                    <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
-                      <h4 className="font-medium mb-2 text-primary">한복</h4>
-                      <p className="text-sm text-foreground/70">전통의 아름다움이 담긴 우리 문화</p>
-                    </div>
-                  </Link>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="bg-white p-4 rounded-lg shadow-sm">
+                    <h4 className="font-medium mb-2 text-primary">세미 정장</h4>
+                    <p className="text-sm text-foreground/70">우아하고 품격 있는 가족 초상</p>
+                  </div>
+                  <div className="bg-white p-4 rounded-lg shadow-sm">
+                    <h4 className="font-medium mb-2 text-primary">캐주얼</h4>
+                    <p className="text-sm text-foreground/70">편안하고 자연스러운 일상의 모습</p>
+                  </div>
+                  <div className="bg-white p-4 rounded-lg shadow-sm">
+                    <h4 className="font-medium mb-2 text-primary">드레스 (웨딩)</h4>
+                    <p className="text-sm text-foreground/70">특별한 날의 화려하고 로맨틱한 순간</p>
+                  </div>
+                  <div className="bg-white p-4 rounded-lg shadow-sm">
+                    <h4 className="font-medium mb-2 text-primary">한복</h4>
+                    <p className="text-sm text-foreground/70">전통의 아름다움이 담긴 우리 문화</p>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -126,12 +112,17 @@ export default function FamilyPage() {
             <motion.div
               className="relative"
               initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="bg-gradient-to-br from-primary/10 to-accent/20 rounded-2xl p-16 text-center">
-                <div className="text-8xl mb-6 opacity-60">👨‍👩‍👧‍👦</div>
+              <div className="bg-gradient-to-br from-primary/10 to-accent/20 rounded-2xl p-8 text-center">
+                <div className="relative w-full h-80 mb-6 rounded-xl overflow-hidden">
+                  <img 
+                    src="/images/hero/family-1.jpg" 
+                    alt="가족 촬영" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <p className="text-foreground/60 italic">
                   "가족의 사랑이 담긴 특별한 순간"
                 </p>
@@ -174,14 +165,49 @@ export default function FamilyPage() {
       {/* Pricing */}
       <section className="py-20 bg-muted">
         <div className="container">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="font-serif text-3xl font-light mb-6 text-foreground">가격 안내</h2>
               <p className="text-lg text-foreground/70">투명하고 합리적인 가격으로 제공합니다</p>
             </div>
 
-            {/* 패키지 구성 설명 */}
-            <div className="mb-16">
+            {/* 단일 패키지 */}
+            <div className="flex justify-center">
+              <motion.div
+                className="bg-primary p-12 rounded-2xl text-white max-w-md w-full text-center"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <h4 className="font-serif text-2xl font-medium mb-6">가족 촬영 패키지</h4>
+                <div className="text-5xl font-light mb-6">100,000원</div>
+                <div className="bg-white/10 p-4 rounded-lg mb-8">
+                  <p className="text-sm font-medium">🎨 전체 컨셉 촬영 가능</p>
+                </div>
+                <ul className="space-y-4 text-sm">
+                  <li className="flex items-center justify-center">
+                    <Star size={16} className="text-white mr-3" />
+                    촬영한 모든 원본 JPG파일 제공
+                  </li>
+                  <li className="flex items-center justify-center">
+                    <Star size={16} className="text-white mr-3" />
+                    전문 보정 서비스
+                  </li>
+                  <li className="flex items-center justify-center">
+                    <Star size={16} className="text-white mr-3" />
+                    인원 수 제한 없음
+                  </li>
+                  <li className="flex items-center justify-center">
+                    <Star size={16} className="text-white mr-3" />
+                    전 컨셉 의상 무료 대여
+                  </li>
+                </ul>
+              </motion.div>
+            </div>
+
+            {/* 포함 혜택 */}
+            <div className="mt-16">
               <div className="bg-gradient-to-br from-primary/5 to-accent/10 p-8 rounded-2xl">
                 <h3 className="font-serif text-2xl font-medium mb-6 text-center text-primary">💝 포함 혜택</h3>
                 
@@ -210,143 +236,6 @@ export default function FamilyPage() {
                 </div>
               </div>
             </div>
-
-            {/* 가족 촬영 패키지 */}
-            <div className="grid md:grid-cols-3 gap-8">
-              <motion.div
-                className="bg-white p-8 rounded-2xl shadow-sm border"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <h4 className="font-serif text-xl font-medium mb-4 text-primary">베이직</h4>
-                <div className="text-3xl font-light mb-4 text-foreground">350,000원</div>
-                <div className="bg-primary/5 p-3 rounded-lg mb-6">
-                  <p className="text-sm font-medium text-primary">🎨 선택한 2개 컨셉 촬영</p>
-                </div>
-                <ul className="space-y-3 mb-8 text-sm">
-                  <li className="flex items-center text-foreground/80">
-                    <Star size={14} className="text-primary mr-2" />
-                    촬영한 모든 원본 JPG파일 제공
-                  </li>
-                  <li className="flex items-center text-foreground/80">
-                    <Star size={14} className="text-primary mr-2" />
-                    선택한 2장 전문 보정
-                  </li>
-                  <li className="flex items-center text-foreground/80">
-                    <Star size={14} className="text-primary mr-2" />
-                    27x20cm 고급 아크릴 액자 1개
-                  </li>
-                  <li className="flex items-center text-foreground/80">
-                    <Star size={14} className="text-primary mr-2" />
-                    전 컨셉 의상 무료 대여
-                  </li>
-                </ul>
-              </motion.div>
-
-              <motion.div
-                className="bg-primary p-8 rounded-2xl text-white"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-              >
-                <h4 className="font-serif text-xl font-medium mb-4">프리미엄 <span className="text-xs bg-white/20 px-2 py-1 rounded">인기</span></h4>
-                <div className="text-3xl font-light mb-4">490,000원</div>
-                <div className="bg-white/10 p-3 rounded-lg mb-6">
-                  <p className="text-sm font-medium">🎨 전체 5개 컨셉 촬영</p>
-                </div>
-                <ul className="space-y-3 mb-8 text-sm">
-                  <li className="flex items-center">
-                    <Star size={14} className="text-white mr-2" />
-                    촬영한 모든 원본 JPG파일 제공
-                  </li>
-                  <li className="flex items-center">
-                    <Star size={14} className="text-white mr-2" />
-                    선택한 4장 전문 보정
-                  </li>
-                  <li className="flex items-center">
-                    <Star size={14} className="text-white mr-2" />
-                    27x20cm 고급 아크릴 액자 2개
-                  </li>
-                  <li className="flex items-center">
-                    <Star size={14} className="text-white mr-2" />
-                    전 컨셉 의상 무료 대여
-                  </li>
-                </ul>
-              </motion.div>
-
-              <motion.div
-                className="bg-white p-8 rounded-2xl shadow-sm border"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <h4 className="font-serif text-xl font-medium mb-4 text-primary">럭셔리</h4>
-                <div className="text-3xl font-light mb-4 text-foreground">690,000원</div>
-                <div className="bg-accent/5 p-3 rounded-lg mb-6">
-                  <p className="text-sm font-medium text-accent">🎨 전체 5개 컨셉 + 앨범</p>
-                </div>
-                <ul className="space-y-3 mb-8 text-sm">
-                  <li className="flex items-center text-foreground/80">
-                    <Star size={14} className="text-primary mr-2" />
-                    촬영한 모든 원본 JPG파일 제공
-                  </li>
-                  <li className="flex items-center text-foreground/80">
-                    <Star size={14} className="text-primary mr-2" />
-                    선택한 6장 전문 보정
-                  </li>
-                  <li className="flex items-center text-foreground/80">
-                    <Star size={14} className="text-primary mr-2" />
-                    12x12 20페이지 프리미엄 앨범
-                  </li>
-                  <li className="flex items-center text-foreground/80">
-                    <Star size={14} className="text-primary mr-2" />
-                    27x20cm 고급 아크릴 액자 2개
-                  </li>
-                  <li className="flex items-center text-foreground/80">
-                    <Star size={14} className="text-primary mr-2" />
-                    전 컨셉 의상 무료 대여
-                  </li>
-                </ul>
-              </motion.div>
-            </div>
-
-            {/* 추가 옵션 */}
-            <div className="mt-16">
-              <h3 className="font-serif text-2xl font-medium mb-8 text-center text-primary">✨ 추가 옵션</h3>
-              <div className="grid md:grid-cols-2 gap-6">
-                <motion.div
-                  className="bg-white p-6 rounded-2xl shadow-sm border"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <h4 className="font-serif text-lg font-medium mb-3 text-primary">추가 보정</h4>
-                  <div className="text-2xl font-light mb-3 text-foreground">30,000원 / 장</div>
-                  <p className="text-sm text-foreground/70">
-                    선택하신 기본 보정본 외에 추가로 원하시는 사진을 전문 보정해드립니다.
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  className="bg-white p-6 rounded-2xl shadow-sm border"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                >
-                  <h4 className="font-serif text-lg font-medium mb-3 text-primary">추가 액자</h4>
-                  <div className="text-2xl font-light mb-3 text-foreground">80,000원 / 개</div>
-                  <p className="text-sm text-foreground/70">
-                    27x20cm 고급 아크릴 액자를 추가로 제작해드립니다.
-                  </p>
-                </motion.div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -370,7 +259,7 @@ export default function FamilyPage() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a 
-                href="tel:041-1592-0000"
+                href="tel:041-356-1592"
                 className="bg-white hover:bg-primary hover:text-white text-primary border-2 border-primary px-8 py-3 rounded-full font-medium transition-colors flex items-center justify-center"
                 whileHover={{ 
                   scale: 1.05,
@@ -399,39 +288,7 @@ export default function FamilyPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-white py-16">
-        <div className="container">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="font-serif text-xl font-bold mb-4">Family Soo Studio</h3>
-              <p className="text-white/70 text-sm leading-relaxed">
-                소중한 순간을 사진으로 남기는<br />
-                따뜻한 감성의 스튜디오
-              </p>
-            </div>
-            <div>
-              <h4 className="font-medium mb-4">서비스</h4>
-              <ul className="space-y-2 text-sm text-white/70">
-                <li><Link href="/services/family" className="hover:text-white transition-colors">가족사진</Link></li>
-                <li><Link href="/services/baby" className="hover:text-white transition-colors">베이비 촬영</Link></li>
-                <li><Link href="/services/remind-wedding" className="hover:text-white transition-colors">리마인드웨딩</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-medium mb-4">연락처</h4>
-              <ul className="space-y-2 text-sm text-white/70">
-                <li>041-1592-0000</li>
-                <li>familysoo1592@naver.com</li>
-                <li>충남 당진시</li>
-                <li><a href="https://blog.naver.com/familysoo1592" target="_blank" className="hover:text-white transition-colors">블로그 바로가기</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-white/20 mt-8 pt-8 text-center text-sm text-white/50">
-            © 2024 Family Soo Studio. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

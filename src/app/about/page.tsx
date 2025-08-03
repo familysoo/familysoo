@@ -6,6 +6,7 @@ import { motion, useInView } from "framer-motion";
 import { Camera, Heart, Award, Users, MapPin, Phone, Mail, Star } from "lucide-react";
 import Header from "../../components/Header";
 import PageHero from "../../components/PageHero";
+import Footer from "../../components/Footer";
 
 // 타입 인터페이스들
 interface Feature {
@@ -120,7 +121,7 @@ export default function AboutPage() {
 
   const timeline = [
     {
-      year: "2004",
+      year: "2000",
       title: "스튜디오 설립",
       description: "가족사진 전문 스튜디오로 당진에서 첫 걸음을 시작했습니다. 작은 공간에서 시작된 꿈이 지금의 Family Soo Studio가 되었습니다."
     },
@@ -131,7 +132,7 @@ export default function AboutPage() {
     },
     {
       year: "2015",
-      title: "성장앨범 전문화",
+      title: "베이비 촬영 전문화",
       description: "아기 전문 촬영 시스템을 구축하고, 신생아부터 돌잔치까지 체계적인 성장 기록 서비스를 제공하기 시작했습니다."
     },
     {
@@ -158,15 +159,13 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
               <motion.h2 
                 className="font-serif text-3xl font-light mb-8 text-foreground"
                 initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 대표 인사말
@@ -176,8 +175,7 @@ export default function AboutPage() {
                 <motion.p 
                   className="text-foreground/80 leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
                 >
                   안녕하세요, <strong className="text-primary">Family Soo</strong> 스튜디오입니다.
@@ -185,19 +183,17 @@ export default function AboutPage() {
                 <motion.p 
                   className="text-foreground/80 leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  2004년 당진에서 작은 스튜디오로 시작해 지금까지 20년간 수천 가족의 소중한 순간들을 
+                  2000년 당진에서 작은 스튜디오로 시작해 지금까지 20년간 수천 가족의 소중한 순간들을 
                   사진으로 담아왔습니다. 매 순간 고객의 진솔한 모습과 자연스러운 감정을 
                   포착하기 위해 끊임없이 노력해왔습니다.
                 </motion.p>
                 <motion.p 
                   className="text-foreground/80 leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
                 >
                   저희 스튜디오의 가장 큰 자부심은 단순히 아름다운 사진을 찍는 것이 아니라, 
@@ -208,8 +204,7 @@ export default function AboutPage() {
                 <motion.div 
                   className="pt-6 border-t border-accent"
                   initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.6 }}
                 >
                   <p className="text-primary font-medium mb-1">Family Soo Studio 대표</p>
@@ -218,36 +213,25 @@ export default function AboutPage() {
               </div>
             </motion.div>
 
-            <motion.div
-              className="relative"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <motion.div 
-                className="bg-gradient-to-br from-primary/10 to-accent/20 rounded-2xl p-16 text-center"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <motion.div
-                  className="text-8xl mb-6 opacity-60"
-                  animate={{ rotate: [0, 5, -5, 0] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  📷
-                </motion.div>
-                <motion.p 
-                  className="text-foreground/60 italic"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.8 }}
-                >
-                  "모든 순간이 소중한 이야기가 됩니다"
-                </motion.p>
-              </motion.div>
-            </motion.div>
+            <div className="relative">
+              <div className="relative rounded-2xl h-80 overflow-hidden">
+                <img 
+                  src="/images/hero/exterior.jpg" 
+                  alt="Family Soo Studio 외관" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/50" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
+                  <h4 className="font-serif text-2xl font-medium text-white mb-3">
+                    Family Soo Studio
+                  </h4>
+                  <p className="text-white/90 text-sm">
+                    소중한 순간을 아름답게 기록하는<br />
+                    따뜻한 감성의 사진 스튜디오
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -288,7 +272,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="font-serif text-3xl font-light mb-6 text-foreground">스튜디오 연혁</h2>
-            <p className="text-lg text-foreground/70">20년간의 발자취와 성장 스토리</p>
+            <p className="text-lg text-foreground/70">25년간의 발자취와 성장 스토리</p>
           </motion.div>
 
           <div className="max-w-4xl mx-auto space-y-12">
@@ -400,13 +384,13 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="font-serif text-4xl font-light mb-6 text-white">숫자로 보는 Family Soo</h2>
-            <p className="text-white/90 text-lg">20년간 쌓아온 신뢰와 경험</p>
+            <p className="text-white/90 text-lg">25년간 쌓아온 신뢰와 경험</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { number: "2000+", label: "행복한 가족들" },
-              { number: "20년", label: "전문 경력" },
+              { number: "25년", label: "전문 경력" },
               { number: "500+", label: "리마인드 웨딩" },
               { number: "1000+", label: "성장 앨범" }
             ].map((stat, index) => (
@@ -453,8 +437,7 @@ export default function AboutPage() {
             <motion.div
               className="space-y-8"
               initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
               <div className="bg-white p-6 rounded-2xl shadow-sm">
@@ -463,8 +446,7 @@ export default function AboutPage() {
                   <h3 className="font-serif text-xl font-medium text-foreground">주소</h3>
                 </div>
                 <p className="text-foreground/80 leading-relaxed">
-                  충청남도 당진시<br />
-                  <span className="text-sm text-foreground/60">(자세한 주소는 예약 시 안내드립니다)</span>
+                  충청남도 당진시 북문로 2길 10 패밀리수 스튜디오
                 </p>
               </div>
 
@@ -475,11 +457,11 @@ export default function AboutPage() {
                 </div>
                 <div className="space-y-2">
                   <p className="text-foreground/80">
-                    <a href="tel:041-1592-0000" className="hover:text-primary transition-colors">
-                      041-1592-0000
+                    <a href="tel:041-356-1592" className="hover:text-primary transition-colors">
+                      041-356-1592
                     </a>
                   </p>
-                  <p className="text-sm text-foreground/60">평일 10:00 ~ 19:00 | 주말 10:00 ~ 17:00 (예약제)</p>
+                  <p className="text-sm text-foreground/60">평일 10:00 ~ 19:00 | 주말 10:00 ~ 19:00 (예약제)</p>
                 </div>
               </div>
 
@@ -496,11 +478,10 @@ export default function AboutPage() {
               </div>
             </motion.div>
 
-            <motion.div
+            {/* <motion.div
               className="bg-gradient-to-br from-accent/20 to-primary/10 rounded-2xl p-12 text-center"
               initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               whileHover={{ scale: 1.02 }}
             >
@@ -523,7 +504,18 @@ export default function AboutPage() {
                 접근성이 좋은 위치에서<br />
                 편안한 촬영 환경을 제공합니다
               </p>
-            </motion.div>
+            </motion.div> */}
+            {/* 네이버 지도 iframe */}
+            <iframe
+                src="https://map.naver.com/v5/search/충청남도%20당진시%20북문로%202길%2010%20패밀리수스튜디오"
+                width="100%"
+                height="100%"
+                style={{ border: 0, borderRadius: '1rem' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Family Soo Studio 위치"
+              />
           </div>
         </div>
       </section>
@@ -576,39 +568,7 @@ export default function AboutPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-white py-16">
-        <div className="container">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="font-serif text-xl font-bold mb-4">Family Soo Studio</h3>
-              <p className="text-white/70 text-sm leading-relaxed">
-                소중한 순간을 사진으로 남기는<br />
-                따뜻한 감성의 스튜디오
-              </p>
-            </div>
-            <div>
-              <h4 className="font-medium mb-4">서비스</h4>
-              <ul className="space-y-2 text-sm text-white/70">
-                <li><Link href="/services#family" className="hover:text-white transition-colors">가족사진</Link></li>
-                <li><Link href="/services#remind-wedding" className="hover:text-white transition-colors">리마인드웨딩</Link></li>
-                <li><Link href="/services#growth" className="hover:text-white transition-colors">성장앨범</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-medium mb-4">연락처</h4>
-              <ul className="space-y-2 text-sm text-white/70">
-                <li>041-1592-0000</li>
-                <li>familysoo1592@naver.com</li>
-                <li>충남 당진시</li>
-                <li><a href="https://blog.naver.com/familysoo1592" target="_blank" className="hover:text-white transition-colors">블로그 바로가기</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-white/20 mt-8 pt-8 text-center text-sm text-white/50">
-            © 2024 Family Soo Studio. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 } 

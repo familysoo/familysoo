@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import Header from "../../components/Header";
 import PageHero from "../../components/PageHero";
 import PortfolioSection, { transformContentfulData } from "../../components/PortfolioSection";
+import Footer from "../../components/Footer";
 import type { PortfolioItem, ServicesApiResponse, ContentType } from "../../types/database";
 
 function PortfolioContent() {
@@ -29,21 +30,8 @@ function PortfolioContent() {
   const initialMainCategory = categoryParam ? categoryMapping[categoryParam] : undefined;
   const initialSubCategory = subcategoryParam || undefined;
 
-  // 2-depth 카테고리 구조 정의
-  const twoDepthCategories = [
-    {
-      mainCategory: "가족",
-      subCategories: ["전체", "스튜디오", "야외", "홈", "한복", "돌잔치"]
-    },
-    {
-      mainCategory: "베이비", 
-      subCategories: ["전체", "신생아", "백일", "돌", "6개월", "1년"]
-    },
-    {
-      mainCategory: "리마인드웨딩",
-      subCategories: ["전체", "스튜디오", "드레스", "한복", "야외", "캐주얼"]
-    }
-  ];
+  // 2-depth 카테고리 구조 (동적으로 생성될 예정)
+  const [twoDepthCategories, setTwoDepthCategories] = useState<Array<{mainCategory: string; subCategories: string[]}>>([]);
 
   // API에서 모든 카테고리 데이터 가져오기
   useEffect(() => {
@@ -52,6 +40,7 @@ function PortfolioContent() {
         setLoading(true);
         const contentTypes: ContentType[] = ['family', 'baby', 'remindWedding'];
         const allItems: PortfolioItem[] = [];
+        const categoryStructure: Array<{mainCategory: string; subCategories: string[]}> = [];
 
         // 각 카테고리별로 API 호출
         for (const contentType of contentTypes) {
@@ -59,6 +48,19 @@ function PortfolioContent() {
             const response = await fetch(`/api/services?type=${contentType}`);
             if (response.ok) {
               const data: ServicesApiResponse = await response.json();
+              
+              // 실제 카테고리 추출
+              const categories = [...new Set(data.data.map(entry => entry.fields.category))];
+              console.log(`${contentType} categories:`, categories);
+              
+              // 대분류명 매핑
+              const mainCategoryName = categoryMapping[contentType] || contentType;
+              
+              // 카테고리 구조 추가
+              categoryStructure.push({
+                mainCategory: mainCategoryName,
+                subCategories: ["전체", ...categories]
+              });
               
               // 데이터 변환 (2-depth 활성화)
               const transformedItems = transformContentfulData(data, contentType, true);
@@ -70,6 +72,12 @@ function PortfolioContent() {
         }
 
         setPortfolioItems(allItems);
+        setTwoDepthCategories(categoryStructure);
+        
+        // 초기 대분류 설정 (URL 파라미터가 있으면 사용, 없으면 첫 번째 대분류)
+        if (!initialMainCategory && categoryStructure.length > 0) {
+          // setActiveMainCategory(categoryStructure[0].mainCategory); // This line was removed as per the edit hint
+        }
       } catch (err) {
         console.error('포트폴리오 데이터 로드 실패:', err);
         setError('데이터를 불러오는데 실패했습니다.');
@@ -186,38 +194,7 @@ function PortfolioContent() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-white py-12">
-        <div className="container">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="font-serif text-xl font-bold mb-4">Family Soo Studio</h3>
-              <p className="text-white opacity-70 text-sm" style={{lineHeight: '1.6'}}>
-                소중한 순간을 사진으로 남기는<br />
-                따뜻한 감성의 스튜디오
-              </p>
-            </div>
-            <div>
-              <h4 className="font-medium mb-4">서비스</h4>
-              <ul className="space-y-2 text-sm opacity-70">
-                <li><Link href="/services" className="hover:text-white transition-colors">가족사진</Link></li>
-                <li><Link href="/services" className="hover:text-white transition-colors">리마인드웨딩</Link></li>
-                <li><Link href="/services" className="hover:text-white transition-colors">성장앨범</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-medium mb-4">연락처</h4>
-              <ul className="space-y-2 text-sm opacity-70">
-                <li>02-1234-5678</li>
-                <li>familysoo@studio.com</li>
-                <li>서울시 강남구 테헤란로 123</li>
-              </ul>
-            </div>
-          </div>
-          <div style={{borderTop: '1px solid rgba(255, 255, 255, 0.2)', marginTop: '2rem', paddingTop: '2rem'}} className="text-center text-sm opacity-50">
-            © 2024 Family Soo Studio. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

@@ -52,7 +52,7 @@ export default function Header({ transparent = false }: HeaderProps) {
   const navigationItems = [
     { href: "/", label: "홈" },
     { 
-      href: "/services", 
+      href: "#", 
       label: "서비스",
       hasDropdown: true,
       subItems: [
@@ -292,13 +292,13 @@ export default function Header({ transparent = false }: HeaderProps) {
             {/* 연락처 정보 - 하단 고정 */}
             <div className="p-6 border-t border-gray-200 flex-shrink-0 bg-primary/5">
               <div className="text-center">
-                <p className="text-2xl font-bold text-primary mb-2">041-1592-0000</p>
+                <p className="text-2xl font-bold text-primary mb-2">041-356-1592</p>
                 <p className="text-sm text-gray-600 mb-1">평일 10:00 ~ 19:00</p>
-                <p className="text-sm text-gray-600">주말 10:00 ~ 17:00 (예약제)</p>
+                <p className="text-sm text-gray-600">주말 10:00 ~ 19:00 (예약제)</p>
               </div>
               <div className="mt-4 pt-4 border-t border-gray-200">
                 <p className="text-xs text-gray-500 text-center">familysoo1592@naver.com</p>
-                <p className="text-xs text-gray-500 text-center">충남 당진시</p>
+                <p className="text-xs text-gray-500 text-center">충청남도 당진시 북문로 2길 10 패밀리수 스튜디오</p>
               </div>
             </div>
           </motion.div>

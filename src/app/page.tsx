@@ -1,12 +1,14 @@
 'use client';
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Header from "../components/Header";
 import PortfolioSection from "../components/PortfolioSection";
+import Footer from "../components/Footer";
 import type { 
   ServicesApiResponse, 
   PortfolioItem, 
@@ -110,64 +112,25 @@ function StudioSection() {
           </motion.div>
 
           {/* 스튜디오 대표 이미지 */}
-          <motion.div 
-            className="relative"
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <motion.div 
-              className="relative bg-gradient-to-br from-primary/20 via-secondary/30 to-accent/20 rounded-2xl h-80 overflow-hidden"
-              initial={{ opacity: 0, scale: 0.9, rotate: 1 }}
-              animate={isInView ? 
-                { 
-                  opacity: 1, 
-                  scale: 1, 
-                  rotate: 0,
-                  transition: { 
-                    duration: 0.8, 
-                    delay: 0.6,
-                    scale: { duration: 0.3, ease: "easeOut" },
-                    rotate: { duration: 0.3, ease: "easeOut" }
-                  }
-                } : 
-                { 
-                  opacity: 0, 
-                  scale: 0.9, 
-                  rotate: 1,
-                  transition: { duration: 0.2, ease: "easeOut" }
-                }
-              }
-              whileHover={{ 
-                scale: 1.02,
-                rotate: -0.5,
-                boxShadow: "0 15px 50px rgba(139, 115, 85, 0.2)",
-                transition: { duration: 0.3, ease: "easeOut" }
-              }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/60" />
-              <div className="relative h-full flex flex-col items-center justify-center text-center p-8">
-                <motion.div 
-                  className="text-8xl mb-6"
-                  whileHover={{ 
-                    scale: 1.1,
-                    rotate: 5,
-                    transition: { duration: 0.2, ease: "easeOut" }
-                  }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
-                >
-                  📸
-                </motion.div>
-                <h4 className="font-serif text-2xl font-medium text-white mb-3 drop-shadow-md">
+          <div className="relative">
+            <div className="relative rounded-2xl h-80 overflow-hidden">
+              <img 
+                src="/images/hero/exterior.jpg" 
+                alt="Family Soo Studio 외관" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/50" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
+                <h4 className="font-serif text-2xl font-medium text-white mb-3">
                   Family Soo Studio
                 </h4>
-                <p className="text-white/90 text-sm drop-shadow-sm">
+                <p className="text-white/90 text-sm">
                   소중한 순간을 아름답게 기록하는<br />
                   따뜻한 감성의 사진 스튜디오
                 </p>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </motion.div>
 
         {/* 스튜디오의 5가지 특징 */}
@@ -467,14 +430,20 @@ export default function Home() {
     },
     {
       id: 3,
-      title: "리마인드 웨딩의 감동",
-      image: "/images/hero/wedding-1.jpg",
+      title: "아기 돌 촬영",
+      image: "/images/hero/baby-1.jpg",
       fallback: "linear-gradient(135deg, #d4c4a8, #8b7355)"
     },
     {
       id: 4,
-      title: "영원한 사랑의 순간",
-      image: "/images/hero/wedding-2.jpg",
+      title: "아기 백일 촬영",
+      image: "/images/hero/baby-2.jpg",
+      fallback: "linear-gradient(135deg, #f5f1eb, #d4c4a8)"
+    },
+    {
+      id: 5,
+      title: "리마인드 웨딩",
+      image: "/images/hero/wedding-1.jpg",
       fallback: "linear-gradient(135deg, #f5f1eb, #d4c4a8)"
     }
   ];
@@ -513,7 +482,7 @@ export default function Home() {
   // 자동 슬라이드 전환
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % 4); // 4개의 슬라이드
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length); // 전체 슬라이드 개수 사용
     }, 5000); // 5초마다 전환
 
     return () => clearInterval(timer);
@@ -605,7 +574,7 @@ export default function Home() {
 
         {/* Carousel Navigation Arrows */}
         <button
-          onClick={() => setCurrentSlide((prev) => (prev - 1 + 4) % 4)}
+          onClick={() => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)}
           style={{
             position: 'absolute',
             left: '2rem',
@@ -624,7 +593,7 @@ export default function Home() {
           <ChevronLeft size={40} strokeWidth={2} />
         </button>
         <button
-          onClick={() => setCurrentSlide((prev) => (prev + 1) % 4)}
+          onClick={() => setCurrentSlide((prev) => (prev + 1) % heroSlides.length)}
           style={{
             position: 'absolute',
             right: '2rem',
@@ -658,7 +627,7 @@ export default function Home() {
           <div className="space-y-32">
             {/* 가족사진 */}
             <ServiceSection 
-              imageUrl="https://images.unsplash.com/photo-1557446772-d4de8a495127?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              imageUrl="/images/hero/family-1.jpg"
               title="가족사진"
               description="온 가족이 함께하는 따뜻한 순간을 자연스럽게 담아냅니다. 각 가족만의 개성과 사랑이 느껴지는 특별한 작품을 만들어드립니다."
               services={[
@@ -667,14 +636,14 @@ export default function Home() {
                 "전문 보정 작업",
                 "고해상도 원본 파일 제공"
               ]}
-              href="/services#family"
+              href="/services/family"
               isReversed={false}
               showDivider={true}
             />
 
             {/* 리마인드 웨딩 */}
             <ServiceSection 
-              imageUrl="https://images.unsplash.com/photo-1524144031591-3d146c70a0d9?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              imageUrl="/images/hero/wedding-1.jpg"
               title="리마인드 웨딩"
               description="결혼의 감동을 다시 한번 느낄 수 있는 특별한 촬영입니다. 웨딩드레스를 다시 입고 그날의 설렘과 행복을 재현해보세요."
               services={[
@@ -683,15 +652,15 @@ export default function Home() {
                 "로맨틱 컨셉 촬영",
                 "고급 앨범 제작"
               ]}
-              href="/services#remind-wedding"
+              href="/services/remind-wedding"
               isReversed={true}
               showDivider={true}
             />
 
             {/* 성장앨범 */}
             <ServiceSection 
-              imageUrl="https://images.unsplash.com/photo-1510154221590-ff63e90a136f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              title="성장앨범"
+              imageUrl="/images/hero/baby-2.jpg"
+              title="베이비 촬영"
               description="아이의 소중한 성장 과정을 단계별로 기록합니다. 신생아부터 돌잔치까지, 매 순간의 변화와 성장을 아름답게 담아냅니다."
               services={[
                 "신생아 ~ 돌잔치 단계별 촬영",
@@ -699,7 +668,7 @@ export default function Home() {
                 "성장 기록 앨범 제작",
                 "추억의 소품 촬영"
               ]}
-              href="/services#growth"
+              href="/services/baby"
               isReversed={false}
               showDivider={false}
             />
@@ -715,11 +684,12 @@ export default function Home() {
         <PortfolioSection 
           title="포트폴리오"
           description="소중한 순간들의 아름다운 기록을 확인해보세요.<br />다양한 컨셉과 스타일의 작품들을 만나보실 수 있습니다."
-          categories={["전체", "가족사진", "리마인드웨딩", "성장앨범"]}
+          categories={["전체", "가족사진", "리마인드웨딩", "베이비촬영"]}
           portfolioItems={portfolioItems}
           showMoreButton={true}
           moreButtonText="더 많은 작품 보기"
           moreButtonHref="/portfolio"
+          maxItems={10}
         />
       )}
       
@@ -785,16 +755,10 @@ export default function Home() {
                     <h4 className="font-medium text-lg mb-3">예약 방법</h4>
                     <ul className="space-y-2 text-foreground/70">
                       <motion.li whileHover={{ x: 4, color: "var(--foreground)" }} transition={{ duration: 0.2 }}>
-                        • 전화 상담: 041-1592-0000
+                        • 전화 상담: 041-356-1592
                       </motion.li>
                       <motion.li whileHover={{ x: 4, color: "var(--foreground)" }} transition={{ duration: 0.2 }}>
-                        • 온라인 예약: 예약 신청 폼 작성
-                      </motion.li>
-                      <motion.li whileHover={{ x: 4, color: "var(--foreground)" }} transition={{ duration: 0.2 }}>
-                        • 블로그 상담: blog.naver.com/familysoo1592
-                      </motion.li>
-                      <motion.li whileHover={{ x: 4, color: "var(--foreground)" }} transition={{ duration: 0.2 }}>
-                        • 이메일: familysoo1592@naver.com
+                        • 카카오 상담: @soo_1592
                       </motion.li>
                     </ul>
                   </motion.div>
@@ -838,8 +802,8 @@ export default function Home() {
                         }}
                         transition={{ duration: 0.2 }}
                       >
-                        <span>성장앨범</span>
-                        <span className="font-medium">200,000원~</span>
+                        <span>베이비 촬영</span>
+                        <span className="font-medium">150,000원~</span>
                       </motion.div>
                     </div>
                   </motion.div>
@@ -1014,7 +978,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <motion.a 
-              href="tel:041-1592-0000"
+              href="tel:041-356-1592"
               className="bg-white hover:bg-white/90 text-primary px-8 py-3 rounded-full font-medium transition-colors flex items-center justify-center shadow-lg"
               whileHover={{ 
                 scale: 1.05,
@@ -1044,8 +1008,8 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            <p>📞 041-1592-0000 | 📧 familysoo1592@naver.com</p>
-            <p>운영시간: 평일 10:00-19:00, 주말 10:00-17:00 (예약제)</p>
+            <p>📞 041-356-1592 | 📧 familysoo1592@naver.com</p>
+            <p>운영시간: 평일 10:00-19:00, 주말 10:00-19:00 (예약제)</p>
             <p>🌐 <a href="https://blog.naver.com/familysoo1592" target="_blank" className="hover:text-white transition-colors">blog.naver.com/familysoo1592</a></p>
           </motion.div>
         </div>
@@ -1106,7 +1070,7 @@ export default function Home() {
                 <div className="h-96 relative">
                   {/* 네이버 지도 iframe */}
                   <iframe
-                    src="https://map.naver.com/v5/search/%EC%B6%A9%EB%82%A8%20%EB%8B%B9%EC%A7%84%EC%8B%9C?c=14128189.6214308,4518712.4380694,15,0,0,0,dh"
+                    src="https://map.naver.com/v5/search/충청남도%20당진시%20북문로%202길%2010%20패밀리수스튜디오"
                     width="100%"
                     height="100%"
                     style={{ border: 0, borderRadius: '1rem' }}
@@ -1117,7 +1081,7 @@ export default function Home() {
                   />
                   
                   {/* 지도 위 오버레이 정보 */}
-                  <motion.div 
+                  {/* <motion.div 
                     className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg"
                     initial={{ opacity: 0, y: -20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -1129,8 +1093,8 @@ export default function Home() {
                     }}
                   >
                     <p className="text-sm font-medium text-primary">📍 Family Soo Studio</p>
-                    <p className="text-xs text-foreground/70">충남 당진시</p>
-                  </motion.div>
+                    <p className="text-xs text-foreground/70">충청남도 당진시 북문로 2길 10</p>
+                  </motion.div> */}
                 </div>
               </motion.div>
             </motion.div>
@@ -1189,7 +1153,7 @@ export default function Home() {
                     <span className="text-lg">📍</span>
                     <div>
                       <p className="font-medium text-foreground">주소</p>
-                      <p className="text-foreground/70 text-sm">충남 당진시 (자세한 주소는 예약 시 안내)</p>
+                      <p className="text-foreground/70 text-sm">충청남도 당진시 북문로 2길 10 패밀리수 스튜디오</p>
                     </div>
                   </motion.div>
                   
@@ -1212,12 +1176,12 @@ export default function Home() {
                       x: 4,
                       transition: { duration: 0.2, ease: "easeOut" }
                     }}
-                    onClick={() => window.open('tel:041-1592-0000')}
+                    onClick={() => window.open('tel:041-356-1592')}
                   >
                     <span className="text-lg">📞</span>
                     <div>
                       <p className="font-medium text-foreground">전화번호</p>
-                      <p className="text-primary font-medium">041-1592-0000</p>
+                      <p className="text-primary font-medium">041-356-1592</p>
                     </div>
                   </motion.div>
                   
@@ -1244,8 +1208,8 @@ export default function Home() {
                   >
                     <span className="text-lg">📧</span>
                     <div>
-                      <p className="font-medium text-foreground">이메일</p>
-                      <p className="text-primary font-medium">familysoo1592@naver.com</p>
+                      <p className="font-medium text-foreground">카카오톡 ID</p>
+                      <p className="text-primary font-medium">@soo_1592</p>
                     </div>
                   </motion.div>
                   
@@ -1301,7 +1265,7 @@ export default function Home() {
                     <div>
                       <p className="font-medium text-foreground">운영시간</p>
                       <p className="text-foreground/70 text-sm">평일 10:00-19:00</p>
-                      <p className="text-foreground/70 text-sm">주말 10:00-17:00 (예약제)</p>
+                      <p className="text-foreground/70 text-sm">주말 10:00-19:00 (예약제)</p>
                     </div>
                   </motion.div>
                 </div>
@@ -1310,7 +1274,7 @@ export default function Home() {
           </div>
 
           {/* 하단: 교통 정보 (Full Width) */}
-          <motion.div 
+          {/* <motion.div 
             className="bg-white rounded-2xl p-8 shadow-sm"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1542,44 +1506,12 @@ export default function Home() {
                 </ul>
               </motion.div>
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-white py-16">
-        <div className="container">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="font-serif text-xl font-bold mb-4">Family Soo Studio</h3>
-              <p className="text-white opacity-70 text-sm" style={{lineHeight: '1.6'}}>
-                소중한 순간을 사진으로 남기는<br />
-                따뜻한 감성의 스튜디오
-              </p>
-            </div>
-            <div>
-              <h4 className="font-medium mb-4">서비스</h4>
-              <ul className="space-y-2 text-sm opacity-70">
-                <li><Link href="/services" className="hover:text-white transition-colors">가족사진</Link></li>
-                <li><Link href="/services" className="hover:text-white transition-colors">리마인드웨딩</Link></li>
-                <li><Link href="/services" className="hover:text-white transition-colors">성장앨범</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-medium mb-4">연락처</h4>
-              <ul className="space-y-2 text-sm opacity-70">
-                <li>041-1592-0000</li>
-                <li>familysoo1592@naver.com</li>
-                <li>충남 당진시</li>
-                <li><a href="https://blog.naver.com/familysoo1592" target="_blank" className="hover:text-white transition-colors">블로그 바로가기</a></li>
-              </ul>
-            </div>
-          </div>
-          <div style={{borderTop: '1px solid rgba(255, 255, 255, 0.2)', marginTop: '2rem', paddingTop: '2rem'}} className="text-center text-sm opacity-50">
-            © 2024 Family Soo Studio. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

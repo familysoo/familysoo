@@ -10,6 +10,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Phone, Star } from "lucide-react";
 import type { PortfolioItem, ServicesApiResponse } from "@/types/database";
+import Footer from "@/components/Footer";
 
 export default function BabyPage() {
   const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
@@ -73,8 +74,7 @@ export default function BabyPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
               <h2 className="font-serif text-3xl font-light mb-8 text-foreground">
@@ -112,12 +112,17 @@ export default function BabyPage() {
             <motion.div
               className="relative"
               initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="bg-gradient-to-br from-primary/10 to-accent/20 rounded-2xl p-16 text-center">
-                <div className="text-8xl mb-6 opacity-60">👶</div>
+              <div className="bg-gradient-to-br from-primary/10 to-accent/20 rounded-2xl p-8 text-center">
+                <div className="relative w-full h-80 mb-6 rounded-xl overflow-hidden">
+                  <img 
+                    src="/images/hero/baby-2.jpg" 
+                    alt="리마인드웨딩 촬영" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <p className="text-foreground/60 italic">
                   "매 순간이 소중한 성장의 기록"
                 </p>
@@ -198,7 +203,7 @@ export default function BabyPage() {
               <h3 className="font-serif text-2xl font-medium mb-8 text-center text-primary">📋 단일 촬영 패키지</h3>
               <div className="grid md:grid-cols-3 gap-6">
                 <motion.div
-                  className="bg-white p-6 rounded-2xl shadow-sm border"
+                  className="bg-white p-6 rounded-2xl shadow-sm border border-primary"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -226,7 +231,7 @@ export default function BabyPage() {
                 </motion.div>
 
                 <motion.div
-                  className="bg-white p-6 rounded-2xl shadow-sm border"
+                  className="bg-white p-6 rounded-2xl shadow-sm border border-primary"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -284,7 +289,7 @@ export default function BabyPage() {
 
               <div className="grid md:grid-cols-2 gap-6 mt-6">
                 <motion.div
-                  className="bg-white p-6 rounded-2xl shadow-sm border"
+                  className="bg-white p-6 rounded-2xl shadow-sm border border-primary"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -292,8 +297,8 @@ export default function BabyPage() {
                 >
                   <h4 className="font-serif text-xl font-medium mb-4 text-primary">원본 A <span className="text-sm text-foreground/60">(추가상품)</span></h4>
                   <div className="text-3xl font-light mb-4 text-foreground">100,000원</div>
-                  <div className="bg-accent/5 p-3 rounded-lg mb-4">
-                    <p className="text-sm font-medium text-accent">🎨 위 테마 중 1개 선택 촬영</p>
+                  <div className="bg-primary/5 p-3 rounded-lg mb-4">
+                    <p className="text-sm font-medium text-primary">🎨 위 테마 중 1개 선택 촬영</p>
                   </div>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-center text-foreground/80">
@@ -308,16 +313,16 @@ export default function BabyPage() {
                 </motion.div>
 
                 <motion.div
-                  className="bg-white p-6 rounded-2xl shadow-sm border"
+                  className="bg-white p-6 rounded-2xl shadow-sm border border-primary"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  <h4 className="font-serif text-xl font-medium mb-4 text-primary">못난이 테마 <span className="text-xs bg-accent text-white px-2 py-1 rounded">특별</span></h4>
+                  <h4 className="font-serif text-xl font-medium mb-4 text-primary">못난이 테마 <span className="text-xs bg-primary text-white px-2 py-1 rounded">특별</span></h4>
                   <div className="text-3xl font-light mb-4 text-foreground">250,000원</div>
-                  <div className="bg-accent/5 p-3 rounded-lg mb-4">
-                    <p className="text-sm font-medium text-accent">🎨 못난이 전용 테마 1컷 촬영</p>
+                  <div className="bg-primary/5 p-3 rounded-lg mb-4">
+                    <p className="text-sm font-medium text-primary">🎨 못난이 전용 테마 1컷 촬영</p>
                   </div>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-center text-foreground/80">
@@ -339,7 +344,7 @@ export default function BabyPage() {
               <p className="text-center text-foreground/70 mb-8">정해진 구성 + 추천 컨셉으로 특별한 기념일을 기록하세요</p>
               <div className="grid md:grid-cols-2 gap-8">
                 <motion.div
-                  className="bg-white p-8 rounded-2xl shadow-sm border"
+                  className="bg-white p-8 rounded-2xl shadow-sm border border-primary"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -368,7 +373,7 @@ export default function BabyPage() {
                 </motion.div>
 
                 <motion.div
-                  className="bg-white p-8 rounded-2xl shadow-sm border"
+                  className="bg-white p-8 rounded-2xl shadow-sm border border-primary"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -376,8 +381,8 @@ export default function BabyPage() {
                 >
                   <h4 className="font-serif text-2xl font-medium mb-4 text-primary">백일기념 패키지</h4>
                   <div className="text-4xl font-light mb-4 text-foreground">290,000원</div>
-                  <div className="bg-accent/5 p-4 rounded-lg mb-6">
-                    <p className="text-sm font-medium text-accent mb-2">💝 백일 테마 중 2건 선택 촬영</p>
+                  <div className="bg-primary/5 p-4 rounded-lg mb-6">
+                    <p className="text-sm font-medium text-primary mb-2">💝 백일 테마 중 2건 선택 촬영</p>
                     <p className="text-xs text-foreground/70">백일상, 전통누드, 스튜디오, 가족 컨셉 등에서 선택</p>
                   </div>
                   <ul className="space-y-2 mb-6">
@@ -407,7 +412,7 @@ export default function BabyPage() {
               
               <div className="grid lg:grid-cols-3 gap-6">
                 <motion.div
-                  className="bg-white p-6 rounded-2xl shadow-sm border"
+                  className="bg-white p-6 rounded-2xl shadow-sm border border-primary"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -417,7 +422,7 @@ export default function BabyPage() {
                   <div className="mb-4">
                     <span className="text-lg text-foreground/50 line-through">990,000원</span>
                     <div className="text-3xl font-light text-foreground">790,000원</div>
-                    <span className="text-sm text-accent font-medium">200,000원 할인!</span>
+                    <span className="text-sm text-primary font-medium">200,000원 할인!</span>
                   </div>
                   <div className="bg-primary/5 p-3 rounded-lg mb-4">
                     <p className="text-xs text-foreground/80">🎨 50일 2테마 + 100일 2테마 + 돌 2테마 + 가족 1테마</p>
@@ -471,19 +476,19 @@ export default function BabyPage() {
                 </motion.div>
 
                 <motion.div
-                  className="bg-white p-6 rounded-2xl shadow-sm border"
+                  className="bg-white p-6 rounded-2xl shadow-sm border border-primary"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <h4 className="font-serif text-xl font-medium mb-4 text-primary">본아트 성장 <span className="text-xs bg-accent text-white px-2 py-1 rounded">프리미엄</span></h4>
+                  <h4 className="font-serif text-xl font-medium mb-4 text-primary">본아트 성장 <span className="text-xs bg-primary text-white px-2 py-1 rounded">프리미엄</span></h4>
                   <div className="mb-4">
                     <span className="text-lg text-foreground/50 line-through">1,390,000원</span>
                     <div className="text-3xl font-light text-foreground">1,190,000원</div>
-                    <span className="text-sm text-accent font-medium">200,000원 할인!</span>
+                    <span className="text-sm text-primary font-medium">200,000원 할인!</span>
                   </div>
-                  <div className="bg-accent/5 p-3 rounded-lg mb-4">
+                  <div className="bg-primary/5 p-3 rounded-lg mb-4">
                     <p className="text-xs text-foreground/80">🎨 본아트 + 50일 2테마 + 100일 2테마 + 200일 2테마 + 돌 1테마 + 돌상 1테마 + 가족 1테마</p>
                   </div>
                   <ul className="space-y-2 text-sm">
@@ -510,7 +515,7 @@ export default function BabyPage() {
               <p className="text-center text-foreground/70 mb-8">야외에서 자연스러운 분위기로 촬영하는 출사 전용 상품</p>
               <div className="grid md:grid-cols-3 gap-6">
                 <motion.div
-                  className="bg-white p-6 rounded-2xl shadow-sm border"
+                  className="bg-white p-6 rounded-2xl shadow-sm border border-primary"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -534,7 +539,7 @@ export default function BabyPage() {
                 </motion.div>
 
                 <motion.div
-                  className="bg-white p-6 rounded-2xl shadow-sm border"
+                  className="bg-white p-6 rounded-2xl shadow-sm border border-primary"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -558,7 +563,7 @@ export default function BabyPage() {
                 </motion.div>
 
                 <motion.div
-                  className="bg-white p-6 rounded-2xl shadow-sm border"
+                  className="bg-white p-6 rounded-2xl shadow-sm border border-primary"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -605,7 +610,7 @@ export default function BabyPage() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a 
-                href="tel:041-1592-0000"
+                href="tel:041-356-1592"
                 className="bg-white hover:bg-primary hover:text-white text-primary border-2 border-primary px-8 py-3 rounded-full font-medium transition-colors flex items-center justify-center"
                 whileHover={{ 
                   scale: 1.05,
@@ -634,39 +639,7 @@ export default function BabyPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-white py-16">
-        <div className="container">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="font-serif text-xl font-bold mb-4">Family Soo Studio</h3>
-              <p className="text-white/70 text-sm leading-relaxed">
-                소중한 순간을 사진으로 남기는<br />
-                따뜻한 감성의 스튜디오
-              </p>
-            </div>
-            <div>
-              <h4 className="font-medium mb-4">서비스</h4>
-              <ul className="space-y-2 text-sm text-white/70">
-                <li><Link href="/services#family" className="hover:text-white transition-colors">가족사진</Link></li>
-                <li><Link href="/services#remind-wedding" className="hover:text-white transition-colors">리마인드웨딩</Link></li>
-                <li><Link href="/services#growth" className="hover:text-white transition-colors">성장앨범</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-medium mb-4">연락처</h4>
-              <ul className="space-y-2 text-sm text-white/70">
-                <li>041-1592-0000</li>
-                <li>familysoo1592@naver.com</li>
-                <li>충남 당진시</li>
-                <li><a href="https://blog.naver.com/familysoo1592" target="_blank" className="hover:text-white transition-colors">블로그 바로가기</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-white/20 mt-8 pt-8 text-center text-sm text-white/50">
-            © 2024 Family Soo Studio. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { motion, useInView } from "framer-motion";
 import { ChevronRight, Camera, Heart, Baby, Users, Star, Clock, Phone } from "lucide-react";
 import Header from "../../components/Header";
 import PageHero from "../../components/PageHero";
+import Footer from "@/components/Footer";
 
 // 서비스 타입 인터페이스
 interface Service {
@@ -334,7 +335,7 @@ export default function ServicesPage() {
       ]
     },
     {
-      title: "성장앨범",
+      title: "베이비 촬영",
       description: "아이의 소중한 성장 과정을 단계별로 기록합니다. 신생아부터 돌잔치까지, 매 순간의 변화와 성장을 아름답게 담아냅니다.",
       features: [
         "월령별 촬영", 
@@ -513,7 +514,7 @@ export default function ServicesPage() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a 
-                href="tel:041-1592-0000"
+                href="tel:041-356-1592"
                 className="bg-white hover:bg-white/90 text-primary px-8 py-3 rounded-full font-medium transition-colors flex items-center justify-center"
                 whileHover={{ 
                   scale: 1.05,
@@ -542,39 +543,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-white py-16">
-        <div className="container">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="font-serif text-xl font-bold mb-4">Family Soo Studio</h3>
-              <p className="text-white/70 text-sm leading-relaxed">
-                소중한 순간을 사진으로 남기는<br />
-                따뜻한 감성의 스튜디오
-              </p>
-            </div>
-            <div>
-              <h4 className="font-medium mb-4">서비스</h4>
-              <ul className="space-y-2 text-sm text-white/70">
-                <li><Link href="/services#family" className="hover:text-white transition-colors">가족사진</Link></li>
-                <li><Link href="/services#remind-wedding" className="hover:text-white transition-colors">리마인드웨딩</Link></li>
-                <li><Link href="/services#growth" className="hover:text-white transition-colors">성장앨범</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-medium mb-4">연락처</h4>
-              <ul className="space-y-2 text-sm text-white/70">
-                <li>041-1592-0000</li>
-                <li>familysoo1592@naver.com</li>
-                <li>충남 당진시</li>
-                <li><a href="https://blog.naver.com/familysoo1592" target="_blank" className="hover:text-white transition-colors">블로그 바로가기</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-white/20 mt-8 pt-8 text-center text-sm text-white/50">
-            © 2024 Family Soo Studio. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 } 

@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import PageHero from "@/components/PageHero";
 import Breadcrumb from "@/components/Breadcrumb";
 import PortfolioSection, { transformContentfulData } from "@/components/PortfolioSection";
+import Footer from "@/components/Footer";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Clock, Phone, Star } from "lucide-react";
@@ -72,8 +73,7 @@ export default function RemindWeddingPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
               <h2 className="font-serif text-3xl font-light mb-8 text-foreground">
@@ -111,12 +111,17 @@ export default function RemindWeddingPage() {
             <motion.div
               className="relative"
               initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="bg-gradient-to-br from-primary/10 to-accent/20 rounded-2xl p-16 text-center">
-                <div className="text-8xl mb-6 opacity-60">💕</div>
+              <div className="bg-gradient-to-br from-primary/10 to-accent/20 rounded-2xl p-8 text-center">
+                <div className="relative w-full h-80 mb-6 rounded-xl overflow-hidden">
+                  <img 
+                    src="/images/hero/wedding-1.jpg" 
+                    alt="리마인드웨딩 촬영" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <p className="text-foreground/60 italic">
                   "시간이 흘러도 변하지 않는 사랑"
                 </p>
@@ -213,84 +218,43 @@ export default function RemindWeddingPage() {
               <p className="text-lg text-foreground/70">감동적인 추억을 합리적인 가격으로</p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            {/* 단일 패키지 */}
+            <div className="flex justify-center">
               <motion.div
-                className="bg-white p-8 rounded-2xl shadow-sm"
+                className="bg-primary p-12 rounded-2xl text-white max-w-md w-full text-center"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <h3 className="font-serif text-2xl font-medium mb-6 text-primary">기본 패키지</h3>
-                <div className="text-4xl font-light mb-4 text-foreground">400,000원</div>
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-center text-foreground/80">
-                    <Star size={16} className="text-primary mr-3" />
-                    보정된 사진 50-80장
-                  </li>
-                  <li className="flex items-center text-foreground/80">
-                    <Star size={16} className="text-primary mr-3" />
-                    웨딩 앨범 제작 (20매)
-                  </li>
-                  <li className="flex items-center text-foreground/80">
-                    <Star size={16} className="text-primary mr-3" />
-                    대형 액자 2개 제작
-                  </li>
-                  <li className="flex items-center text-foreground/80">
-                    <Star size={16} className="text-primary mr-3" />
-                    드레스 대여 포함
-                  </li>
-                  <li className="flex items-center text-foreground/80">
-                    <Star size={16} className="text-primary mr-3" />
+                <h3 className="font-serif text-2xl font-medium mb-6">리마인드웨딩 패키지</h3>
+                <div className="text-5xl font-light mb-6">100,000원</div>
+                <div className="bg-white/10 p-4 rounded-lg mb-8">
+                  <p className="text-sm font-medium">💕 다시 찾은 그날의 설렘</p>
+                </div>
+                <ul className="space-y-4 text-sm">
+                  <li className="flex items-center justify-center">
+                    <Star size={16} className="text-white mr-3" />
                     전문 메이크업 서비스
                   </li>
-                </ul>
-                <div className="flex items-center text-foreground/60">
-                  <Clock size={16} className="mr-2" />
-                  <span>2-3시간</span>
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="bg-primary p-8 rounded-2xl text-white"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <h3 className="font-serif text-2xl font-medium mb-6">프리미엄 패키지</h3>
-                <div className="text-4xl font-light mb-4">650,000원</div>
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-center">
+                  <li className="flex items-center justify-center">
                     <Star size={16} className="text-white mr-3" />
-                    기본 패키지 모든 포함
+                    드레스 대여 포함
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-center justify-center">
                     <Star size={16} className="text-white mr-3" />
-                    야외 로케이션 촬영
+                    전문 보정 서비스
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-center justify-center">
                     <Star size={16} className="text-white mr-3" />
-                    웨딩 영상 제작 (3분)
-                  </li>
-                  <li className="flex items-center">
-                    <Star size={16} className="text-white mr-3" />
-                    추가 드레스 선택권
-                  </li>
-                  <li className="flex items-center">
-                    <Star size={16} className="text-white mr-3" />
-                    프리미엄 앨범 (30매)
+                    촬영한 모든 원본 제공
                   </li>
                 </ul>
-                <div className="flex items-center text-white/80">
-                  <Clock size={16} className="mr-2" />
-                  <span>4-5시간</span>
-                </div>
               </motion.div>
             </div>
 
-            <motion.div 
-              className="mt-8 bg-gradient-to-r from-accent/20 to-primary/10 p-6 rounded-2xl text-center"
+            {/* <motion.div 
+              className="mt-12 bg-gradient-to-r from-accent/20 to-primary/10 p-6 rounded-2xl text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -298,7 +262,7 @@ export default function RemindWeddingPage() {
             >
               <h4 className="font-medium mb-2 text-primary">특별 할인 혜택</h4>
               <p className="text-foreground/70">결혼 기념일 촬영 시 10% 할인 / 재촬영 고객 15% 할인</p>
-            </motion.div>
+            </motion.div> */}
           </div>
         </div>
       </section>
@@ -322,7 +286,7 @@ export default function RemindWeddingPage() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a 
-                href="tel:041-1592-0000"
+                href="tel:041-356-1592"
                 className="bg-white hover:bg-primary hover:text-white text-primary border-2 border-primary px-8 py-3 rounded-full font-medium transition-colors flex items-center justify-center"
                 whileHover={{ 
                   scale: 1.05,
@@ -351,39 +315,7 @@ export default function RemindWeddingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-white py-16">
-        <div className="container">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="font-serif text-xl font-bold mb-4">Family Soo Studio</h3>
-              <p className="text-white/70 text-sm leading-relaxed">
-                소중한 순간을 사진으로 남기는<br />
-                따뜻한 감성의 스튜디오
-              </p>
-            </div>
-            <div>
-              <h4 className="font-medium mb-4">서비스</h4>
-              <ul className="space-y-2 text-sm text-white/70">
-                <li><Link href="/services#family" className="hover:text-white transition-colors">가족사진</Link></li>
-                <li><Link href="/services#remind-wedding" className="hover:text-white transition-colors">리마인드웨딩</Link></li>
-                <li><Link href="/services#growth" className="hover:text-white transition-colors">성장앨범</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-medium mb-4">연락처</h4>
-              <ul className="space-y-2 text-sm text-white/70">
-                <li>041-1592-0000</li>
-                <li>familysoo1592@naver.com</li>
-                <li>충남 당진시</li>
-                <li><a href="https://blog.naver.com/familysoo1592" target="_blank" className="hover:text-white transition-colors">블로그 바로가기</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-white/20 mt-8 pt-8 text-center text-sm text-white/50">
-            © 2024 Family Soo Studio. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

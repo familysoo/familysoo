@@ -309,10 +309,27 @@ export default function PortfolioSection({
       
       return filtered;
     } else {
-      // 기존 1-depth 로직
-      return activeCategory === "전체" || activeCategory === categories[0]
-        ? portfolioItems 
-        : portfolioItems.filter(item => item.category === activeCategory);
+      // 기존 1-depth 로직 - 한국어 카테고리명을 contentType으로 매핑
+      if (activeCategory === "전체" || activeCategory === categories[0]) {
+        return portfolioItems;
+      }
+      
+      // 한국어 카테고리명을 contentType으로 매핑
+      const categoryToContentTypeMap: Record<string, ContentType> = {
+        '가족사진': 'family',
+        '리마인드웨딩': 'remindWedding', 
+        '베이비촬영': 'baby'
+      };
+      
+      const targetContentType = categoryToContentTypeMap[activeCategory];
+      
+      if (targetContentType) {
+        // contentType으로 필터링
+        return portfolioItems.filter(item => item.contentType === targetContentType);
+      } else {
+        // 기존 방식: category로 필터링 (하위 카테고리인 경우)
+        return portfolioItems.filter(item => item.category === activeCategory);
+      }
     }
   }, [enableTwoDepth, activeMainCategory, activeSubCategory, activeCategory, portfolioItems, categories]);
 
