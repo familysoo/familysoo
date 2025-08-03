@@ -1008,7 +1008,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            <p>📞 041-356-1592 | 📧 familysoo1592@naver.com</p>
+            <p>📞 041-356-1592 | 📧 카카오톡 아이디 @soo_1592</p>
             <p>운영시간: 평일 10:00-19:00, 주말 10:00-19:00 (예약제)</p>
             <p>🌐 <a href="https://blog.naver.com/familysoo1592" target="_blank" className="hover:text-white transition-colors">blog.naver.com/familysoo1592</a></p>
           </motion.div>
