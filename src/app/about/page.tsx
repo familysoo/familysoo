@@ -507,7 +507,7 @@ export default function AboutPage() {
             </motion.div> */}
             {/* 네이버 지도 iframe */}
             <iframe
-                src="https://map.naver.com/v5/search/충청남도%20당진시%20북문로%202길%2010%20패밀리수스튜디오"
+                src="https://map.naver.com/p/search/%EC%B6%A9%EC%B2%AD%EB%82%A8%EB%8F%84%20%EB%8B%B9%EC%A7%84%EC%8B%9C%20%EB%B6%81%EB%AC%B8%EB%A1%9C%202%EA%B8%B8%2010%20%ED%8C%A8%EB%B0%80%EB%A6%AC%EC%88%98%EC%8A%A4%ED%8A%9C%EB%94%94%EC%98%A4"
                 width="100%"
                 height="100%"
                 style={{ border: 0, borderRadius: '1rem' }}
