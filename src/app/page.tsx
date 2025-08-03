@@ -1068,22 +1068,53 @@ export default function Home() {
                 }}
               >
                 <div className="h-96 relative">
-                  {/* 네이버 지도 iframe - 모바일 호환성 개선 */}
-                  <iframe
-                    src="https://map.naver.com/p/search/%EC%B6%A9%EC%B2%AD%EB%82%A8%EB%8F%84%20%EB%8B%B9%EC%A7%84%EC%8B%9C%20%EB%B6%81%EB%AC%B8%EB%A1%9C%202%EA%B8%B8%2010%20%ED%8C%A8%EB%B0%80%EB%A6%AC%EC%88%98%EC%8A%A4%ED%8A%9C%EB%94%94%EC%98%A4"
-                    width="100%"
-                    height="100%"
-                    style={{ 
-                      border: 0, 
-                      borderRadius: '1rem',
-                      minHeight: '384px'
-                    }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Family Soo Studio 위치"
-                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-                  />
+                  {/* 데스크탑: 네이버 지도 iframe */}
+                  <div className="hidden sm:block w-full h-full">
+                    <iframe
+                      src="https://map.naver.com/p/search/%EC%B6%A9%EC%B2%AD%EB%82%A8%EB%8F%84%20%EB%8B%B9%EC%A7%84%EC%8B%9C%20%EB%B6%81%EB%AC%B8%EB%A1%9C%202%EA%B8%B8%2010%20%ED%8C%A8%EB%B0%80%EB%A6%AC%EC%88%98%EC%8A%A4%ED%8A%9C%EB%94%94%EC%98%A4"
+                      width="100%"
+                      height="100%"
+                      style={{ 
+                        border: 0, 
+                        borderRadius: '1rem',
+                        minHeight: '384px'
+                      }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Family Soo Studio 위치"
+                    />
+                  </div>
+                  
+                  {/* 모바일: 정적 맵 이미지와 외부 링크 */}
+                  <div className="block sm:hidden w-full h-full bg-gray-100 rounded-2xl flex items-center justify-center">
+                    <div className="text-center p-6">
+                      <div className="text-4xl mb-4">🗺️</div>
+                      <h4 className="font-serif text-lg font-medium text-primary mb-3">
+                        Family Soo Studio
+                      </h4>
+                      <p className="text-sm text-foreground/80 mb-4 leading-relaxed">
+                        충청남도 당진시 북문로 2길 10<br />
+                        패밀리수 스튜디오
+                      </p>
+                      <div className="space-y-2">
+                        <button
+                          onClick={() => window.open('https://map.naver.com/p/search/%EC%B6%A9%EC%B2%AD%EB%82%A8%EB%8F%84%20%EB%8B%B9%EC%A7%84%EC%8B%9C%20%EB%B6%81%EB%AC%B8%EB%A1%9C%202%EA%B8%B8%2010%20%ED%8C%A8%EB%B0%80%EB%A6%AC%EC%88%98%EC%8A%A4%ED%8A%9C%EB%94%94%EC%98%A4', '_blank')}
+                          className="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium
+                            hover:bg-primary/90 transition-colors block w-full mb-2"
+                        >
+                          네이버 지도에서 보기
+                        </button>
+                        <button
+                          onClick={() => window.open('https://map.kakao.com/link/search/%ED%8C%A8%EB%B0%80%EB%A6%AC%EC%88%98%EC%8A%A4%ED%8A%9C%EB%94%94%EC%98%A4', '_blank')}
+                          className="bg-yellow-500 text-white px-4 py-2 rounded-lg text-sm font-medium
+                            hover:bg-yellow-600 transition-colors block w-full"
+                        >
+                          카카오맵에서 보기
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             </motion.div>
@@ -1094,13 +1125,13 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="space-y-8"
+              className="space-y-6 sm:space-y-8"
             >
               <motion.div 
-                className="bg-white rounded-2xl p-8 shadow-sm"
+                className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm max-w-none"
                 initial={{ scale: 1, boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)" }}
                 whileHover={{ 
-                  scale: 1.02,
+                  scale: 1.01,
                   boxShadow: "0 8px 30px rgba(139, 115, 85, 0.1)"
                 }}
                 transition={{ duration: 0.2 }}

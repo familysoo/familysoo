@@ -534,13 +534,13 @@ export default function PortfolioSection({
         >
           {title && description && (
             <motion.div 
-              className="text-center mb-16"
+              className="text-center mb-12 sm:mb-16"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h2 className="font-serif text-4xl font-light mb-6 text-foreground">{title}</h2>
-              <div className="text-lg text-foreground/70 max-w-2xl mx-auto">
+              <h2 className="font-serif text-2xl sm:text-4xl font-light mb-4 sm:mb-6 text-foreground">{title}</h2>
+              <div className="text-sm sm:text-lg text-foreground/70 max-w-2xl mx-auto px-4">
                 {description.split('<br />').map((line, index) => (
                   <span key={index}>
                     {line}
@@ -815,84 +815,171 @@ export default function PortfolioSection({
             exit={{ opacity: 0 }}
             onClick={closeLightbox}
           >
-            {/* 이미지 카운터 - 좌상단 */}
-            <div className="absolute top-6 left-6 text-white font-medium z-30 text-lg">
-              {currentImageIndex + 1} / {displayItems.length}
-            </div>
+            {/* 데스크탑 레이아웃 */}
+            <div className="hidden sm:block w-full h-full">
+              {/* 이미지 카운터 - 좌상단 */}
+              <div className="absolute top-6 left-6 text-white font-medium z-30 text-lg">
+                {currentImageIndex + 1} / {displayItems.length}
+              </div>
 
-            {/* 카테고리 표시 - 좌상단 */}
-            <div className="absolute top-6 left-6 mt-10 text-white/80 text-sm z-30">
-              {enableTwoDepth 
-                ? `${activeMainCategory} > ${activeSubCategory}`
-                : activeCategory
-              }
-            </div>
+              {/* 카테고리 표시 - 좌상단 */}
+              <div className="absolute top-6 left-6 mt-10 text-white/80 text-sm z-30">
+                {enableTwoDepth 
+                  ? `${activeMainCategory} > ${activeSubCategory}`
+                  : activeCategory
+                }
+              </div>
 
-            {/* 이미지 컨테이너 */}
-            <div className="w-full h-full flex items-center justify-center relative">
-              {/* 로딩 스피너 */}
-              {!mainImageLoaded && (
-                <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-10">
-                  <LoadingSpinner size="lg" className="text-white" />
-                </div>
+              {/* 닫기 버튼 - 우상단 */}
+              <button
+                onClick={closeLightbox}
+                className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors text-3xl z-30"
+              >
+                ×
+              </button>
+
+              {/* 이미지 컨테이너 */}
+              <div className="w-full h-full flex items-center justify-center relative">
+                {/* 로딩 스피너 */}
+                {!mainImageLoaded && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-10">
+                    <LoadingSpinner size="lg" className="text-white" />
+                  </div>
+                )}
+                
+                <motion.img
+                  src={lightboxImage}
+                  alt="Portfolio Image"
+                  className={`max-w-full max-h-full object-contain ${!mainImageLoaded ? 'opacity-0' : 'opacity-100'}`}
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: mainImageLoaded ? 1 : 0 }}
+                  exit={{ scale: 0.8, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  onClick={(e) => e.stopPropagation()}
+                  onLoad={handleMainImageLoad}
+                  onError={() => {
+                    console.warn('라이트박스 이미지 로드 실패:', lightboxImage);
+                    setMainImageLoaded(true);
+                  }}
+                />
+              </div>
+
+              {/* 좌우 화살표 */}
+              {displayItems.length > 1 && (
+                <>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      goToPrevious();
+                    }}
+                    className="absolute left-8 text-white/70 hover:text-white transition-all z-30 bg-black/30 rounded-full p-3 backdrop-blur-sm hover:-translate-x-1"
+                    style={{ 
+                      top: '50%', 
+                      transform: 'translateY(-50%)',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      goToNext();
+                    }}
+                    className="absolute right-8 text-white/70 hover:text-white transition-all z-30 bg-black/30 rounded-full p-3 backdrop-blur-sm hover:translate-x-1"
+                    style={{ 
+                      top: '50%', 
+                      transform: 'translateY(-50%)',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </>
               )}
-              
-              <motion.img
-                src={lightboxImage}
-                alt="Portfolio Image"
-                className={`max-w-full h-screen object-contain ${!mainImageLoaded ? 'opacity-0' : 'opacity-100'}`}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: mainImageLoaded ? 1 : 0 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                onClick={(e) => e.stopPropagation()}
-                onLoad={handleMainImageLoad}
-                onError={() => {
-                  console.warn('라이트박스 이미지 로드 실패:', lightboxImage);
-                  setMainImageLoaded(true); // 에러 시에도 로딩 스피너 제거
-                }}
-              />
             </div>
 
-            {/* 이전 버튼 */}
-            {displayItems.length > 1 && (
-              <motion.button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goToPrevious();
-                }}
-                className="absolute left-8 text-white/70 hover:text-white transition-all z-30 bg-white/20 rounded-full p-3 backdrop-blur-sm hover:-translate-x-1"
-                style={{ 
-                  top: '50%', 
-                  transform: 'translateY(-50%)',
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </motion.button>
-            )}
+            {/* 모바일 레이아웃 */}
+            <div className="block sm:hidden w-full h-full flex flex-col">
+              {/* 상단 UI 바 */}
+              <div className="flex justify-between items-center p-4 text-white relative z-30">
+                {/* 좌측: 이미지 카운터 */}
+                <div className="text-sm font-medium">
+                  {currentImageIndex + 1} / {displayItems.length}
+                </div>
+                
+                {/* 우측: 좌우 화살표 */}
+                <div className="flex items-center space-x-2">
+                  {displayItems.length > 1 && (
+                    <>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          goToPrevious();
+                        }}
+                        className="text-white/80 hover:text-white transition-colors bg-black/30 rounded-full p-2 backdrop-blur-sm"
+                      >
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          goToNext();
+                        }}
+                        className="text-white/80 hover:text-white transition-colors bg-black/30 rounded-full p-2 backdrop-blur-sm"
+                      >
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
 
-            {/* 다음 버튼 */}
-            {displayItems.length > 1 && (
-              <motion.button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goToNext();
-                }}
-                className="absolute right-8 text-white/70 hover:text-white transition-all z-30 bg-white/20 rounded-full p-3 backdrop-blur-sm hover:translate-x-1"
-                style={{ 
-                  top: '50%', 
-                  transform: 'translateY(-50%)',
-                  transition: 'all 0.2s ease'
-                }}
+              {/* 카테고리 표시 */}
+              <div className="px-4 pb-2 text-white/60 text-xs relative z-30">
+                {enableTwoDepth 
+                  ? `${activeMainCategory} > ${activeSubCategory}`
+                  : activeCategory
+                }
+              </div>
+
+              {/* 이미지 컨테이너 */}
+              <div 
+                className="flex-1 flex items-center justify-center relative px-4"
+                onClick={(e) => e.stopPropagation()}
               >
-                <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </motion.button>
-            )}
+                {/* 로딩 스피너 */}
+                {!mainImageLoaded && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-10">
+                    <LoadingSpinner size="lg" className="text-white" />
+                  </div>
+                )}
+                
+                <motion.img
+                  src={lightboxImage}
+                  alt="Portfolio Image"
+                  className={`max-w-full max-h-full object-contain ${!mainImageLoaded ? 'opacity-0' : 'opacity-100'}`}
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: mainImageLoaded ? 1 : 0 }}
+                  exit={{ scale: 0.8, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  onLoad={handleMainImageLoad}
+                  onError={() => {
+                    console.warn('라이트박스 이미지 로드 실패:', lightboxImage);
+                    setMainImageLoaded(true);
+                  }}
+                />
+              </div>
+            </div>
           </motion.div>
         )}
       </div>
