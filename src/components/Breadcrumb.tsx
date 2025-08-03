@@ -14,6 +14,7 @@ interface BreadcrumbProps {
 }
 
 export default function Breadcrumb({ items }: BreadcrumbProps) {
+  console.log('items', items);
   return (
     <section className="border-b border-gray-200 py-3">
       <div className="container py-4 sm:py-6 flex flex-col justify-center">
@@ -59,23 +60,16 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
               </div>
               
               {/* 브레드크럼 아이템 */}
-              {item.href && index !== 1 ? (
-                <Link 
-                  href={item.href}
-                  className="px-2 py-1 sm:px-4 sm:py-2 rounded-xl bg-white/50 backdrop-blur-sm
-                           text-foreground/70 hover:text-primary hover:bg-white/80
-                           transition-all duration-300 ease-out hover:scale-105 hover:shadow-md
-                           border border-white/20 hover:border-primary/30
-                           text-sm font-medium hover:translate-x-1"
-                >
-                  {item.label}
-                </Link>
-              ) : (
+              {index === items.length - 1 ? (
                 <div className="px-2 py-1 sm:px-4 sm:py-2 rounded-xl bg-primary/10 backdrop-blur-sm
                                text-primary font-semibold border border-primary/20
                                text-sm shadow-sm">
                   {item.label}
                 </div>
+              ) : (
+                <span className="text-foreground/70 text-sm font-medium">
+                  {item.label}
+                </span>
               )}
             </motion.div>
           ))}

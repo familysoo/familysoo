@@ -179,24 +179,24 @@ export default function FamilyPage() {
                 transition={{ duration: 0.6 }}
               >
                 <h4 className="font-serif text-lg sm:text-2xl font-medium mb-6">가족 촬영 패키지</h4>
-                <div className="text-5xl font-light mb-6">100,000원</div>
+                <div className="text-3xl font-light mb-6">100,000원</div>
                 <div className="bg-white/10 p-4 rounded-lg mb-8">
                   <p className="text-sm font-medium">🎨 전체 컨셉 촬영 가능</p>
                 </div>
                 <ul className="space-y-4 text-sm">
-                  <li className="flex items-center justify-center">
+                  <li className="flex items-center justify-start">
                     <Star size={16} className="text-white mr-3" />
                     촬영한 모든 원본 JPG파일 제공
                   </li>
-                  <li className="flex items-center justify-center">
+                  <li className="flex items-center justify-start">
                     <Star size={16} className="text-white mr-3" />
                     전문 보정 서비스
                   </li>
-                  <li className="flex items-center justify-center">
+                  <li className="flex items-center justify-start">
                     <Star size={16} className="text-white mr-3" />
                     인원 수 제한 없음
                   </li>
-                  <li className="flex items-center justify-center">
+                  <li className="flex items-center justify-start">
                     <Star size={16} className="text-white mr-3" />
                     전 컨셉 의상 무료 대여
                   </li>

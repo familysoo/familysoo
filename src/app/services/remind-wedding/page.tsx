@@ -226,25 +226,25 @@ export default function RemindWeddingPage() {
                 transition={{ duration: 0.6 }}
               >
                 <h3 className="font-serif text-lg sm:text-2xl font-medium mb-6">리마인드웨딩 패키지</h3>
-                <div className="text-5xl font-light mb-6">100,000원</div>
+                <div className="text-3xl font-light mb-6">100,000원</div>
                 <div className="bg-white/10 p-4 rounded-lg mb-8">
                   <p className="text-sm font-medium">💕 다시 찾은 그날의 설렘</p>
                 </div>
                 <ul className="space-y-4 text-sm">
-                  <li className="flex items-center justify-center">
-                    <Star size={16} className="text-white mr-3" />
+                  <li className="flex items-center justify-start">
+                    <Star size={14} className="text-white mr-3" />
                     전문 메이크업 서비스
                   </li>
-                  <li className="flex items-center justify-center">
-                    <Star size={16} className="text-white mr-3" />
+                  <li className="flex items-center justify-start">
+                    <Star size={14} className="text-white mr-3" />
                     드레스 대여 포함
                   </li>
-                  <li className="flex items-center justify-center">
-                    <Star size={16} className="text-white mr-3" />
+                  <li className="flex items-center justify-start">
+                    <Star size={14} className="text-white mr-3" />
                     전문 보정 서비스
                   </li>
-                  <li className="flex items-center justify-center">
-                    <Star size={16} className="text-white mr-3" />
+                  <li className="flex items-center justify-start">
+                    <Star size={14} className="text-white mr-3" />
                     촬영한 모든 원본 제공
                   </li>
                 </ul>
