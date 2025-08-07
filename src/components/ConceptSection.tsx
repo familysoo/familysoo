@@ -34,7 +34,8 @@ export const transformConceptData = (
       imageUrl,
       category: entry.fields.category,
       recommend: entry.fields.recommend,
-      recommendLabel: entry.fields.recommendLabel
+      recommendLabel: entry.fields.recommendLabel,
+      order: entry.fields.order
     };
   });
 };
@@ -77,7 +78,13 @@ export default function ConceptSection({
   }, [service]);
 
   // 카테고리별로 컨셉들을 그룹화
-  const conceptsByCategory = concepts.reduce((acc, concept) => {
+  const conceptsByCategory = concepts
+  .sort((a, b) => {
+    const orderA = a.order ?? 999999;
+    const orderB = b.order ?? 999999;
+    return orderA - orderB;
+  })
+  .reduce((acc, concept) => {
     const category = concept.category || '기본 컨셉';
     if (!acc[category]) {
       acc[category] = [];
@@ -154,7 +161,7 @@ export default function ConceptSection({
                     <img 
                       src={concept.imageUrl} 
                       alt={concept.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-top"
                     />
                   </div>
                 ) : (

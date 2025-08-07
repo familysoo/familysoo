@@ -186,7 +186,7 @@ export default function FamilyPage() {
                 <ul className="space-y-4 text-sm">
                   <li className="flex items-center justify-start">
                     <Star size={16} className="text-white mr-3" />
-                    촬영한 모든 원본 JPG파일 제공
+                    액자 및 수정컷 제공
                   </li>
                   <li className="flex items-center justify-start">
                     <Star size={16} className="text-white mr-3" />

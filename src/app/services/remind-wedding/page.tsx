@@ -245,7 +245,7 @@ export default function RemindWeddingPage() {
                   </li>
                   <li className="flex items-center justify-start">
                     <Star size={14} className="text-white mr-3" />
-                    촬영한 모든 원본 제공
+                    액자 및 수정컷 제공
                   </li>
                 </ul>
               </motion.div>

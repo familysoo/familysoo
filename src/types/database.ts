@@ -138,6 +138,7 @@ export interface ConceptEntry {
     category?: string; // 소분류 (선택사항)
     recommend: boolean;
     recommendLabel?: string; // recommend-label
+    order?:number;
   };
 }
 
@@ -161,6 +162,7 @@ export interface ConceptItem {
   category?: string;
   recommend: boolean;
   recommendLabel?: string;
+  order?:number;
 }
 
 // Contentful API 응답 타입

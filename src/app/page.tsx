@@ -241,7 +241,7 @@ function ServiceSection({
         >
           <Link href={href}>
             <motion.div 
-              className="rounded-2xl h-64 sm:h-80 bg-cover bg-center relative overflow-hidden cursor-pointer"
+              className="rounded-2xl h-64 sm:h-80 bg-cover bg-no-repeat bg-center relative overflow-hidden cursor-pointer"
               style={{ backgroundImage: `url('${imageUrl}')` }}
               whileHover={{ 
                 scale: 1.02,
@@ -536,7 +536,7 @@ export default function Home() {
             가족의 시간, 사랑으로 기록됩니다
           </p>
           <Link 
-            href="/contact"
+            href="tel:041-356-1592"
             className="bg-primary hover:bg-primary/90 text-white px-6 sm:px-8 py-3 rounded-full font-medium transition-colors fade-in-up shadow-lg"
           >
             예약 문의하기
