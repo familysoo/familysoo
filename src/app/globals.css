@@ -1,26 +1,204 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;700&display=swap');
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #fefefe;
+  --foreground: #2d2d2d;
+  --primary: #8b7355;
+  --secondary: #d4c4a8;
+  --accent: #f5f1eb;
+  --muted: #f8f6f1;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  letter-spacing: -0.02em;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom container */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+/* Custom background utilities */
+.bg-background {
+  background-color: var(--background);
+}
+
+.bg-foreground {
+  background-color: var(--foreground);
+}
+
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.bg-secondary {
+  background-color: var(--secondary);
+}
+
+.bg-accent {
+  background-color: var(--accent);
+}
+
+.bg-muted {
+  background-color: var(--muted);
+}
+
+/* Custom text colors */
+.text-foreground {
+  color: var(--foreground);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.text-secondary {
+  color: var(--secondary);
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+/* Custom border colors */
+.border-accent {
+  border-color: var(--accent);
+}
+
+.border-primary {
+  border-color: var(--primary);
+}
+
+/* Opacity variants */
+.text-foreground\/70 {
+  color: rgba(45, 45, 45, 0.7);
+}
+
+.text-foreground\/80 {
+  color: rgba(45, 45, 45, 0.8);
+}
+
+.bg-primary\/10 {
+  background-color: rgba(139, 115, 85, 0.1);
+}
+
+.bg-primary\/20 {
+  background-color: rgba(139, 115, 85, 0.2);
+}
+
+.bg-primary\/5 {
+  background-color: rgba(139, 115, 85, 0.05);
+}
+
+.hover\:bg-primary\/90:hover {
+  background-color: rgba(139, 115, 85, 0.9);
+}
+
+.hover\:bg-primary\/10:hover {
+  background-color: rgba(139, 115, 85, 0.1);
+}
+
+.hover\:text-primary:hover {
+  color: var(--primary);
+}
+
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Custom gradient */
+.bg-gradient-to-br {
+  background: linear-gradient(to bottom right, var(--accent), var(--muted), var(--secondary));
+}
+
+/* CSS Columns for masonry layout */
+.columns-2 { 
+  columns: 2; 
+  column-gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .md\:columns-4 { 
+    columns: 4; 
+    column-gap: 1rem;
+  }
+}
+
+.break-inside-avoid { 
+  break-inside: avoid; 
+}
+
+/* Custom scrollbar hide */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile select fix */
+@media (max-width: 767px) {
+  .mobile-select {
+    appearance: none;
+    background: var(--background);
+    border: 1px solid var(--accent);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--foreground);
+  }
+}
+
+/* Basic button styles */
+button, .btn {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+}
+
+/* Lists */
+ul { 
+  list-style: none; 
+}
+
+li { 
+  margin: 0; 
 }

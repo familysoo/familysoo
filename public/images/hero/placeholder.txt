@@ -1,0 +1,8 @@
+Hero images will be placed here:
+- family-1.jpg: Warm family portrait
+- family-2.jpg: Family dining together  
+- wedding-1.jpg: Wedding couple portrait
+- wedding-2.jpg: Romantic wedding photo
+
+All images should be 1920x1080 or similar aspect ratio for best results.
+Images should be from Unsplash with proper licensing. 
