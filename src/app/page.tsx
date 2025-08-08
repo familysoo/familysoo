@@ -491,7 +491,7 @@ export default function Home() {
           transform: 'translateX(-50%)',
           display: 'flex',
           gap: '1rem',
-          zIndex: 50
+          zIndex: 40
         }}>
           {heroSlides.map((_, index) => (
             <button
@@ -520,7 +520,7 @@ export default function Home() {
             left: '1rem',
             top: '50%',
             transform: 'translateY(-50%)',
-            zIndex: 50,
+            zIndex: 40,
             color: 'rgba(255, 255, 255, 0.7)',
             transition: 'all 0.3s ease',
             background: 'none',
@@ -539,7 +539,7 @@ export default function Home() {
             right: '1rem',
             top: '50%',
             transform: 'translateY(-50%)',
-            zIndex: 50,
+            zIndex: 40,
             color: 'rgba(255, 255, 255, 0.7)',
             transition: 'all 0.3s ease',
             background: 'none',
