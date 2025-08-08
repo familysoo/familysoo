@@ -467,9 +467,16 @@ export default function Home() {
             <p className="text-base sm:text-lg md:text-xl mb-8 opacity-90 fade-in-up text-white/90 drop-shadow-md">
               가족의 시간, 사랑으로 기록됩니다
             </p>
+            {/* 모바일/태블릿: 전화 연결, PC: 예약문의 페이지 */}
             <Link 
               href="tel:041-356-1592"
-              className="bg-primary hover:bg-primary/90 text-white px-6 sm:px-8 py-3 rounded-full font-medium transition-colors fade-in-up shadow-lg"
+              className="bg-primary hover:bg-primary/90 text-white px-6 sm:px-8 py-3 rounded-full font-medium transition-colors fade-in-up shadow-lg lg:hidden"
+            >
+              예약 문의하기
+            </Link>
+            <Link 
+              href="/contact"
+              className="bg-primary hover:bg-primary/90 text-white px-6 sm:px-8 py-3 rounded-full font-medium transition-colors fade-in-up shadow-lg hidden lg:inline-block"
             >
               예약 문의하기
             </Link>
