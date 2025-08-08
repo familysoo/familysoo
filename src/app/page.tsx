@@ -204,7 +204,7 @@ function StudioSection() {
   );
 }
 
-// 애니메이션이 적용된 서비스 섹션 컴포넌트
+// 서비스 섹션 컴포넌트 (애니메이션 제거됨)
 function ServiceSection({ 
   imageUrl, 
   title, 
@@ -222,22 +222,11 @@ function ServiceSection({
   isReversed: boolean;
   showDivider: boolean;
 }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-100px" });
-
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-    >
+    <div>
       <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-16">
-        <motion.div 
+        <div 
           className={`${isReversed ? 'lg:order-2' : ''}`}
-          initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-          animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.8, rotate: -5 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
         >
           <Link href={href}>
             <motion.div 
@@ -265,55 +254,21 @@ function ServiceSection({
               />
             </motion.div>
           </Link>
-        </motion.div>
+        </div>
         
-        <motion.div 
+        <div 
           className={`${isReversed ? 'lg:order-1' : ''}`}
-          initial={{ opacity: 0, y: 60 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
         >
-          <motion.h3 
-            className="font-serif text-xl sm:text-3xl font-medium mb-4 sm:mb-6 text-primary"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
-          >
+          <h3 className="font-serif text-xl sm:text-3xl font-medium mb-4 sm:mb-6 text-primary">
             {title}
-          </motion.h3>
+          </h3>
           
-          <motion.p 
-            className="text-foreground/80 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
-          >
+          <p className="text-foreground/80 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
             {description}
-          </motion.p>
+          </p>
           
           <motion.div 
             className="border border-primary rounded-xl p-4 sm:p-6 mb-4 sm:mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? 
-              { 
-                opacity: 1, 
-                y: 0,
-                borderColor: "var(--primary)",
-                boxShadow: "0px 0px 0px rgba(139, 115, 85, 0)",
-                transition: { 
-                  duration: 0.6, 
-                  delay: 0.8,
-                  ease: "easeOut",
-                  borderColor: { duration: 0.2, ease: "easeOut" },
-                  boxShadow: { duration: 0.2, ease: "easeOut" }
-                }
-              } : 
-              { 
-                opacity: 0, 
-                y: 30,
-                transition: { duration: 0.2, ease: "easeOut" }
-              }
-            }
             whileHover={{ 
               borderColor: "var(--primary)",
               boxShadow: "0 4px 20px rgba(139, 115, 85, 0.1)",
@@ -326,24 +281,6 @@ function ServiceSection({
                 <motion.li 
                   key={index}
                   className="flex items-center"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={isInView ? 
-                    { 
-                      opacity: 1, 
-                      x: 0,
-                      transition: { 
-                        duration: 0.5, 
-                        delay: 0.9 + index * 0.1,
-                        ease: "easeOut",
-                        x: { duration: 0.2, ease: "easeOut" }
-                      }
-                    } : 
-                    { 
-                      opacity: 0, 
-                      x: -20,
-                      transition: { duration: 0.2, ease: "easeOut" }
-                    }
-                  }
                   whileHover={{ 
                     x: 4,
                     transition: { duration: 0.2, ease: "easeOut" }
@@ -362,11 +299,7 @@ function ServiceSection({
             </ul>
           </motion.div>
           
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 1.2 }}
-          >
+          <div>
             <Link href={href}>
               <motion.span
                 className="text-primary font-medium cursor-pointer inline-block"
@@ -380,21 +313,18 @@ function ServiceSection({
                 자세히 보기 →
               </motion.span>
             </Link>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
       
       {showDivider && (
         <div className="flex justify-center">
-          <motion.div 
-            className="h-px bg-primary/30"
-            initial={{ width: 0, opacity: 0 }}
-            animate={isInView ? { width: "6rem", opacity: 1 } : { width: 0, opacity: 0 }}
-            transition={{ duration: 1, delay: 1.4, ease: "easeOut" }}
+          <div 
+            className="h-px bg-primary/30 w-24"
           />
         </div>
       )}
-    </motion.div>
+    </div>
   );
 }
 
