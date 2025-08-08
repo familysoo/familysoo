@@ -440,7 +440,7 @@ export default function Home() {
                 inset: 0,
                 backgroundImage: `url('${slide.image}')`,
                 backgroundSize: 'cover',
-                backgroundPosition: 'center',
+                backgroundPosition: '50% 30%',
                 backgroundRepeat: 'no-repeat',
                 backgroundColor: '#8b7355',
                 opacity: index === currentSlide ? 1 : 0,
