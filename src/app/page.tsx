@@ -528,25 +528,28 @@ export default function Home() {
           ))}
         </div>
         
-        <div className="relative z-20 text-center px-4 max-w-4xl mx-auto">
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light mb-6 fade-in-up text-white drop-shadow-lg">
-            소중한 순간을<br />사진으로 남기세요
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl mb-8 opacity-90 fade-in-up text-white/90 drop-shadow-md">
-            가족의 시간, 사랑으로 기록됩니다
-          </p>
-          <Link 
-            href="tel:041-356-1592"
-            className="bg-primary hover:bg-primary/90 text-white px-6 sm:px-8 py-3 rounded-full font-medium transition-colors fade-in-up shadow-lg"
-          >
-            예약 문의하기
-          </Link>
+        {/* 텍스트와 CTA를 하단으로 이동 */}
+        <div className="absolute bottom-20 sm:bottom-24 left-0 right-0 z-20 text-center px-4">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light mb-6 fade-in-up text-white drop-shadow-lg leading-tight">
+              소중한 순간을<br/>사진으로 남기세요
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl mb-8 opacity-90 fade-in-up text-white/90 drop-shadow-md">
+              가족의 시간, 사랑으로 기록됩니다
+            </p>
+            <Link 
+              href="tel:041-356-1592"
+              className="bg-primary hover:bg-primary/90 text-white px-6 sm:px-8 py-3 rounded-full font-medium transition-colors fade-in-up shadow-lg"
+            >
+              예약 문의하기
+            </Link>
+          </div>
         </div>
 
         {/* Carousel Dots */}
         <div style={{
           position: 'absolute',
-          bottom: '2rem',
+          bottom: '1rem',
           left: '50%',
           transform: 'translateX(-50%)',
           display: 'flex',
